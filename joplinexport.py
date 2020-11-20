@@ -69,7 +69,7 @@ class JoplinExporter:
         for resource_id, resource in self.resources.items():
             title, extension = resource
             copy(
-                self.joplin_dir / "resources" / (resource_id + "." + extension),
+                self.joplin_dir / "resources" / (f"{resource_id}.{extension}"),
                 self.static_dir,
             )
 
@@ -83,9 +83,7 @@ class JoplinExporter:
         self.folders = {id: title for id, title in c.fetchall()}
 
         c.execute("""SELECT id, title, file_extension FROM resources;""")
-        self.resources = {
-            id: (title, file_extension) for id, title, file_extension in c.fetchall()
-        }
+        self.resources = {id: (title, ext) for id, title, ext in c.fetchall()}
 
         c.execute("""SELECT id, parent_id, title, body FROM notes;""")
         self.notes = defaultdict(list)

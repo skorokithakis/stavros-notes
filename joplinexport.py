@@ -36,7 +36,7 @@ class JoplinExporter:
         self.content_dir.mkdir()
         self.static_dir.mkdir()
         with open(self.content_dir / "_index.md", mode="w") as outfile:
-            outfile.write('+++\nredirect_to = "welcome"\n+++')
+            outfile.write('+++\nredirect_to = "welcome/stavros-notes/"\n+++')
 
     def resolve_note_links(self, note: Note) -> str:
         def replacement(match):

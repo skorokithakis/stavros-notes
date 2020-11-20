@@ -6,3 +6,7 @@ I wrote a small script to read the notes, export them, and generate a static sit
 If you want to use the script and generate such a site for yourself, feel free to fork this repository.
 
 Just run `./joplinexport.py`, it will read the database and create a site like this one and upload it to GitLab pages.
+
+You can see the final site at:
+
+https://notes.stavros.io

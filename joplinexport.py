@@ -98,7 +98,11 @@ class JoplinExporter:
     def export(self):
         self.read_data()
 
-        folder_list = list(self.folders.items())
+        # Private notes shouldn't be published.
+        folder_list = list(
+            item for item in self.folders.items() if item[1] != "Private"
+        )
+
         # Sort "Welcome" last.
         folder_list.sort(
             key=lambda x: x[1].lower().strip() if x[1] != "Welcome" else "0"

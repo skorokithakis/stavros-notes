@@ -1,6 +1,6 @@
 +++
 title = "Omnibus F4 pro servo diode"
-weight = 3
+weight = 4
 sort_by = "weight"
 insert_anchor_links = "right"
 +++

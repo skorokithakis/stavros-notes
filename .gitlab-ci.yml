@@ -3,7 +3,7 @@ build:
   stage: build
   before_script:
     - wget https://github.com/getzola/zola/releases/download/v0.12.2/zola-v0.12.2-x86_64-unknown-linux-gnu.tar.gz -O zola.tgz
-    - unzip zola.tgz
+    - tar zxvf zola.tgz
   script:
     - ./zola build
   artifacts:

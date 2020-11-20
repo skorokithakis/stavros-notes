@@ -1,7 +1,14 @@
 +++
 title = "Drone stuff"
-weight = 2
+weight = 3
 sort_by = "weight"
 insert_anchor_links = "right"
 +++
-Select one of the sublinks on the left to see the notes in this section.
+## Contents
+
+Click on a link in the list below to go to that page:
+
+1. [Getting uninverted SBUS on a no-name FrSky-compatible receiver](../../drone-stuff/getting-uninverted-sbus-on-a-no-name-frsky-compatible-receiver)
+1. [Getting uninverted SBUS on the FrSky XSR receiver](../../drone-stuff/getting-uninverted-sbus-on-the-frsky-xsr-receiver)
+1. [Omnibus F4 V3](../../drone-stuff/omnibus-f4-v3)
+1. [Omnibus F4 pro servo diode](../../drone-stuff/omnibus-f4-pro-servo-diode)

@@ -111,21 +111,12 @@ class JoplinExporter:
             folder_id, folder_title = folder
             dir = self.content_dir / slugify(folder_title)
             dir.mkdir(parents=True)
-            with (dir / "_index.md").open(mode="w") as outfile:
-                outfile.write(
-                    f"""+++
-title = "{folder_title}"
-weight = {counter}
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
-Select one of the sublinks on the left to see the notes in this section."""
-                )
-
+            contents = []
             for counter, note in enumerate(
                 sorted(self.notes[folder_id], key=lambda n: n.title)
             ):
                 print(f"Exporting {folder_title} - {note.title}...")
+                contents.append((note.title, note.get_url()))
                 with (self.content_dir / (note.get_url() + ".md")).open(
                     mode="w"
                 ) as outfile:
@@ -138,6 +129,25 @@ insert_anchor_links = "right"
 +++
 {self.resolve_note_links(note)}"""
                     )
+
+            with (dir / "_index.md").open(mode="w") as outfile:
+                contents_list = "\n1. ".join(
+                    f"[{title}](../../{url})" for title, url in contents
+                )
+                outfile.write(
+                    f"""+++
+title = "{folder_title}"
+weight = {counter}
+sort_by = "weight"
+insert_anchor_links = "right"
++++
+## Contents
+
+Click on a link in the list below to go to that page:
+
+1. {contents_list}
+"""
+                )
 
 
 if __name__ == "__main__":

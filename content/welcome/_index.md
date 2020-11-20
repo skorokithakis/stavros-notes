@@ -1,7 +1,11 @@
 +++
 title = "Welcome"
-weight = 1
+weight = 0
 sort_by = "weight"
 insert_anchor_links = "right"
 +++
-Select one of the sublinks on the left to see the notes in this section.
+## Contents
+
+Click on a link in the list below to go to that page:
+
+1. [Stavros' notes](../../welcome/stavros-notes)

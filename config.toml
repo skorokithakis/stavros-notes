@@ -1,0 +1,9 @@
+# The URL the site will be built for
+base_url = "https://notes.stavros.io"
+compile_sass = false
+highlight_code = true
+build_search_index = true
+theme = "book"
+title = "Stavros' Notes"
+
+[extra]

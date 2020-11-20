@@ -1,0 +1,40 @@
+build:
+  image: python
+  stage: build
+  before_script:
+    - wget https://github.com/getzola/zola/releases/download/v0.12.2/zola-v0.12.2-x86_64-unknown-linux-gnu.tar.gz -O zola.tgz
+    - unzip zola.tgz
+  script:
+    - ./zola build
+  artifacts:
+    paths:
+      - public
+
+pages:
+  stage: deploy
+  script:
+    - ls -lah public/
+  dependencies:
+    - build
+  artifacts:
+    paths:
+      - public
+  only:
+  - master
+
+neocities:
+  image: ruby:2.6.5
+  dependencies:
+    - build
+  stage: deploy
+  environment: neocities
+  script:
+    - echo -e "source 'https://rubygems.org'\n\ngem 'neocities'" > Gemfile
+    - gem install bundler
+    - bundle install
+    # Place user-provide token
+    - if [ -z "$NEOCITIES_TOKEN" ]; then echo Please see README.md for information on how to set your Neocities API token && false; else mkdir -p $HOME/.config/neocities && mv $NEOCITIES_TOKEN $HOME/.config/neocities/config; fi
+    - cd public
+    - bundle exec neocities push .
+  only:
+  - master

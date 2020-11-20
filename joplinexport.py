@@ -111,12 +111,12 @@ class JoplinExporter:
         self.clean_content_dir()
         self.copy_resources()
 
-        for counter, folder in enumerate(folder_list, start=1):
+        for folder_counter, folder in enumerate(folder_list, start=1):
             folder_id, folder_title = folder
             dir = self.content_dir / slugify(folder_title)
             dir.mkdir(parents=True)
             contents = []
-            for counter, note in enumerate(
+            for note_counter, note in enumerate(
                 sorted(self.notes[folder_id], key=lambda n: n.title)
             ):
                 print(f"Exporting {folder_title} - {note.title}...")
@@ -127,7 +127,7 @@ class JoplinExporter:
                     outfile.write(
                         f"""+++
 title = "{note.title}"
-weight = {counter}
+weight = {note_counter}
 sort_by = "weight"
 insert_anchor_links = "right"
 +++
@@ -141,7 +141,7 @@ insert_anchor_links = "right"
                 outfile.write(
                     f"""+++
 title = "{folder_title}"
-weight = {counter}
+weight = {folder_counter}
 sort_by = "weight"
 insert_anchor_links = "right"
 +++

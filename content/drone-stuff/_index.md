@@ -9,7 +9,7 @@ insert_anchor_links = "right"
 Click on a link in the list below to go to that page:
 
 1. [Getting uninverted SBUS on a no-name FrSky-compatible receiver](../../drone-stuff/getting-uninverted-sbus-on-a-no-name-frsky-compatible-receiver)
-1. [Getting uninverted SBUS on the FrSky XSR receiver](../../drone-stuff/getting-uninverted-sbus-on-the-frsky-xsr-receiver)
+1. [Getting uninverted SBUS/SmartPort on the FrSky XSR receiver](../../drone-stuff/getting-uninverted-sbus-smartport-on-the-frsky-xsr-receiver)
 1. [Mini Drak build condensed instructions](../../drone-stuff/mini-drak-build-condensed-instructions)
 1. [Omnibus F4 V3 pinout](../../drone-stuff/omnibus-f4-v3-pinout)
 1. [Omnibus F4 pro servo diode](../../drone-stuff/omnibus-f4-pro-servo-diode)

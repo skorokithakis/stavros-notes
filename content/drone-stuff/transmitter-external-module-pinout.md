@@ -14,5 +14,5 @@ The transmitter (Taranis, Jumper, RadioMaster, etc) pinout is, from top to botto
 
 It's illustrated in this photo:
 
-[![pinout.jpeg](../../72d23239af1541d4b170271c1e9e21eb.jpeg)](../../72d23239af1541d4b170271c1e9e21eb.jpeg)
+[![pinout.jpeg](../../resources/72d23239af1541d4b170271c1e9e21eb.jpeg)](../../resources/72d23239af1541d4b170271c1e9e21eb.jpeg)
 

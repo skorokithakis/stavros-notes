@@ -26,7 +26,7 @@ class Note:
 
 class JoplinExporter:
     content_dir = Path("content")
-    static_dir = Path("static")
+    static_dir = Path("static/resources")
     joplin_dir = Path.home() / ".config/joplin-desktop"
 
     def clean_content_dir(self):
@@ -62,7 +62,7 @@ class JoplinExporter:
         resource = self.resources.get(resource_id)
         if not resource:
             return None
-        return resource_id + "." + resource[1]
+        return "resources/" + resource_id + "." + resource[1]
 
     def copy_resources(self):
         """Copy all the resources to the output directory."""
@@ -100,7 +100,7 @@ class JoplinExporter:
 
         # Private notes shouldn't be published.
         folder_list = list(
-            item for item in self.folders.items() if item[1] != "Private"
+            i for i in self.folders.items() if "private" not in i[1].lower()
         )
 
         # Sort "Welcome" last.

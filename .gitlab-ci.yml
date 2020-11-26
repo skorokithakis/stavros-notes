@@ -1,4 +1,19 @@
-build:
+test:
+  image: python
+  stage: test
+  before_script:
+    - wget https://github.com/getzola/zola/releases/download/v0.12.2/zola-v0.12.2-x86_64-unknown-linux-gnu.tar.gz -O zola.tgz
+    - tar zxvf zola.tgz
+    - git clone https://github.com/getzola/book.git themes/book/
+  script:
+    - ./zola build
+  artifacts:
+    paths:
+      - public
+  except:
+  - master
+
+pages:
   image: python
   stage: build
   before_script:
@@ -10,15 +25,5 @@ build:
   artifacts:
     paths:
       - public
-
-pages:
-  stage: deploy
-  script:
-    - ls -lah public/
-  dependencies:
-    - build
-  artifacts:
-    paths:
-      - public
-  only:
+  except:
   - master

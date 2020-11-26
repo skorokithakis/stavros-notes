@@ -1,5 +1,5 @@
 +++
-title = "Building notes for the FT Mighty Mini Arrow"
+title = "Build notes for the FT Mighty Mini Arrow"
 weight = 0
 sort_by = "weight"
 insert_anchor_links = "right"

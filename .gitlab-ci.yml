@@ -25,5 +25,5 @@ pages:
   artifacts:
     paths:
       - public
-  except:
+  only:
   - master

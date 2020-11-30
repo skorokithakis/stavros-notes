@@ -1,6 +1,6 @@
 +++
 title = "INAV tuning tips"
-weight = 2
+weight = 3
 sort_by = "weight"
 insert_anchor_links = "right"
 +++
@@ -12,4 +12,4 @@ Here are some general INAV tuning tips and things I've learned throughout my bui
 
 * * *
 
-Last updated on 2020-11-30 05:17:15.
+Last updated on 2020-11-30 14:18:05.

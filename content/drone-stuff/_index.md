@@ -8,6 +8,7 @@ insert_anchor_links = "right"
 
 Click on a link in the list below to go to that page:
 
+1. [General RC tips](../../drone-stuff/general-rc-tips)
 1. [Getting uninverted SBUS on a no-name FrSky-compatible receiver](../../drone-stuff/getting-uninverted-sbus-on-a-no-name-frsky-compatible-receiver)
 1. [Getting uninverted SBUS/SmartPort on the FrSky XSR receiver](../../drone-stuff/getting-uninverted-sbus-smartport-on-the-frsky-xsr-receiver)
 1. [INAV tuning tips](../../drone-stuff/inav-tuning-tips)

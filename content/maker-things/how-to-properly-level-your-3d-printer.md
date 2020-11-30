@@ -27,3 +27,7 @@ For the last photo, I’ve leveled it pretty much perfectly. You can see that th
 There you have it! If your filament looks cylindrical, follow your printer’s manual to reduce the distance between bed and nozzle. If it looks transparent and missing in places completely, you need to increase the distance. If it looks mushed and has the proper color, and the rows are touching each other just so, you’re perfect and ready to print!
 
 I hope this guide has helped you, feel free to share it with your friends.
+
+* * *
+
+Last updated on 2020-11-20 23:53:17.

@@ -53,3 +53,7 @@ To start building:
 Notes:
 
 > Make sure you use the tallest control horns possible and have loads of expo in for the roll axis (pitch is fine). Matt (because the MD is very roll sensitive as I found out to my surprise).
+
+* * *
+
+Last updated on 2020-11-27 00:10:22.

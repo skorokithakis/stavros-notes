@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import re
 import sqlite3
+import time
 from collections import defaultdict
 from pathlib import Path
 from shutil import copy
@@ -13,12 +14,15 @@ def slugify(text):
 
 
 class Note:
-    def __init__(self, id, parent_id, parent_title, title, body):
+    def __init__(self, id, parent_id, parent_title, title, body, updated_time):
         self.id = id
         self.parent_id = parent_id
         self.parent_title = parent_title
         self.title = title
         self.body = body
+        self.updated_time = time.strftime(
+            "%Y-%m-%d %H:%M:%S", time.localtime(updated_time)
+        )
 
     def get_url(self):
         return slugify(self.parent_title) + "/" + slugify(self.title)
@@ -85,11 +89,13 @@ class JoplinExporter:
         c.execute("""SELECT id, title, file_extension FROM resources;""")
         self.resources = {id: (title, ext) for id, title, ext in c.fetchall()}
 
-        c.execute("""SELECT id, parent_id, title, body FROM notes;""")
+        c.execute("""SELECT id, parent_id, title, body, updated_time FROM notes;""")
         self.notes = defaultdict(list)
         self.note_lookup_dict = {}
-        for id, parent_id, title, body in c.fetchall():
-            note = Note(id, parent_id, self.folders[parent_id], title, body)
+        for id, parent_id, title, body, updated_time in c.fetchall():
+            note = Note(
+                id, parent_id, self.folders[parent_id], title, body, updated_time / 1000
+            )
             self.notes[note.parent_id].append(note)
             self.note_lookup_dict[note.id] = note
 
@@ -104,9 +110,7 @@ class JoplinExporter:
         )
 
         # Sort "Welcome" last.
-        folder_list.sort(
-            key=lambda x: x[1].lower().strip() if x[1] != "Welcome" else "0"
-        )
+        folder_list.sort(key=lambda x: x[1].lower().strip() if x[1] != "Welcome" else "0")
 
         self.clean_content_dir()
         self.copy_resources()
@@ -131,7 +135,12 @@ weight = {note_counter}
 sort_by = "weight"
 insert_anchor_links = "right"
 +++
-{self.resolve_note_links(note)}"""
+{self.resolve_note_links(note)}
+
+* * *
+
+Last updated on {note.updated_time}.
+"""
                     )
 
             with (dir / "_index.md").open(mode="w") as outfile:

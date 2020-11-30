@@ -1,6 +1,6 @@
 +++
 title = "Transmitter external module pinout"
-weight = 4
+weight = 5
 sort_by = "weight"
 insert_anchor_links = "right"
 +++
@@ -16,3 +16,8 @@ It's illustrated in this photo:
 
 [![pinout.jpeg](../../resources/72d23239af1541d4b170271c1e9e21eb.jpeg)](../../resources/72d23239af1541d4b170271c1e9e21eb.jpeg)
 
+
+
+* * *
+
+Last updated on 2020-11-24 00:13:36.

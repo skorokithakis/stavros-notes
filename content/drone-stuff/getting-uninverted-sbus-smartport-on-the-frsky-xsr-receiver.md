@@ -16,3 +16,7 @@ They should be soldered like this (remember to solder both resistor pads togethe
 Now the CPPM pad will be uninverted SBUS/SmartPort instead.
 It seems to be a bit of a gamble whether you get SBUS or SmartPort, it might be firmware-dependent.
 On firmware 2.1.0 FPort, I actually got the uninverted FPort signal on the CPPM pin, which is what I wanted.
+
+* * *
+
+Last updated on 2020-11-24 04:21:44.

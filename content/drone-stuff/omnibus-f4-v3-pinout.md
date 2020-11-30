@@ -10,4 +10,4 @@ This is the pinout of the Omnibus F4 V3:
 
 * * *
 
-Last updated on 2020-11-24 01:33:14.
+*Last updated on November 24, 2020.*

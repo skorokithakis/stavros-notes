@@ -12,4 +12,4 @@ Here are some general INAV tuning tips and things I've learned throughout my bui
 
 * * *
 
-Last updated on 2020-11-30 14:18:05.
+*Last updated on November 30, 2020.*

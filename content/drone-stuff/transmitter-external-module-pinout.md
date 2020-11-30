@@ -20,4 +20,4 @@ It's illustrated in this photo:
 
 * * *
 
-Last updated on 2020-11-24 00:13:36.
+*Last updated on November 24, 2020.*

@@ -56,4 +56,4 @@ Notes:
 
 * * *
 
-Last updated on 2020-11-27 00:10:22.
+*Last updated on November 27, 2020.*

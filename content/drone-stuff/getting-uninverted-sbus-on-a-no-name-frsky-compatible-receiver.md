@@ -16,4 +16,4 @@ To break this out to the SBUS pad, I had to remove/bridge the resistor that is c
 
 * * *
 
-Last updated on 2020-11-24 01:33:46.
+*Last updated on November 24, 2020.*

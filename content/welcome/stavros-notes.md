@@ -18,4 +18,4 @@ Otherwise, enjoy my notes!
 
 * * *
 
-Last updated on 2020-11-20 21:50:12.
+*Last updated on November 20, 2020.*

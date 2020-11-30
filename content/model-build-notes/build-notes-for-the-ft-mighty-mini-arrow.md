@@ -68,4 +68,4 @@ These notes are a condensed version of the [FT Arrow build video](https://www.yo
 
 * * *
 
-Last updated on 2020-11-27 17:22:29.
+*Last updated on November 27, 2020.*

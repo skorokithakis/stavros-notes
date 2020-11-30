@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import re
 import sqlite3
-import time
 from collections import defaultdict
+from datetime import datetime
 from pathlib import Path
 from shutil import copy
 from shutil import rmtree
@@ -20,9 +20,7 @@ class Note:
         self.parent_title = parent_title
         self.title = title
         self.body = body
-        self.updated_time = time.strftime(
-            "%Y-%m-%d %H:%M:%S", time.localtime(updated_time)
-        )
+        self.updated_time = datetime.fromtimestamp(updated_time)
 
     def get_url(self):
         return slugify(self.parent_title) + "/" + slugify(self.title)
@@ -139,7 +137,7 @@ insert_anchor_links = "right"
 
 * * *
 
-Last updated on {note.updated_time}.
+*Last updated on {note.updated_time:%B %d, %Y}.*
 """
                     )
 

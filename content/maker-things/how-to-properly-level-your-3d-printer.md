@@ -30,4 +30,4 @@ I hope this guide has helped you, feel free to share it with your friends.
 
 * * *
 
-Last updated on 2020-11-20 23:53:17.
+*Last updated on November 20, 2020.*

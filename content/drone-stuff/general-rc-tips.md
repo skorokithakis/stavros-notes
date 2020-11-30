@@ -10,4 +10,4 @@ These are general tips for building RC planes/quads/whatever:
 
 * * *
 
-Last updated on 2020-11-30 14:18:26.
+*Last updated on November 30, 2020.*

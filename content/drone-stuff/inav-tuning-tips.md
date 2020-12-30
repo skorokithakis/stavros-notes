@@ -13,7 +13,7 @@ Here are some general INAV tuning tips and things I've learned throughout my bui
 
 ## Battery monitoring
 
-To monitor how much battery you have left in flight, voltage isn't a good indication because it can sag a lot. mAh is also not a good indication, because it doesn't decrease linearly with voltage (when voltage drops, you need to consume more amps for the same amount of motor RPM, and thus thrust). Energy is a better way, using the "Wh drawn" INAV OSD item. In addition, INAV has heat loss compensation for the energy meter, which gives you a more accurate reading.
+To monitor how much battery you have left in flight, voltage isn't a good indication because it can sag a lot. mAh is also not a good indication, because it doesn't decrease linearly with voltage (when voltage drops, you need to consume more amps for the same amount of motor RPM, and thus thrust). Remaining energy (in Watt-hours) is a better way, using the "Wh drawn" INAV OSD item. In addition, INAV has heat loss compensation for the energy meter (done by simulating the internal resistance of the battery), which gives you a more accurate reading.
 
 To calculate the Wh a battery can give, the best way is to charge or discharge it and see how many Wh were spent, if your charger shows you. Another way is to get a rough estimate using the formula `no_cells * 3.7 * Ah`. So, for a 1800 4S battery, the maximum Watt-hours are `4 * 3.7 * 1.8 = 26.64 Wh`. You should not discharge more than 80% of that value, or you risk excessive wear to the battery.
 
@@ -23,6 +23,7 @@ More details can be found in the [battery page](https://notes.stavros.io/drone-s
 
 _(Thanks to Michel Pastor in the INAV Telegram group for this tip.)_
 
+
 * * *
 
-*Last updated on December 28, 2020.*
+*Last updated on December 30, 2020.*

@@ -2,7 +2,7 @@
 
 [build]
 publish = "public"
-command = "zola build"
+command = "git clone https://github.com/getzola/book.git themes/book/; zola build"
 
 [build.environment]
 ZOLA_VERSION = "0.12.2"

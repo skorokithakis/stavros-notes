@@ -18,6 +18,8 @@ These errors are caused by the Ledger not being connected. You need to leave the
 
 Letting the Ledger go to the screen saver or lock appears safe, at least with the Nano X I tried. Just leave it connected, and it'll sync fine.
 
+I've opened a suggestion on the [Monero issue tracker](https://github.com/monero-project/monero/issues/7276) to improve the UX of the Ledger integration in general.
+
 * * *
 
 <p style="font-size:80%; font-style: italic">

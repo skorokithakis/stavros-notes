@@ -12,4 +12,7 @@ Now the servos' 5V rail can be powered from another 5V supply to avoid servo cur
 
 * * *
 
-*Last updated on November 24, 2020.*
+<p style="font-size:80%; font-style: italic">
+Last updated on November 24, 2020.  For any questions/feedback,
+email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
+</p>

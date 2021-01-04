@@ -137,7 +137,10 @@ insert_anchor_links = "right"
 
 * * *
 
-*Last updated on {note.updated_time:%B %d, %Y}.*
+<p style="font-size:80%; font-style: italic">
+Last updated on {note.updated_time:%B %d, %Y}.  For any questions/feedback,
+email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
+</p>
 """
                     )
 

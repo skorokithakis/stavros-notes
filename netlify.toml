@@ -2,10 +2,7 @@
 
 [build]
 publish = "public"
-command = "git clone https://github.com/getzola/book.git themes/book/; zola build"
+command = "./build.sh"
 
 [build.environment]
 ZOLA_VERSION = "0.12.2"
-
-[context.deploy-preview]
-command = "zola build --base-url $DEPLOY_PRIME_URL"

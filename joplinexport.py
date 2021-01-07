@@ -127,13 +127,18 @@ class JoplinExporter:
             dir = self.content_dir / slugify(folder_title)
             dir.mkdir(parents=True)
             contents = []
-            for note_counter, note in enumerate(
-                sorted(self.notes[folder_id], key=lambda n: n.title)
-            ):
-                if contains_word("private", note.title):
-                    print(f"Note is private, skipping: {folder_title} - {note.title}.")
+            note_counter = 0
+            for note in sorted(self.notes[folder_id], key=lambda n: n.title):
+                if contains_word("private", note.title) or contains_word(
+                    "wip", note.title
+                ):
+                    print(
+                        f"Note is unpublished, skipping: {folder_title} - {note.title}."
+                    )
                     continue
+
                 print(f"Exporting {folder_title} - {note.title}...")
+                note_counter += 1
                 contents.append((note.title, note.get_url()))
                 with (self.content_dir / (note.get_url() + ".md")).open(
                     mode="w"

@@ -89,7 +89,6 @@ class JoplinExporter:
         conn = sqlite3.connect(self.joplin_dir / "database.sqlite")
         c = conn.cursor()
 
-        # Create table
         c.execute("""SELECT id, title FROM folders;""")
         self.folders = {id: title for id, title in c.fetchall()}
 

@@ -9,6 +9,15 @@ from shutil import rmtree
 from typing import Optional
 
 
+def contains_word(word: str, text: str) -> bool:
+    """
+    Check whether `text` contains `word`, as a whole word.
+
+    Case insensitive.
+    """
+    return re.search(f"\\b{word}\\b".lower(), text.lower()) is not None
+
+
 def slugify(text):
     return re.sub(r"[\W_]+", "-", text.lower()).strip("-")
 
@@ -104,7 +113,7 @@ class JoplinExporter:
 
         # Private notes shouldn't be published.
         folder_list = list(
-            i for i in self.folders.items() if "private" not in i[1].lower()
+            i for i in self.folders.items() if not contains_word("private", i[1])
         )
 
         # Sort "Welcome" last.
@@ -121,6 +130,9 @@ class JoplinExporter:
             for note_counter, note in enumerate(
                 sorted(self.notes[folder_id], key=lambda n: n.title)
             ):
+                if contains_word("private", note.title):
+                    print(f"Note is private, skipping: {folder_title} - {note.title}.")
+                    continue
                 print(f"Exporting {folder_title} - {note.title}...")
                 contents.append((note.title, note.get_url()))
                 with (self.content_dir / (note.get_url() + ".md")).open(

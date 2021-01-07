@@ -2,7 +2,9 @@
 
 set -euxo pipefail
 
+rm -rf themes/book/
 git clone https://github.com/getzola/book.git themes/book/
+
 rm -rf public/
 zola build
 

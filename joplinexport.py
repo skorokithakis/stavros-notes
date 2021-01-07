@@ -19,23 +19,30 @@ def contains_word(word: str, text: str) -> bool:
 
 
 def slugify(text):
+    """Convert `text` into a slug."""
     return re.sub(r"[\W_]+", "-", text.lower()).strip("-")
 
 
 class Note:
-    def __init__(self, id, parent_id, parent_title, title, body, updated_time):
+    """A helper type for a note."""
+
+    def __init__(self, id, parent_id, parent_title, title, body, updated_time, tags=[]):
         self.id = id
         self.parent_id = parent_id
         self.parent_title = parent_title
         self.title = title
         self.body = body
         self.updated_time = datetime.fromtimestamp(updated_time)
+        self.tags = tags
 
     def get_url(self):
+        """Return the note's relative URL."""
         return slugify(self.parent_title) + "/" + slugify(self.title)
 
 
 class JoplinExporter:
+    """The main exporter class."""
+
     content_dir = Path("content")
     static_dir = Path("static/resources")
     joplin_dir = Path.home() / ".config/joplin-desktop"
@@ -50,6 +57,8 @@ class JoplinExporter:
             outfile.write('+++\nredirect_to = "welcome/stavros-notes/"\n+++')
 
     def resolve_note_links(self, note: Note) -> str:
+        """Resolve the links between notes and replace them in the body."""
+
         def replacement(match):
             item_id = match.group(1)
             new_url = self.get_note_url_by_id(item_id)
@@ -92,6 +101,15 @@ class JoplinExporter:
         c.execute("""SELECT id, title FROM folders;""")
         self.folders = {id: title for id, title in c.fetchall()}
 
+        # Get the tags by ID.
+        c.execute("""SELECT id, title FROM tags;""")
+        tags = {id: title for id, title in c.fetchall()}
+        # Get the tag IDs for each note ID.
+        c.execute("""SELECT note_id, tag_id FROM note_tags;""")
+        note_tags = defaultdict(list)
+        for note_id, tag_id in c.fetchall():
+            note_tags[note_id].append(tags[tag_id])
+
         c.execute("""SELECT id, title, file_extension FROM resources;""")
         self.resources = {id: (title, ext) for id, title, ext in c.fetchall()}
 
@@ -100,7 +118,13 @@ class JoplinExporter:
         self.note_lookup_dict = {}
         for id, parent_id, title, body, updated_time in c.fetchall():
             note = Note(
-                id, parent_id, self.folders[parent_id], title, body, updated_time / 1000
+                id,
+                parent_id,
+                self.folders[parent_id],
+                title,
+                body,
+                updated_time / 1000,
+                tags=note_tags[id],
             )
             self.notes[note.parent_id].append(note)
             self.note_lookup_dict[note.id] = note
@@ -108,6 +132,7 @@ class JoplinExporter:
         conn.close()
 
     def export(self):
+        """Export all the notes to a static site."""
         self.read_data()
 
         # Private notes shouldn't be published.
@@ -128,8 +153,11 @@ class JoplinExporter:
             contents = []
             note_counter = 0
             for note in sorted(self.notes[folder_id], key=lambda n: n.title):
-                if contains_word("private", note.title) or contains_word(
-                    "wip", note.title
+                if (
+                    contains_word("private", note.title)
+                    or contains_word("wip", note.title)
+                    or "wip" in note.tags
+                    or "private" in note.tags
                 ):
                     print(
                         f"Note is unpublished, skipping: {folder_title} - {note.title}."

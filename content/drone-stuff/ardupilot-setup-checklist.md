@@ -1,0 +1,111 @@
++++
+title = "Ardupilot setup checklist"
+weight = 2
+sort_by = "weight"
+insert_anchor_links = "right"
++++
+This is a short guide for setting up [ArduPilot](https://ardupilot.org/) on a flying wing. I use an Omnibus F4 that was previously set up for INAV (so motor on 1, elevons on 3/4), so most of this guide will be geared to that. If you use a different controller, your mileage may vary.
+
+You should keep the [full list of ArduPilot parameters](https://ardupilot.org/plane/docs/parameters.html) open, for your reference while tuning. 
+
+
+## Hardware setup
+
+The values in this section are specific to the Omnibus F4, but the settings aren't, so you'll usually need to adjust your outputs to your specific configuration but you probably won't need to skip many of the steps here.
+
+
+- [ ] Connect GPS to UART 6 (SERIAL4). You don't need to do anything else for GPS, it should work out of the box.
+- [ ] Connect Fport to a UART. I chose UART 3 (SERIAL2).
+- [ ] To get Fport working with UART 3, you need to set `BRD_ALT_CONFIG=1`, to get UART 3 to act like a UART instead of I2C on the Omnibus F4.
+- [ ] Set the following for Fport on UART 3:
+  ```
+  SERIAL2_PROTOCOL = 23 (RCIN)
+  SERIAL2_BAUD=115
+  SERIAL2_OPTION=4
+  ```
+- [ ] Once Fport works, reverse the elevator with `RC2_REVERSED=1`.
+- [ ] Set up your servo functions and trims:
+  ```
+  SERVO1_FUNCTION=70
+  SERVO1_MIN=1000
+  SERVO1_MAX=2000
+  SERVO1_TRIM=1000
+
+  SERVO3_FUNCTION=77
+  SERVO3_MIN=1000
+  SERVO3_MAX=2000
+  SERVO3_TRIM=1500
+
+  SERVO4_FUNCTION=78
+  SERVO4_MIN=1000
+  SERVO4_MAX=2000
+  SERVO4_TRIM=1500
+  ```
+  All these values are necessary, because usually the `SERVOn_TRIM` won't be at 1500.
+- [ ] Set `SERVO_BLH_OTYPE=4` for DShot150 and `SERVO_BLH_MASK=1` to enable it for the motor.
+- [ ] Set `COMPASS_ENABLE=0` if you don't have a compass, otherwise calibrate it (not detailed here).
+- [ ] Set `TERRAIN_ENABLE=0` to get rid of the terrain warning.
+- [ ] Set the board orientation with `AHRS_TRIM_Y` and check that FBWA mode flies level.
+
+- [ ] Set `THR_PASS_STAB=1` so you can manually set the autolaunch "idle" throttle (before the throw).
+- [ ] Set `THR_SUPP_MAN=1` so you can manually set the throttle in autolaunch.
+- [ ] Check the preflight errors to warn on. For example, if you don't have an SD card, disable the "logging" preflight item.
+- [ ] Set up the OSD (Mission Planner has a very nice UI for that). I use a potentiometer to switch between the four different screens of the OSD:
+  -  One with everything on (for debugging), which is also set as the `OSD_ARM_SCR`/`OSD_DSARM_SCR`.
+  -  One with the artificial horizon, system messages and some basic info like RSSI, battery, ground speed and altitude.
+  -  A minimal screen with just system messages and battery/RSSI/speed/altitude.
+  -  A screen with just system messages, for when I want to enjoy the scenery.
+
+  Keep in mind that ArduPilot's airspeed and windspeed estimation are quite good, so you may want to add those even if you don't have an airspeed sensor.
+
+
+## Radio-related
+
+- [ ] Set your radio channels to AETR and run the radio calibration in the calibration section of ArduPilot.
+- [ ] Add arming switch with `RCn_OPTION=41` (on whatever channel you want).
+- [ ] Set up modes, possibly having switches override the mode channel to the mode you want.
+
+  What I do is set a given channel as the mode channel, and make that channel always output -100% on the radio. Then, I set up channel overrides for each switch, keeping in mind that overrides in OpenTX are executed in order (so the bottom override has the highest priority).
+  
+  That way, I set MANUAL/ACRO/FBWA to be lowest priority (on the same switch), then CRUISE to override those, then LOITER, AUTO, AUTOTUNE in that order.
+  
+  Finally, I add RTL to a switch on its own channel, with the highest priority of all overrides. I also add an override for that switch to the mode channel to -100%, so moving any other stick won't exit RTL mode as long as RTL is enabled.
+
+
+## Auto modes
+
+- [ ] Set `SERVO_AUTO_TRIM=1` so the aircraft trims itself while flying.
+- [ ] Set `FS_SHORT_ACTN`/`FS_SHORT_TIMEOUT`/`FS_LONG_ACTN`/`FS_LONG_TIMEOUT`. I tend to disable the short action and set long to RTL.
+- [ ] Set `RTL_CLIMB_MIN=30` so the aircraft climbs first before starting to return to home.
+- [ ] Set `ACRO_LOCKING=1` to avoid drifting when you aren't moving the sticks.
+- [ ] Change `AUTOTUNE_LEVEL` according to how aggressive you want the tune.
+
+
+## Tuning the TECS
+
+To tune the [TECS](https://ardupilot.org/plane/docs/tecs-total-energy-control-system-for-speed-height-tuning-guide.html), follow this procedure:
+
+- [ ] Set `THR_MAX` to the max throttle you want the system to use in altitude controlled modes.
+- [ ] Set `TRIM_ARSPD_CM` to the desired cruise air speed.
+- [ ] Set `TRIM_THROTTLE` to fly at `TRIM_ARSPD_CM` while level.
+- [ ] Set `TECS_PITCH_MAX` to the maximum angle that can achieve `TRIM_ARSPD_CM` at `THR_MAX`, and set `TECS_CLMB_MAX` to the maximum climb rate.
+- [ ] Set `TECS_PITCH_MIN` and `TECS_SINK_MAX`.
+
+
+## In the field
+
+- [ ] Run an autotune.
+- [ ] Note a comfortable airspeed so you can tune `TRIM_ARSPD_CM` later.
+- [ ] Fly and check what max pitch angle you can achieve to stay at `TRIM_ARSPD_CM` with throttle at `THR_MAX`.
+- [ ] Note the throttle percentage that will fly at `TRIM_ARSPD_CM` while level (so you can tune `TRIM_THROTTLE` later).
+
+
+
+_(Many thanks to Michel Pastor for his help with everything in this note.)_
+
+* * *
+
+<p style="font-size:80%; font-style: italic">
+Last updated on January 07, 2021.  For any questions/feedback,
+email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
+</p>

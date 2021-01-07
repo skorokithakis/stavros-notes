@@ -1,6 +1,6 @@
 +++
 title = "Getting uninverted SBUS/SmartPort on the FrSky XSR receiver"
-weight = 4
+weight = 5
 sort_by = "weight"
 insert_anchor_links = "right"
 +++

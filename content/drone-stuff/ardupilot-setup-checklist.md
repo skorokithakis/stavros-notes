@@ -46,29 +46,23 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 - [ ] Set `COMPASS_ENABLE=0` if you don't have a compass, otherwise calibrate it (not detailed here).
 - [ ] Set `TERRAIN_ENABLE=0` to get rid of the terrain warning.
 - [ ] Set the board orientation with `AHRS_TRIM_Y` and check that FBWA mode flies level.
-
 - [ ] Set `THR_PASS_STAB=1` so you can manually set the autolaunch "idle" throttle (before the throw).
 - [ ] Set `THR_SUPP_MAN=1` so you can manually set the throttle in autolaunch.
 - [ ] Check the preflight errors to warn on. For example, if you don't have an SD card, disable the "logging" preflight item.
-- [ ] Set up the OSD (Mission Planner has a very nice UI for that). I use a potentiometer to switch between the four different screens of the OSD:
+- [ ] Set up the OSD (Mission Planner has a very nice UI for that). Keep in mind that ArduPilot's airspeed and windspeed estimation are quite good, so you may want to add those even if you don't have an airspeed sensor. You may also want to set up multiple screens, I use a potentiometer to switch between the four different screens of the OSD:
   -  One with everything on (for debugging), which is also set as the `OSD_ARM_SCR`/`OSD_DSARM_SCR`.
   -  One with the artificial horizon, system messages and some basic info like RSSI, battery, ground speed and altitude.
   -  A minimal screen with just system messages and battery/RSSI/speed/altitude.
   -  A screen with just system messages, for when I want to enjoy the scenery.
-
-  Keep in mind that ArduPilot's airspeed and windspeed estimation are quite good, so you may want to add those even if you don't have an airspeed sensor.
 
 
 ## Radio-related
 
 - [ ] Set your radio channels to AETR and run the radio calibration in the calibration section of ArduPilot.
 - [ ] Add arming switch with `RCn_OPTION=41` (on whatever channel you want).
-- [ ] Set up modes, possibly having switches override the mode channel to the mode you want.
-
-  What I do is set a given channel as the mode channel, and make that channel always output -100% on the radio. Then, I set up channel overrides for each switch, keeping in mind that overrides in OpenTX are executed in order (so the bottom override has the highest priority).
-  
-  That way, I set MANUAL/ACRO/FBWA to be lowest priority (on the same switch), then CRUISE to override those, then LOITER, AUTO, AUTOTUNE in that order.
-  
+- [ ] Set up modes, possibly having switches override the mode channel to the mode you want.  
+  What I do is set a given channel as the mode channel, and make that channel always output -100% on the radio. Then, I set up channel overrides for each switch, keeping in mind that overrides in OpenTX are executed in order (so the bottom override has the highest priority).  
+  That way, I set MANUAL/ACRO/FBWA to be lowest priority (on the same switch), then CRUISE to override those, then LOITER, AUTO, AUTOTUNE in that order.  
   Finally, I add RTL to a switch on its own channel, with the highest priority of all overrides. I also add an override for that switch to the mode channel to -100%, so moving any other stick won't exit RTL mode as long as RTL is enabled.
 
 
@@ -106,6 +100,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on January 07, 2021.  For any questions/feedback,
+Last updated on January 08, 2021.  For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

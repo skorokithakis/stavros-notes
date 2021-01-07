@@ -1,6 +1,6 @@
 +++
 title = "Omnibus F4 V3 pinout"
-weight = 4
+weight = 6
 sort_by = "weight"
 insert_anchor_links = "right"
 +++

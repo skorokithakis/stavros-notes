@@ -80,6 +80,10 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 - [ ] Change `TKOFF_THR_MAX` to the desired max takeoff throttle.
 - [ ] Change `TKOFF_ALT` to the altitude you want takeoff to reach.
 - [ ] Set `THR_PASS_STAB=1` so you can manually set the autolaunch "idle" throttle (before the throw).
+- [ ] Set `TKOFF_THR_MINACC=18` for the takeoff throw to activate takeoff with a minimum of 2g.
+- [ ] set `TKOFF_LVL_PITCH` to your desired angle (20 is a good value).
+- [ ] Set `TKOFF_THR_DELAY` to the number of deciseconds that you want the motor to wait before it starts up.
+- [ ] Potentially set `TKOFF_THR_SLEW=127` to make the throttle spin up to full faster (within 0.8 sec).
 
 
 ## Tuning the TECS

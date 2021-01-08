@@ -46,8 +46,6 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 - [ ] Set `COMPASS_ENABLE=0` if you don't have a compass, otherwise calibrate it (not detailed here).
 - [ ] Set `TERRAIN_ENABLE=0` to get rid of the terrain warning.
 - [ ] Set the board orientation with `AHRS_TRIM_Y` and check that FBWA mode flies level.
-- [ ] Set `THR_PASS_STAB=1` so you can manually set the autolaunch "idle" throttle (before the throw).
-- [ ] Set `THR_SUPP_MAN=1` so you can manually set the throttle in autolaunch.
 - [ ] Check the preflight errors to warn on. For example, if you don't have an SD card, disable the "logging" preflight item.
 - [ ] Set up the OSD (Mission Planner has a very nice UI for that). Keep in mind that ArduPilot's airspeed and windspeed estimation are quite good, so you may want to add those even if you don't have an airspeed sensor. You may also want to set up multiple screens, I use a potentiometer to switch between the four different screens of the OSD:
   -  One with everything on (for debugging), which is also set as the `OSD_ARM_SCR`/`OSD_DSARM_SCR`.
@@ -73,6 +71,15 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 - [ ] Set `RTL_CLIMB_MIN=30` so the aircraft climbs first before starting to return to home.
 - [ ] Set `ACRO_LOCKING=1` to avoid drifting when you aren't moving the sticks.
 - [ ] Change `AUTOTUNE_LEVEL` according to how aggressive you want the tune.
+- [ ] Set `ACRO_PITCH_RATE`/`ACRO_ROLL_RATE` according to your craft.
+- [ ] Set `THR_SUPP_MAN=1` so you have total throttle control in ACRO/FBWA/STABILIZE.
+
+
+## Auto takeoff
+
+- [ ] Change `TKOFF_THR_MAX` to the desired max takeoff throttle.
+- [ ] Change `TKOFF_ALT` to the altitude you want takeoff to reach.
+- [ ] Set `THR_PASS_STAB=1` so you can manually set the autolaunch "idle" throttle (before the throw).
 
 
 ## Tuning the TECS
@@ -92,7 +99,7 @@ To tune the [TECS](https://ardupilot.org/plane/docs/tecs-total-energy-control-sy
 - [ ] Note a comfortable airspeed so you can tune `TRIM_ARSPD_CM` later.
 - [ ] Fly and check what max pitch angle you can achieve to stay at `TRIM_ARSPD_CM` with throttle at `THR_MAX`.
 - [ ] Note the throttle percentage that will fly at `TRIM_ARSPD_CM` while level (so you can tune `TRIM_THROTTLE` later).
-
+- [ ] Fly in FBWA and see if you're gaining/losing altitude. Pitch up/down to fly level, check the pitch on the OSD, and use the formula `old_value+pitch*π/180` to get the new value (in radians).
 
 
 _(Many thanks to Michel Pastor for his help with everything in this note.)_

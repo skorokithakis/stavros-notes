@@ -91,24 +91,11 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 
 ## Tuning the TECS
 
-To [tune the TECS](https://ardupilot.org/plane/docs/tecs-total-energy-control-system-for-speed-height-tuning-guide.html), follow this procedure:
-
-- [ ] Set `THR_MAX` to the max throttle you want the system to use in altitude controlled modes.
-- [ ] Set `TRIM_ARSPD_CM` to the desired cruise air speed.
-- [ ] Set `TRIM_THROTTLE` to fly at `TRIM_ARSPD_CM` while level.
-- [ ] Set `TECS_PITCH_MAX` to the maximum angle that can achieve `TRIM_ARSPD_CM` at `THR_MAX`, and set `TECS_CLMB_MAX` to the maximum climb rate.
-- [ ] Set `TECS_PITCH_MIN` and `TECS_SINK_MAX`.
-
+To tune the TECS, read the [TECS tuning guide]](https://ardupilot.org/plane/docs/tecs-total-energy-control-system-for-speed-height-tuning-guide.html). It's very well-written and comprehensible. Note the maximum pitch up/down you want your plane to fly at (depending on the max vertical speed you want), and tune based on that.
 
 ## In the field
 
 - [ ] Run an autotune.
-- [ ] Note a comfortable airspeed so you can tune `TRIM_ARSPD_CM` later.
-- [ ] Note your stall airspeed  so you can set `ARSPD_FBW_MIN` later.
-- [ ] Note your maximum airspeed at `THR_MAX` so you can set `ARSPD_FBW_MAX` later.
-- [ ] Fly and check at what max pitch angle up you can achieve `TRIM_ARSPD_CM` with throttle at `THR_MAX`.
-- [ ] Fly and check at what max pitch angle down you can achieve `TRIM_ARSPD_CM` with throttle at 0, so you can set `TECS_PITCH_MIN`.
-- [ ] Note the throttle percentage that will fly at `TRIM_ARSPD_CM` while level (so you can tune `TRIM_THROTTLE` later).
 - [ ] Fly in FBWA and see if you're gaining/losing altitude. Pitch up/down to fly level, check the pitch on the OSD, and use the formula `old_value+pitch*π/180` to get the new value (in radians).
 
 
@@ -117,6 +104,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on January 08, 2021.  For any questions/feedback,
+Last updated on January 09, 2021.  For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

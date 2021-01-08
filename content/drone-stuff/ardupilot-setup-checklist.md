@@ -15,8 +15,9 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 
 
 - [ ] Connect GPS to UART 6 (SERIAL4). You don't need to do anything else for GPS, it should work out of the box.
-- [ ] Connect Fport to a UART. I chose UART 3 (SERIAL2).
+- [ ] Connect Fport to a UART. I chose UART 3 (SERIAL2). If you want to use UART 1, you should set the RC input jumper to PPM on the F4 to disconnect the SBUS inverter from the pin.
 - [ ] To get Fport working with UART 3, you need to set `BRD_ALT_CONFIG=1`, to get UART 3 to act like a UART instead of I2C on the Omnibus F4.
+- [ ] Change the board orientation with `AHRS_ORIENTATION`.
 - [ ] Set the following for Fport on UART 3:
   ```
   SERIAL2_PROTOCOL = 23 (RCIN)
@@ -46,7 +47,8 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 - [ ] Set `COMPASS_ENABLE=0` if you don't have a compass, otherwise calibrate it (not detailed here).
 - [ ] Set `TERRAIN_ENABLE=0` to get rid of the terrain warning.
 - [ ] Set the board orientation with `AHRS_TRIM_Y` and check that FBWA mode flies level.
-- [ ] Check the preflight errors to warn on. For example, if you don't have an SD card, disable the "logging" preflight item.
+- [ ] If you don't use logging, set `LOG_BACKEND_TYPE=0`.
+- [ ] Check the preflight errors to warn on, though usually leaving it set to "all" is fine.
 - [ ] Set up the OSD (Mission Planner has a very nice UI for that). Keep in mind that ArduPilot's airspeed and windspeed estimation are quite good, so you may want to add those even if you don't have an airspeed sensor. You may also want to set up multiple screens, I use a potentiometer to switch between the four different screens of the OSD:
   -  One with everything on (for debugging), which is also set as the `OSD_ARM_SCR`/`OSD_DSARM_SCR`.
   -  One with the artificial horizon, system messages and some basic info like RSSI, battery, ground speed and altitude.
@@ -72,14 +74,15 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 - [ ] Set `ACRO_LOCKING=1` to avoid drifting when you aren't moving the sticks.
 - [ ] Change `AUTOTUNE_LEVEL` according to how aggressive you want the tune.
 - [ ] Set `ACRO_PITCH_RATE`/`ACRO_ROLL_RATE` according to your craft.
-- [ ] Set `THR_SUPP_MAN=1` so you have total throttle control in ACRO/FBWA/STABILIZE.
+- [ ] Set `THR_PASS_STAB=1` so you have total throttle control in ACRO/FBWA/STABILIZE.
+- [ ] Set `ARSPD_FBW_MIN`/`ARSPD_FBW_MAX` to the minimum and maximum airspeed you want auto modes to fly.
 
 
 ## Auto takeoff
 
 - [ ] Change `TKOFF_THR_MAX` to the desired max takeoff throttle.
 - [ ] Change `TKOFF_ALT` to the altitude you want takeoff to reach.
-- [ ] Set `THR_PASS_STAB=1` so you can manually set the autolaunch "idle" throttle (before the throw).
+- [ ] Set `TRH_SUPP_MAN=1` so you can manually set the autolaunch "idle" throttle (before the throw).
 - [ ] Set `TKOFF_THR_MINACC=18` for the takeoff throw to activate takeoff with a minimum of 2g.
 - [ ] set `TKOFF_LVL_PITCH` to your desired angle (20 is a good value).
 - [ ] Set `TKOFF_THR_DELAY` to the number of deciseconds that you want the motor to wait before it starts up.
@@ -88,7 +91,7 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 
 ## Tuning the TECS
 
-To tune the [TECS](https://ardupilot.org/plane/docs/tecs-total-energy-control-system-for-speed-height-tuning-guide.html), follow this procedure:
+To [tune the TECS](https://ardupilot.org/plane/docs/tecs-total-energy-control-system-for-speed-height-tuning-guide.html), follow this procedure:
 
 - [ ] Set `THR_MAX` to the max throttle you want the system to use in altitude controlled modes.
 - [ ] Set `TRIM_ARSPD_CM` to the desired cruise air speed.
@@ -101,7 +104,10 @@ To tune the [TECS](https://ardupilot.org/plane/docs/tecs-total-energy-control-sy
 
 - [ ] Run an autotune.
 - [ ] Note a comfortable airspeed so you can tune `TRIM_ARSPD_CM` later.
-- [ ] Fly and check what max pitch angle you can achieve to stay at `TRIM_ARSPD_CM` with throttle at `THR_MAX`.
+- [ ] Note your stall airspeed  so you can set `ARSPD_FBW_MIN` later.
+- [ ] Note your maximum airspeed at `THR_MAX` so you can set `ARSPD_FBW_MAX` later.
+- [ ] Fly and check at what max pitch angle up you can achieve `TRIM_ARSPD_CM` with throttle at `THR_MAX`.
+- [ ] Fly and check at what max pitch angle down you can achieve `TRIM_ARSPD_CM` with throttle at 0, so you can set `TECS_PITCH_MIN`.
 - [ ] Note the throttle percentage that will fly at `TRIM_ARSPD_CM` while level (so you can tune `TRIM_THROTTLE` later).
 - [ ] Fly in FBWA and see if you're gaining/losing altitude. Pitch up/down to fly level, check the pitch on the OSD, and use the formula `old_value+pitch*π/180` to get the new value (in radians).
 

@@ -23,6 +23,7 @@ The values in this section are specific to the Omnibus F4, but the settings aren
   SERIAL2_PROTOCOL = 23 (RCIN)
   SERIAL2_BAUD=115
   SERIAL2_OPTION=4
+  RSSI_TYPE=3
   ```
 - [ ] Once Fport works, reverse the elevator with `RC2_REVERSED=1`.
 - [ ] Set up your servo functions and trims:
@@ -82,7 +83,7 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 
 - [ ] Change `TKOFF_THR_MAX` to the desired max takeoff throttle.
 - [ ] Change `TKOFF_ALT` to the altitude you want takeoff to reach.
-- [ ] Set `TRH_SUPP_MAN=1` so you can manually set the autolaunch "idle" throttle (before the throw).
+- [ ] Set `THR_SUPP_MAN=1` so you can manually set the autolaunch "idle" throttle (before the throw).
 - [ ] Set `TKOFF_THR_MINACC=18` for the takeoff throw to activate takeoff with a minimum of 2g.
 - [ ] set `TKOFF_LVL_PITCH` to your desired angle (20 is a good value).
 - [ ] Set `TKOFF_THR_DELAY` to the number of deciseconds that you want the motor to wait before it starts up.
@@ -104,6 +105,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on January 09, 2021.  For any questions/feedback,
+Last updated on January 10, 2021.  For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

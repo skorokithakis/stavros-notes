@@ -69,6 +69,6 @@ These notes are a condensed version of the [FT Arrow build video](https://www.yo
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on November 27, 2020.  For any questions/feedback,
+Last updated on November 27, 2020. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

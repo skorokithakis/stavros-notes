@@ -15,6 +15,6 @@ These are general tips for building RC planes/quads/whatever:
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on January 07, 2021.  For any questions/feedback,
+Last updated on January 07, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

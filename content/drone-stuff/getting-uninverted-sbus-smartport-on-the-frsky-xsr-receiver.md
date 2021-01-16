@@ -20,6 +20,6 @@ On firmware 2.1.0 FPort, I actually got the uninverted FPort signal on the CPPM 
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on November 24, 2020.  For any questions/feedback,
+Last updated on November 24, 2020. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

@@ -47,6 +47,11 @@ class JoplinExporter:
     static_dir = Path("static/resources")
     joplin_dir = Path.home() / ".config/joplin-desktop"
 
+    def __init__(self):
+        # A dict of {resource_id: (title, extension)}.
+        self.resources = {}
+        self.used_resources = set()
+
     def clean_content_dir(self):
         """Reset the content directory to a known state to begin."""
         rmtree(self.content_dir)
@@ -82,11 +87,15 @@ class JoplinExporter:
         resource = self.resources.get(resource_id)
         if not resource:
             return None
+        # Add the resource to the set of used resources, so we can only copy
+        # the resources that are used.
+        self.used_resources.add(resource_id)
         return "resources/" + resource_id + "." + resource[1]
 
     def copy_resources(self):
-        """Copy all the resources to the output directory."""
-        for resource_id, resource in self.resources.items():
+        """Copy all the used resources to the output directory."""
+        for resource_id in self.used_resources:
+            resource = self.resources[resource_id]
             title, extension = resource
             copy(
                 self.joplin_dir / "resources" / (f"{resource_id}.{extension}"),
@@ -144,7 +153,6 @@ class JoplinExporter:
         folder_list.sort(key=lambda x: x[1].lower().strip() if x[1] != "Welcome" else "0")
 
         self.clean_content_dir()
-        self.copy_resources()
 
         for folder_counter, folder in enumerate(folder_list, start=1):
             folder_id, folder_title = folder
@@ -206,6 +214,8 @@ Click on a link in the list below to go to that page:
 1. {contents_list}
 """
                 )
+
+        self.copy_resources()
 
 
 if __name__ == "__main__":

@@ -26,7 +26,16 @@ def slugify(text):
 class Note:
     """A helper type for a note."""
 
-    def __init__(self, id, parent_id, parent_title, title, body, updated_time, tags=[]):
+    def __init__(
+        self,
+        id,
+        parent_id,
+        parent_title,
+        title,
+        body,
+        updated_time,
+        tags=[],
+    ):
         self.id = id
         self.parent_id = parent_id
         self.parent_title = parent_title
@@ -150,7 +159,9 @@ class JoplinExporter:
         )
 
         # Sort "Welcome" last.
-        folder_list.sort(key=lambda x: x[1].lower().strip() if x[1] != "Welcome" else "0")
+        folder_list.sort(
+            key=lambda x: x[1].lower().strip() if x[1] != "Welcome" else "0"
+        )
 
         self.clean_content_dir()
 

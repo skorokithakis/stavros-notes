@@ -6,7 +6,7 @@ insert_anchor_links = "right"
 +++
 These notes are a condensed version of the [FT Arrow build video](https://www.youtube.com/watch?v=cD2Ca2oskVs).
 
-![maxresdefault.jpeg](../../resources/d4819ca1c3d0490daaa12f62af09aa00.jpeg)
+![maxresdefault.jpeg](../../resources/d4819ca1c3d0490daaa12f62af09aa00.jpg)
 
 
 ## Wings

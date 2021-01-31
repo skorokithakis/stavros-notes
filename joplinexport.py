@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+import dataclasses
+import mimetypes
 import re
 import sqlite3
 from collections import defaultdict
@@ -6,7 +8,10 @@ from datetime import datetime
 from pathlib import Path
 from shutil import copy
 from shutil import rmtree
+from typing import Dict
+from typing import List
 from typing import Optional
+from typing import Set
 
 
 def contains_word(word: str, text: str) -> bool:
@@ -23,30 +28,37 @@ def slugify(text):
     return re.sub(r"[\W_]+", "-", text.lower()).strip("-")
 
 
+@dataclasses.dataclass
 class Note:
     """A helper type for a note."""
 
-    def __init__(
-        self,
-        id,
-        parent_id,
-        parent_title,
-        title,
-        body,
-        updated_time,
-        tags=[],
-    ):
-        self.id = id
-        self.parent_id = parent_id
-        self.parent_title = parent_title
-        self.title = title
-        self.body = body
-        self.updated_time = datetime.fromtimestamp(updated_time)
-        self.tags = tags
+    id: str
+    parent_id: str
+    parent_title: str
+    title: str
+    body: str
+    updated_time: datetime
+    tags: List[str] = dataclasses.field(default_factory=list)
 
     def get_url(self):
         """Return the note's relative URL."""
         return slugify(self.parent_title) + "/" + slugify(self.title)
+
+
+@dataclasses.dataclass
+class Resource:
+    """A helper type for a resource."""
+
+    title: str
+    # The actual extension that the file stored in Joplin has.
+    extension: str
+    mimetype: str
+
+    @property
+    def derived_ext(self):
+        """Return an extension derived from the resource's mime type."""
+        ext = mimetypes.guess_extension(self.mimetype, strict=False)
+        return "" if ext is None else ext
 
 
 class JoplinExporter:
@@ -57,9 +69,8 @@ class JoplinExporter:
     joplin_dir = Path.home() / ".config/joplin-desktop"
 
     def __init__(self):
-        # A dict of {resource_id: (title, extension)}.
-        self.resources = {}
-        self.used_resources = set()
+        self.resources: Dict[str, Resource] = {}
+        self.used_resources: Set[str] = set()
 
     def clean_content_dir(self):
         """Reset the content directory to a known state to begin."""
@@ -99,16 +110,15 @@ class JoplinExporter:
         # Add the resource to the set of used resources, so we can only copy
         # the resources that are used.
         self.used_resources.add(resource_id)
-        return "resources/" + resource_id + "." + resource[1]
+        return "resources/" + resource_id + resource.derived_ext
 
     def copy_resources(self):
         """Copy all the used resources to the output directory."""
         for resource_id in self.used_resources:
             resource = self.resources[resource_id]
-            title, extension = resource
             copy(
-                self.joplin_dir / "resources" / (f"{resource_id}.{extension}"),
-                self.static_dir,
+                self.joplin_dir / "resources" / (f"{resource_id}.{resource.extension}"),
+                self.static_dir / f"{resource_id}{resource.derived_ext}",
             )
 
     def read_data(self):
@@ -128,8 +138,16 @@ class JoplinExporter:
         for note_id, tag_id in c.fetchall():
             note_tags[note_id].append(tags[tag_id])
 
-        c.execute("""SELECT id, title, file_extension FROM resources;""")
-        self.resources = {id: (title, ext) for id, title, ext in c.fetchall()}
+        c.execute("""SELECT id, title, mime, file_extension FROM resources;""")
+
+        self.resources = {
+            id: Resource(
+                title=title,
+                extension=ext,
+                mimetype=mime,
+            )
+            for id, title, mime, ext in c.fetchall()
+        }
 
         c.execute("""SELECT id, parent_id, title, body, updated_time FROM notes;""")
         self.notes = defaultdict(list)
@@ -141,7 +159,7 @@ class JoplinExporter:
                 self.folders[parent_id],
                 title,
                 body,
-                updated_time / 1000,
+                datetime.fromtimestamp(updated_time / 1000),
                 tags=note_tags[id],
             )
             self.notes[note.parent_id].append(note)

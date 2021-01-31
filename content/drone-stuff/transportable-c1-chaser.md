@@ -30,16 +30,30 @@ For glue, I use [E6000](https://www.banggood.com/ZHANLIDA-152550ml-E6000-B6000-A
 
 This is what the final result will look like:
 
-
-
 [![](../../resources/6c9034ecf9d9414d87fbc6b4ec2fa28e.jpg)](../../resources/6c9034ecf9d9414d87fbc6b4ec2fa28e.jpg)
-
-
 
 
 ## Wings
 
-TODO: I haven't really gotten there yet.
+Connecting the wings has two problems:
+
+First, you need the wing to be stable against rotation around the spar.
+Already, the notch the C1 has stops the wing from rotating up, but it does not stop it from rotating down (since you're meant to glue it in place).
+
+Second, you obviously need the wing to be stable against left/right motion, or it will slide off the spar.
+To solve these problems, I designed a simple connector with two halves, one of which goes onto the fuselage and one onto the wing:
+
+[![](../../resources/dd331e351cd0492794619526ccb89a3f.jpg)](../../resources/dd331e351cd0492794619526ccb89a3f.jpg)
+
+The connector has two components, one is a cylindrical channel for a carbon tube (which is glued to one of the pieces, as in the photo) that stops the wing from rotating around the spar, and the other is a channel for an o-ring, which keeps the two halves from moving left to right.
+
+To install, place the connector over the underside of the wing and mark the outline, then cut the foam and glue the connector in.
+Do the same with the other side, into the fuselage, as shown:
+
+(TODO: Photo to be posted later)
+
+To mount the wings, just insert the spar into the fuselage, insert the wings (making sure both tubes go into their respective holes), and place the o-ring into both halves of the connector.
+That gives you a secure and quick assembly.
 
 
 ## Vertical stabilizers
@@ -67,6 +81,6 @@ You're done! Enjoy your disassemblable, transportable C1 Chaser!
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on January 31, 2021. For any questions/feedback,
+Last updated on February 01, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

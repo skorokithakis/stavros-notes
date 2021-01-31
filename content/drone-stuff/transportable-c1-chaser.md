@@ -23,7 +23,7 @@ I've cut three straws to length, sanded the straws and the spar channel a little
 
 [![](../../resources/65ff483180ad483795b32d0b65f72613.jpg)](../../resources/65ff483180ad483795b32d0b65f72613.jpg)
 
-Make sure to leave a few mm from the inside edge of the wing (so the straw doesn't touch the edge, again not pictured in the photo), so the spar's edge doesn't rub against the straw and splits it.
+Make sure to leave a few mm from the inside edge of the wing (so the straw doesn't touch the edge, again not pictured in the photo), so the spar's edge doesn't rub against the straw, to avoid splitting it.
 Also, leave the spar in the straws while glueing, so the straws don't lose their shape (but make sure you don't get glue on the spar and end up glueing it to the straw).
 
 For glue, I use [E6000](https://www.banggood.com/ZHANLIDA-152550ml-E6000-B6000-Adhesive-Transparent-Glue-for-RC-Models-p-1604315.html?cur_warehouse=CN&ID=62834216283418&rmmds=search&custlinkid=667416&p=6W16207412782201611V) (sold as Goop in the US) for pretty much everything, but for this one you can use your favorite glue that you know won't dissolve EPO.
@@ -38,7 +38,23 @@ TODO: I haven't really gotten there yet.
 
 The last part is securing the vertical stabilizers. I did this with two very small 3D printed pieces, I slot the stabilizers horizontally (on the left/right axis) onto the fuselage and then connect the wings, which keeps the stabilizers securely in place.
 
-TODO: I'll add more photos here when this is glued and finalized.
+First, press the stabilizer-side part (the Π-shaped one) onto the stabilizer on the place where you want it (I put it as shown in the photo), and cut slightly *inside* the indentation it creates.
+Then, glue it into place:
+
+[![stabilizer_tabs.jpg](../../resources/9e4279dbc32a4c28886b8dbb5e308f86.jpg)](../../resources/9e4279dbc32a4c28886b8dbb5e308f86.jpg)
+
+Then, insert the fuselage-side part (the inverted-T-shaped one) into the stabilizer-side part, align the stabilizer with the fuselage and press it in, to create the indentation onto the fuselage EPO, so you know where to cut.
+Insert the part into the cut and glue it in:
+
+[![fuselage_tabs.jpg](../../resources/ac25d2c2031441549f266d83ed6ac030.jpg)](../../resources/ac25d2c2031441549f266d83ed6ac030.jpg)
+
+When everything has set, you can install the stabilizers by simply slotting the two parts into each other and mounting the wing.
+That way, the stabilizer isn't going anywhere, and you can install and remove it very quickly.
+
+
+## The end
+
+You're done! Enjoy your disassemblable, transportable C1 Chaser!
 
 * * *
 

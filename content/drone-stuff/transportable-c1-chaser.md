@@ -16,12 +16,15 @@ I'm listing the modifications here so you can do the same if you want to.
 The biggest issue is making the spar removable.
 The best way I've found to do that is to use IKEA drinking straws, they have an internal diameter of around 7.5mm, making them ideal for putting the spar through.
 
-I've cut three straws to length and glued them in the spar channel, as you can see here:
+I've cut three straws to length, sanded the straws and the spar channel a little with coarse sandpaper, and glued the former in the latter, as you can see here (the straw in the photo is not cut to length yet):
 
 [![](../../resources/5ac6bff04962497083b8403ed0fded98.jpg)](../../resources/5ac6bff04962497083b8403ed0fded98.jpg)
 
 
 [![](../../resources/65ff483180ad483795b32d0b65f72613.jpg)](../../resources/65ff483180ad483795b32d0b65f72613.jpg)
+
+Make sure to leave a few mm from the inside edge of the wing (so the straw doesn't touch the edge, again not pictured in the photo), so the spar's edge doesn't rub against the straw and splits it.
+Also, leave the spar in the straws while glueing, so the straws don't lose their shape (but make sure you don't get glue on the spar and end up glueing it to the straw).
 
 For glue, I use [E6000](https://www.banggood.com/ZHANLIDA-152550ml-E6000-B6000-Adhesive-Transparent-Glue-for-RC-Models-p-1604315.html?cur_warehouse=CN&ID=62834216283418&rmmds=search&custlinkid=667416&p=6W16207412782201611V) (sold as Goop in the US) for pretty much everything, but for this one you can use your favorite glue that you know won't dissolve EPO.
 

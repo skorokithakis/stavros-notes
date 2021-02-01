@@ -24,7 +24,7 @@ I've cut three straws to length, sanded the straws and the spar channel a little
 [![](../../resources/65ff483180ad483795b32d0b65f72613.jpg)](../../resources/65ff483180ad483795b32d0b65f72613.jpg)
 
 Make sure to leave a few mm from the inside edge of the wing (so the straw doesn't touch the edge, again not pictured in the photo), so the spar's edge doesn't rub against the straw, to avoid splitting it.
-Also, leave the spar in the straws while glueing, so the straws don't lose their shape (but make sure you don't get glue on the spar and end up glueing it to the straw).
+Also, leave the spar in the straws while gluing, so the straws don't lose their shape (but make sure you don't get glue on the spar and end up gluing it to the straw).
 
 For glue, I use [E6000](https://www.banggood.com/ZHANLIDA-152550ml-E6000-B6000-Adhesive-Transparent-Glue-for-RC-Models-p-1604315.html?cur_warehouse=CN&ID=62834216283418&rmmds=search&custlinkid=667416&p=6W16207412782201611V) (sold as Goop in the US) for pretty much everything, but for this one you can use your favorite glue that you know won't dissolve EPO.
 
@@ -48,9 +48,13 @@ To solve these problems, I [designed a simple connector with two halves](https:/
 The connector has two components, one is a cylindrical channel for a carbon tube (which you can glue to one of the pieces, as in the photo) that stops the wing from rotating around the spar, and the other is a channel for an o-ring, which keeps the two halves from moving left to right.
 
 To install, place the connector over the underside of the wing and mark the outline, then cut the foam and glue the connector in.
-Do the same with the other side, into the fuselage, as shown:
+Do the same with the other side, into the fuselage, as shown in the photo below.
+To make sure the connectors are glued straight, I recommend cutting the foam to shape, placing the connectors in on both sides, and sliding them into each other (using the tube), making sure to leave some distance and watch for any places where glue has leaked, to prevent the wing and the fuselage from gluing together.
+Also, make sure to not use glue the part of the connector that's not going to be next to foam, on the fuselage side, to prevent the wing tab from adhering when you slide them together (watch out for glue seeping from under the connector towards the tab).
 
-(TODO: Photo to be posted later)
+This is the end result:
+
+[![viber_image_2021-02-01_13-30-13.jpg](../../resources/b765e8d8e3db4eceaad1f33862fb7bcc.jpg)](../../resources/b765e8d8e3db4eceaad1f33862fb7bcc.jpg)
 
 To mount the wings, just insert the spar into the fuselage, insert the wings (making sure both tubes go into their respective holes), and place the o-ring into both halves of the connector.
 That gives you a secure and quick assembly.

@@ -41,11 +41,11 @@ First, you need the wing to be stable against rotation around the spar.
 Already, the notch the C1 has stops the wing from rotating up, but it does not stop it from rotating down (since you're meant to glue it in place).
 
 Second, you obviously need the wing to be stable against left/right motion, or it will slide off the spar.
-To solve these problems, I designed a simple connector with two halves, one of which goes onto the fuselage and one onto the wing:
+To solve these problems, I [designed a simple connector with two halves](https://cad.onshape.com/documents/bd7ed4d575e32e06d46234b6/w/ab2adb2ae56e261604342410/e/ad8c70c01b2f8865eb84f5c6), one of which goes onto the fuselage and one onto the wing:
 
 [![](../../resources/dd331e351cd0492794619526ccb89a3f.jpg)](../../resources/dd331e351cd0492794619526ccb89a3f.jpg)
 
-The connector has two components, one is a cylindrical channel for a carbon tube (which is glued to one of the pieces, as in the photo) that stops the wing from rotating around the spar, and the other is a channel for an o-ring, which keeps the two halves from moving left to right.
+The connector has two components, one is a cylindrical channel for a carbon tube (which you can glue to one of the pieces, as in the photo) that stops the wing from rotating around the spar, and the other is a channel for an o-ring, which keeps the two halves from moving left to right.
 
 To install, place the connector over the underside of the wing and mark the outline, then cut the foam and glue the connector in.
 Do the same with the other side, into the fuselage, as shown:
@@ -58,7 +58,7 @@ That gives you a secure and quick assembly.
 
 ## Vertical stabilizers
 
-The last part is securing the vertical stabilizers. I did this with two very small 3D printed pieces, I slot the stabilizers horizontally (on the left/right axis) onto the fuselage and then connect the wings, which keeps the stabilizers securely in place.
+The last part is securing the vertical stabilizers. I did this with [two very small 3D-printed pieces](https://cad.onshape.com/documents/2c189f2c6522261154d2323e/w/a7e91c32873cec3a9110e900/e/7b35e4b324d972fd5c8a49f6), I slot the stabilizers horizontally (on the left/right axis) onto the fuselage and then connect the wings, which keeps the stabilizers securely in place.
 
 First, press the stabilizer-side part (the Π-shaped one) onto the stabilizer on the place where you want it (I put it as shown in the photo), and cut slightly *inside* the indentation it creates.
 Then, glue it into place:

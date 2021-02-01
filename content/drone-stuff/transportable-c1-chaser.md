@@ -47,6 +47,8 @@ To solve these problems, I [designed a simple connector with two halves](https:/
 
 The connector has two components, one is a cylindrical channel for a carbon tube (which you can glue to one of the pieces, as in the photo) that stops the wing from rotating around the spar, and the other is a channel for an o-ring, which keeps the two halves from moving left to right.
 
+I used a 6mm outer diameter carbon tube and an o-ring with an inner diameter of 28mm and a cross-section diameter of 3.5mm. A slightly thicker and slightly longer o-ring will also probably work.
+
 To install, place the connector over the underside of the wing and mark the outline, then cut the foam and glue the connector in.
 Do the same with the other side, into the fuselage, as shown in the photo below.
 To make sure the connectors are glued straight, I recommend cutting the foam to shape, placing the connectors in on both sides, and sliding them into each other (using the tube), making sure to leave some distance and watch for any places where glue has leaked, to prevent the wing and the fuselage from gluing together.

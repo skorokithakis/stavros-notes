@@ -15,6 +15,7 @@ I'm listing the modifications here so you can do the same if you want to.
 
 The biggest issue is making the spar removable.
 The best way I've found to do that is to use IKEA drinking straws, they have an internal diameter of around 7.5mm, making them ideal for putting the spar through.
+If you find the spar has too much jiggle, I've found that applying some CA glue around it makes it thick enough to fit snugly in the straw.
 
 I've cut three straws to length, sanded the straws and the spar channel a little with coarse sandpaper, and glued the former in the latter, as you can see here (the straw in the photo is not cut to length yet):
 
@@ -56,7 +57,7 @@ Also, make sure to not use glue the part of the connector that's not going to be
 
 This is the end result:
 
-[![viber_image_2021-02-01_13-30-13.jpg](../../resources/b765e8d8e3db4eceaad1f33862fb7bcc.jpg)](../../resources/b765e8d8e3db4eceaad1f33862fb7bcc.jpg)
+[![](../../resources/b765e8d8e3db4eceaad1f33862fb7bcc.jpg)](../../resources/b765e8d8e3db4eceaad1f33862fb7bcc.jpg)
 
 To mount the wings, just insert the spar into the fuselage, insert the wings (making sure both tubes go into their respective holes), and place the o-ring into both halves of the connector.
 That gives you a secure and quick assembly.
@@ -87,6 +88,6 @@ You're done! Enjoy your disassemblable, transportable C1 Chaser!
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on February 01, 2021. For any questions/feedback,
+Last updated on February 03, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

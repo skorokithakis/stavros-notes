@@ -1,6 +1,6 @@
 +++
 title = "How to properly level your 3D printer"
-weight = 2
+weight = 3
 sort_by = "weight"
 insert_anchor_links = "right"
 +++

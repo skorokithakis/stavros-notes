@@ -13,7 +13,7 @@ You should keep the [full list of ArduPilot parameters](https://ardupilot.org/pl
 
 Because building ArduPilot is a bit complicated, I've written a short script that uses Docker to build AP in a controlled environment.
 
-Copy it from here, save it to a file called `docker_build.sh`, and run it with `docker_build.sh <your board>`. Output files will be stored in `build/<yourboard>/bin/`:
+Copy it from here, save it to a file called `docker_build.sh` in the root of the ArduPilot repo, and run it with `docker_build.sh <your board>`. Output files will be stored in `build/<yourboard>/bin/`:
 
 ```bash
 #!/usr/bin/env bash
@@ -31,8 +31,10 @@ BOARD=$1
 git submodule update --init --recursive
 
 git checkout Dockerfile
+echo "RUN pip install intelhex" >> Dockerfile
 echo "RUN sudo apt-get update && sudo apt-get install -y gcc-arm-none-eabi" >> Dockerfile
-echo "RUN ./Tools/environment_install/install-prereqs-ubuntu.sh" >> Dockerfile
+echo "RUN sudo apt-get clean  && sudo rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*" >> Dockerfile
+
 docker build . -t ardupilot
 git checkout Dockerfile
 
@@ -138,6 +140,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on February 23, 2021. For any questions/feedback,
+Last updated on February 24, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

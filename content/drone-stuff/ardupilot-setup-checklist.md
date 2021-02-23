@@ -13,7 +13,7 @@ You should keep the [full list of ArduPilot parameters](https://ardupilot.org/pl
 
 Because building ArduPilot is a bit complicated, I've written a short script that uses Docker to build AP in a controlled environment.
 
-Copy it from here, save it to a file called `docker_build.sh` in the root of the ArduPilot repo, and run it with `docker_build.sh <your board>`. Output files will be stored in `build/<yourboard>/bin/`:
+Copy it from here, save it to a file called `docker_build.sh` in the root of the ArduPilot repo, and run it with `docker_build.sh <your board>`. Output files will be stored in `build/<yourboard>/bin/`, and you can flash them with the [INAV configurator](https://github.com/iNavFlight/inav-configurator/releases) by putting your board in DFU mode and uploading the `.hex` file:
 
 ```bash
 #!/usr/bin/env bash

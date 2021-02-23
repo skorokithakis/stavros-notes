@@ -9,6 +9,38 @@ This is a short guide for setting up [ArduPilot](https://ardupilot.org/) on a fl
 You should keep the [full list of ArduPilot parameters](https://ardupilot.org/plane/docs/parameters.html) open, for your reference while tuning. 
 
 
+## Building ArduPilot
+
+Because building ArduPilot is a bit complicated, I've written a short script that uses Docker to build AP in a controlled environment.
+
+Copy it from here, save it to a file called `docker_build.sh`, and run it with `docker_build.sh <your board>`. Output files will be stored in `build/<yourboard>/bin/`:
+
+```bash
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [ $# -ne 1 ]
+  then
+    echo "No board supplied, run as ./docker_build.sh <board name> or ./docker_build.sh list"
+    exit 1
+fi
+
+BOARD=$1
+
+git submodule update --init --recursive
+
+git checkout Dockerfile
+echo "RUN sudo apt-get update && sudo apt-get install -y gcc-arm-none-eabi" >> Dockerfile
+echo "RUN ./Tools/environment_install/install-prereqs-ubuntu.sh" >> Dockerfile
+docker build . -t ardupilot
+git checkout Dockerfile
+
+docker run --rm -it -v "$(pwd)":/ardupilot ardupilot:latest ./waf configure --board="$BOARD"
+docker run --rm -it -v "$(pwd)":/ardupilot ardupilot:latest ./waf build
+```
+
+
 ## Hardware setup
 
 The values in this section are specific to the Omnibus F4, but the settings aren't, so you'll usually need to adjust your outputs to your specific configuration but you probably won't need to skip many of the steps here.
@@ -106,6 +138,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on January 24, 2021. For any questions/feedback,
+Last updated on February 23, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

@@ -13,7 +13,7 @@ You should keep the [full list of ArduPilot parameters](https://ardupilot.org/pl
 
 Because building ArduPilot is a bit complicated, I've written a short script that uses Docker to build AP in a controlled environment.
 
-Copy it from here, save it to a file called `docker_build.sh` in the root of the ArduPilot repo, and run it with `docker_build.sh <your board>`. Output files will be stored in `build/<yourboard>/bin/`, and you can flash them with the [INAV configurator](https://github.com/iNavFlight/inav-configurator/releases) by putting your board in DFU mode and uploading the `.hex` file:
+Copy it from here, save it to a file called `docker_build.sh` in the root of the ArduPilot repo, and run it with `docker_build.sh <your board>`. Output files will be stored in `build/<yourboard>/bin/`, and you can flash them with the [INAV configurator](https://github.com/iNavFlight/inav-configurator/releases) by putting your board in DFU mode and uploading the `arduplane_with_bl.hex` file:
 
 ```bash
 #!/usr/bin/env bash
@@ -28,18 +28,20 @@ fi
 
 BOARD=$1
 
+cd "$(git rev-parse --show-toplevel)"
+
 git submodule update --init --recursive
 
 git checkout Dockerfile
 echo "RUN pip install intelhex" >> Dockerfile
-echo "RUN sudo apt-get update && sudo apt-get install -y gcc-arm-none-eabi" >> Dockerfile
-echo "RUN sudo apt-get clean  && sudo rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*" >> Dockerfile
+echo 'ENV PATH="/home/ardupilot/.local/bin:/usr/lib/ccache:/ardupilot/Tools/autotest:/opt/gcc-arm-none-eabi-6-2017-q2-update/bin:${PATH}"' >> Dockerfile
 
 docker build . -t ardupilot
 git checkout Dockerfile
 
 docker run --rm -it -v "$(pwd)":/ardupilot ardupilot:latest ./waf configure --board="$BOARD"
 docker run --rm -it -v "$(pwd)":/ardupilot ardupilot:latest ./waf build
+
 ```
 
 
@@ -140,6 +142,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on February 24, 2021. For any questions/feedback,
+Last updated on February 27, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

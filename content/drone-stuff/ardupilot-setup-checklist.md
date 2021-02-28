@@ -50,18 +50,23 @@ docker run --rm -it -v "$(pwd)":/ardupilot ardupilot:latest ./waf build
 The values in this section are specific to the Omnibus F4, but the settings aren't, so you'll usually need to adjust your outputs to your specific configuration but you probably won't need to skip many of the steps here.
 
 
-- [ ] Connect GPS to UART 6 (SERIAL4). You don't need to do anything else for GPS, it should work out of the box.
+- [ ] Connect GPS to UART 6 (SERIAL4). You don't need to do anything else for GPS, it should work out of the box. If it's on another serial, these are the settings:
+  ```
+  SERIALn_PROTOCOL=5 (GPS)
+  SERIALn_BAUD=38
+  SERIALn_OPTIONS=0
+  ```
 - [ ] Connect Fport to a UART. I chose UART 3 (SERIAL2). If you want to use UART 1, you should set the RC input jumper to PPM on the F4 to disconnect the SBUS inverter from the pin.
 - [ ] To get Fport working with UART 3, you need to set `BRD_ALT_CONFIG=1`, to get UART 3 to act like a UART instead of I2C on the Omnibus F4.
 - [ ] Change the board orientation with `AHRS_ORIENTATION`.
 - [ ] Set the following for Fport on UART 3:
   ```
-  SERIAL2_PROTOCOL = 23 (RCIN)
+  SERIAL2_PROTOCOL=23 (RCIN)
   SERIAL2_BAUD=115
-  SERIAL2_OPTION=4
+  SERIAL2_OPTIONS=4
   RSSI_TYPE=3
   ```
-- [ ] Once Fport works, reverse the elevator with `RC2_REVERSED=1`.
+- [x] Once Fport works, reverse the elevator with `RC2_REVERSED=1`.
 - [ ] Set up your servo functions and trims:
   ```
   SERVO1_FUNCTION=70
@@ -91,7 +96,7 @@ The values in this section are specific to the Omnibus F4, but the settings aren
   -  One with the artificial horizon, system messages and some basic info like RSSI, battery, ground speed and altitude.
   -  A minimal screen with just system messages and battery/RSSI/speed/altitude.
   -  A screen with just system messages, for when I want to enjoy the scenery.
-
+- [ ] Set your battery sensor values (`BATT_VOLT_MULT`/`BATT_AMP_PERVLT`/`BATT_AMP_OFFSET`). Keep in mind that, if your locale uses commas for decimal separators, you need to enter the numbers with a comma. If you're getting strange readings, that might be why.
 
 ## Radio-related
 
@@ -142,6 +147,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on February 27, 2021. For any questions/feedback,
+Last updated on February 28, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

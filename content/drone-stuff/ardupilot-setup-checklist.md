@@ -49,11 +49,11 @@ docker run --rm -it -v "$(pwd)":/ardupilot ardupilot:latest ./waf build
 
 The values in this section are specific to the Omnibus F4, but the settings aren't, so you'll usually need to adjust your outputs to your specific configuration but you probably won't need to skip many of the steps here.
 
-
+- [ ] Figure out the serial order. You can look at the `hwdef.dat` file for your board on the ArduPilot repository, for example [here's one for the Matek F405-Wing](https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/MatekF405-Wing/hwdef.dat). Either look for a comment or look at the `SERIAL_ORDER` line and count the ports starting from 0 (so `OTG1` in the example is `SERIAL0`).
 - [ ] Connect GPS to UART 6 (SERIAL4). You don't need to do anything else for GPS, it should work out of the box. If it's on another serial, these are the settings:
   ```
   SERIALn_PROTOCOL=5 (GPS)
-  SERIALn_BAUD=38
+  SERIALn_BAUD=115 (115200)
   SERIALn_OPTIONS=0
   ```
 - [ ] Connect Fport to a UART. I chose UART 3 (SERIAL2). If you want to use UART 1, you should set the RC input jumper to PPM on the F4 to disconnect the SBUS inverter from the pin.
@@ -66,7 +66,7 @@ The values in this section are specific to the Omnibus F4, but the settings aren
   SERIAL2_OPTIONS=4
   RSSI_TYPE=3
   ```
-- [x] Once Fport works, reverse the elevator with `RC2_REVERSED=1`.
+- [ ] Once Fport works, reverse the elevator with `RC2_REVERSED=1`.
 - [ ] Set up your servo functions and trims:
   ```
   SERVO1_FUNCTION=70

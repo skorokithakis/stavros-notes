@@ -61,7 +61,7 @@ The values in this section are specific to the Omnibus F4, but the settings aren
   SERIAL2_OPTION=4
   RSSI_TYPE=3
   ```
-- [x] Once Fport works, reverse the elevator with `RC2_REVERSED=1`.
+- [ ] Once Fport works, reverse the elevator with `RC2_REVERSED=1`.
 - [ ] Set up your servo functions and trims:
   ```
   SERVO1_FUNCTION=70

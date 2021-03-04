@@ -4,7 +4,7 @@ weight = 11
 sort_by = "weight"
 insert_anchor_links = "right"
 +++
-If you have a parameter dump from QGroundControl, I wrote a small script that will convert it to a Mission Planner compatible file.
+If you have a parameter dump from QGroundControl, I wrote a small script that will convert it to a Mission Planner compatible file. You can also use [Parachute](https://gitlab.com/stavros/parachute) to do your backups/restores/conversions.
 
 Just save this script somewhere as `convert_qgc_params` and run it as `./convert_qgc_params <qgc params> <output file>`:
 
@@ -43,6 +43,6 @@ if __name__ == "__main__":
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on February 27, 2021. For any questions/feedback,
+Last updated on March 04, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

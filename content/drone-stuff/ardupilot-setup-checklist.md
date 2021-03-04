@@ -49,24 +49,19 @@ docker run --rm -it -v "$(pwd)":/ardupilot ardupilot:latest ./waf build
 
 The values in this section are specific to the Omnibus F4, but the settings aren't, so you'll usually need to adjust your outputs to your specific configuration but you probably won't need to skip many of the steps here.
 
-- [ ] Figure out the serial order. You can look at the `hwdef.dat` file for your board on the ArduPilot repository, for example [here's one for the Matek F405-Wing](https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/MatekF405-Wing/hwdef.dat). Either look for a comment or look at the `SERIAL_ORDER` line and count the ports starting from 0 (so `OTG1` in the example is `SERIAL0`).
-- [ ] Connect GPS to UART 6 (SERIAL4). You don't need to do anything else for GPS, it should work out of the box. If it's on another serial, these are the settings:
-  ```
-  SERIALn_PROTOCOL=5 (GPS)
-  SERIALn_BAUD=115 (115200)
-  SERIALn_OPTIONS=0
-  ```
+
+- [ ] Connect GPS to UART 6 (SERIAL4). You don't need to do anything else for GPS, it should work out of the box.
 - [ ] Connect Fport to a UART. I chose UART 3 (SERIAL2). If you want to use UART 1, you should set the RC input jumper to PPM on the F4 to disconnect the SBUS inverter from the pin.
 - [ ] To get Fport working with UART 3, you need to set `BRD_ALT_CONFIG=1`, to get UART 3 to act like a UART instead of I2C on the Omnibus F4.
 - [ ] Change the board orientation with `AHRS_ORIENTATION`.
 - [ ] Set the following for Fport on UART 3:
   ```
-  SERIAL2_PROTOCOL=23 (RCIN)
+  SERIAL2_PROTOCOL = 23 (RCIN)
   SERIAL2_BAUD=115
-  SERIAL2_OPTIONS=4
+  SERIAL2_OPTION=4
   RSSI_TYPE=3
   ```
-- [ ] Once Fport works, reverse the elevator with `RC2_REVERSED=1`.
+- [x] Once Fport works, reverse the elevator with `RC2_REVERSED=1`.
 - [ ] Set up your servo functions and trims:
   ```
   SERVO1_FUNCTION=70
@@ -96,7 +91,7 @@ The values in this section are specific to the Omnibus F4, but the settings aren
   -  One with the artificial horizon, system messages and some basic info like RSSI, battery, ground speed and altitude.
   -  A minimal screen with just system messages and battery/RSSI/speed/altitude.
   -  A screen with just system messages, for when I want to enjoy the scenery.
-- [ ] Set your battery sensor values (`BATT_VOLT_MULT`/`BATT_AMP_PERVLT`/`BATT_AMP_OFFSET`). Keep in mind that, if your locale uses commas for decimal separators, you need to enter the numbers with a comma. If you're getting strange readings, that might be why.
+
 
 ## Radio-related
 
@@ -132,14 +127,25 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 - [ ] Potentially set `TKOFF_THR_SLEW=127` to make the throttle spin up to full faster (within 0.8 sec).
 
 
-## Tuning the TECS
-
-To tune the TECS, read the [TECS tuning guide](https://ardupilot.org/plane/docs/tecs-total-energy-control-system-for-speed-height-tuning-guide.html). It's very well-written and comprehensible. Note the maximum pitch up/down you want your plane to fly at (depending on the max vertical speed you want), and tune based on that.
-
 ## In the field
 
 - [ ] Run an autotune.
 - [ ] Fly in FBWA and see if you're gaining/losing altitude. Pitch up/down to fly level, check the pitch on the OSD, and use the formula `old_value+pitch*π/180` to get the new value (in radians).
+
+
+## Tuning the TECS
+
+To tune the TECS, read the [TECS tuning guide](https://ardupilot.org/plane/docs/tecs-total-energy-control-system-for-speed-height-tuning-guide.html). It's very well-written and comprehensible. Note the maximum pitch up/down you want your plane to fly at (depending on the max vertical speed you want), and tune based on that.
+
+Here is the sequence of parameters to tune the TECS:
+
+- [ ] Decide on an airspeed where your craft cruises comfortably and set `TRIM_ARSPD_CM` to it.
+- [ ] Set `TRIM_THROTTLE` to fly level at `TRIM_ARSPD_CM`.
+- [ ] Set `THR_MAX` to a value that enables the aircraft to climb at `LIM_PITCH_MAX` at `TRIM_ARSPD_CM` (fly in FBWA to climb at the max angle). If it's too fast, increase `LIM_PITCH_MAX` or reduce `THR_MAX`.
+- [ ] Set `ARSPD_FBW_MAX` to just slightly less than the maximum speed in level flight with `THR_MAX`. `ARSPD_FBW_MIN` should be set to the slowest speed you can fly without stalling in level flight.
+- [ ] Set `TECS_CLMB_MAX` to the climb rate at `THR_MAX` at `TRIM_ARSPD_CM`. Make sure you try this near the end of the battery range, when the motor is weaker.
+- [ ] Set `TECS_SINK_MIN` to the sink rate at `THR_MIN` at `TRIM_ARSPD_CM`. This can be measured by closing the throttle in FBWA and gliding the aircraft down from height.
+- [ ] Set `TECS_SINK_MAX` to a value that can be achieved without exceeding the lower pitch angle limit and without exceeding `ARSPD_FBW_MAX`.
 
 
 _(Many thanks to Michel Pastor for his help with everything in this note.)_
@@ -147,6 +153,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on February 28, 2021. For any questions/feedback,
+Last updated on March 04, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

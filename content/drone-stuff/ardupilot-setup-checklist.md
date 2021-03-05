@@ -61,7 +61,7 @@ The values in this section are specific to the Omnibus F4, but the settings aren
   SERIAL2_OPTION=4
   RSSI_TYPE=3
   ```
-- [ ] Once Fport works, reverse the elevator with `RC2_REVERSED=1`.
+- [x] Once Fport works, reverse the elevator with `RC2_REVERSED=1`.
 - [ ] Set up your servo functions and trims:
   ```
   SERVO1_FUNCTION=70
@@ -112,7 +112,7 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 - [ ] Change `AUTOTUNE_LEVEL` according to how aggressive you want the tune.
 - [ ] Set `ACRO_PITCH_RATE`/`ACRO_ROLL_RATE` according to your craft.
 - [ ] Set `THR_PASS_STAB=1` so you have total throttle control in ACRO/FBWA/STABILIZE.
-- [ ] Set `ARSPD_FBW_MIN`/`ARSPD_FBW_MAX` to the minimum and maximum airspeed you want auto modes to fly.
+- [ ] Set `ARSPD_FBW_MIN`/`ARSPD_FBW_MAX` to the minimum and maximum airspeed you want auto modes to fly (see the TECS tuning guide below for details).
 - [ ] Set `MIN_GNDSPD_CM` so the craft makes an effort to return even under high winds. WARNING: Might make throttle pulse or have other unwanted side-effects.
 
 
@@ -135,17 +135,90 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 
 ## Tuning the TECS
 
-To tune the TECS, read the [TECS tuning guide](https://ardupilot.org/plane/docs/tecs-total-energy-control-system-for-speed-height-tuning-guide.html). It's very well-written and comprehensible. Note the maximum pitch up/down you want your plane to fly at (depending on the max vertical speed you want), and tune based on that.
+To tune the TECS, a helpful resource is the [TECS tuning guide](https://ardupilot.org/plane/docs/tecs-total-energy-control-system-for-speed-height-tuning-guide.html).
+Make sure you have run an autotune beforehand, and continue with the tuning below.
 
-Here is the sequence of parameters to tune the TECS:
+In tuning, there are two stages:
 
-- [ ] Decide on an airspeed where your craft cruises comfortably and set `TRIM_ARSPD_CM` to it.
-- [ ] Set `TRIM_THROTTLE` to fly level at `TRIM_ARSPD_CM`.
-- [ ] Set `THR_MAX` to a value that enables the aircraft to climb at `LIM_PITCH_MAX` at `TRIM_ARSPD_CM` (fly in FBWA to climb at the max angle). If it's too fast, increase `LIM_PITCH_MAX` or reduce `THR_MAX`.
-- [ ] Set `ARSPD_FBW_MAX` to just slightly less than the maximum speed in level flight with `THR_MAX`. `ARSPD_FBW_MIN` should be set to the slowest speed you can fly without stalling in level flight.
-- [ ] Set `TECS_CLMB_MAX` to the climb rate at `THR_MAX` at `TRIM_ARSPD_CM`. Make sure you try this near the end of the battery range, when the motor is weaker.
-- [ ] Set `TECS_SINK_MIN` to the sink rate at `THR_MIN` at `TRIM_ARSPD_CM`. This can be measured by closing the throttle in FBWA and gliding the aircraft down from height.
-- [ ] Set `TECS_SINK_MAX` to a value that can be achieved without exceeding the lower pitch angle limit and without exceeding `ARSPD_FBW_MAX`.
+- Take measurements in the field.
+- Set parameters on the bench, based on your measurements.
+
+
+### In the field
+
+You should perform the measurements in four stages, all in the FBWA mode:
+
+#### Fly straight
+
+Fly straight and note down:
+
+- [ ] A comfortable cruise speed (in km/h).
+- [ ] The throttle percentage at that cruise speed.
+- [ ] The maximum speed you want to be flying at (in km/h).
+- [ ] The throttle percentage at that maximum speed.
+- [ ] Start a turn at the maximum bank angle (full roll deflection to one side) and note the slowest speed you can fly at without stalling.
+
+#### Fly up
+
+Set the throttle to the maximum throttle percentage from the previous step and start slowly pulling back on pitch until your airspeed equals your "comfortable cruise speed" from the previous step.
+Note down:
+
+- [ ] The pitch angle (in degrees).
+- [ ] The vertical speed from the variometer (in m/s).
+
+#### Fly down
+
+Set the throttle to 0 and start pushing on the pitch stick until your airspeed equals your "comfortable cruise speed" from the previous step.
+Note down:
+
+- [ ] The pitch angle (in degrees).
+- [ ] The vertical speed from the variometer (in m/s).
+
+#### Fly down more
+
+Keep the throttle at 0 and pitch down until you reach your desired maximum speed from step 1.
+Note down:
+
+- [ ] The pitch angle (in degrees).
+- [ ] The vertical speed from the variometer (in m/s).
+
+You're done with this step.
+
+
+### On the bench
+
+After you have the above measurements, you're ready to tune things.
+
+For the level flight measurements:
+
+- [ ] Set `TRIM_ARSPD_CM` to your "comfortable cruise speed".
+- [ ] Set `TRIM_THROTTLE` to your cruise throttle percentage.
+- [ ] Set `ARSPD_FBW_MAX` to something a bit less than the maximum airspeed you achieved in level flight.
+- [ ] Set `THR_MAX` to the throttle percentage at max speed.
+- [ ] Set `ARSPD_FBW_MIN` to the slowest speed you could turn at without stalling (maybe go a bit higher for some margin).
+
+For the ascent measurements:
+
+- [ ] Set `TECS_PITCH_MAX` to the pitch angle you measured.
+- [ ] Set `TECS_CLMB_MAX` to the climb rate you measured.
+
+For the descent measurements:
+
+- [ ] Set `TECS_SINK_MIN` to the descent rate you measured.
+
+For the max descent measurements:
+
+- [ ] Set `TECS_PITCH_MIN` to the pitch angle you measured.
+- [ ] Set `TECS_SINK_MAX` to the descent rate you measured.
+
+Afterwards:
+
+- [ ] Set `LIM_PITCH_MAX` to something higher than `TECS_PITCH_MAX`.
+  This is the maximum pitch you'll be achieving in FBWA.
+- [ ] Set `LIM_PITCH_MIN` to something lower than `TECS_PITCH_MIN`.
+  This is the minimum pitch you'll be achieving in FBWA.
+
+That's it!
 
 
 _(Many thanks to Michel Pastor for his help with everything in this note.)_
@@ -153,6 +226,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on March 04, 2021. For any questions/feedback,
+Last updated on March 05, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

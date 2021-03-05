@@ -157,6 +157,8 @@ Fly straight and note down:
 - [ ] The maximum speed you want to be flying at (in km/h).
 - [ ] The throttle percentage at that maximum speed.
 - [ ] Start a turn at the maximum bank angle (full roll deflection to one side) and note the slowest speed you can fly at without stalling.
+- [ ] Turn throttle to 0 and pitch down a bit so you don't stall.
+  Note the minimum amount of down-pitch required to keep you from stalling (this should only be in the 1-3 degree ballpark).
 
 #### Fly up
 
@@ -196,6 +198,7 @@ For the level flight measurements:
 - [ ] Set `ARSPD_FBW_MAX` to something a bit less than the maximum airspeed you achieved in level flight.
 - [ ] Set `THR_MAX` to the throttle percentage at max speed.
 - [ ] Set `ARSPD_FBW_MIN` to the slowest speed you could turn at without stalling (maybe go a bit higher for some margin).
+- [ ] Set `STAB_PITCH_DOWN` to the pitch angle that keeps you from stalling.
 
 For the ascent measurements:
 

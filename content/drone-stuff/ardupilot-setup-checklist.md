@@ -99,8 +99,9 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 - [ ] Add arming switch with `RCn_OPTION=41` (on whatever channel you want).
 - [ ] Set up modes, possibly having switches override the mode channel to the mode you want.  
   What I do is set a given channel as the mode channel, and make that channel always output -100% on the radio. Then, I set up channel overrides for each switch, keeping in mind that overrides in OpenTX are executed in order (so the bottom override has the highest priority).  
-  That way, I set MANUAL/ACRO/FBWA to be lowest priority (on the same switch), then CRUISE to override those, then LOITER, AUTO, AUTOTUNE in that order.  
-  Finally, I add RTL to a switch on its own channel, with the highest priority of all overrides. I also add an override for that switch to the mode channel to -100%, so moving any other stick won't exit RTL mode as long as RTL is enabled.
+  That way, I set MANUAL/ACRO/FBWA to be lowest priority (on the same switch), then CRUISE to override those, then LOITER, RTL in that order.  Finally, I add AUTO to a switch on its own channel.  
+  Keep in mind that whatever mode you have on its own channel might be overridden if you flick a different switch.
+  Unfortunately, the way the mode system in AP works, there's no good way to have a list of prioritized modes, which would be ideal.
 
 
 ## Auto modes
@@ -229,6 +230,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on March 05, 2021. For any questions/feedback,
+Last updated on March 07, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

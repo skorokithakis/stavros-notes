@@ -96,12 +96,13 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 ## Radio-related
 
 - [ ] Set your radio channels to AETR and run the radio calibration in the calibration section of ArduPilot.
-- [ ] Add arming switch with `RCn_OPTION=41` (on whatever channel you want).
+- [ ] Add a killswitch to the radio that overrides the mode to manual and the throttle to 0.
+  This way it's really easy to kill the motor right away, but you still need to go through the arming procedure to get the motor running (thanks to Michel Pastor for this great idea).
 - [ ] Set up modes, possibly having switches override the mode channel to the mode you want.  
   What I do is set a given channel as the mode channel, and make that channel always output -100% on the radio. Then, I set up channel overrides for each switch, keeping in mind that overrides in OpenTX are executed in order (so the bottom override has the highest priority).  
   That way, I set MANUAL/ACRO/FBWA to be lowest priority (on the same switch), then CRUISE to override those, then LOITER, RTL in that order.  Finally, I add AUTO to a switch on its own channel.  
   Keep in mind that whatever mode you have on its own channel might be overridden if you flick a different switch.
-  Unfortunately, the way the mode system in AP works, there's no good way to have a list of prioritized modes, which would be ideal.
+  Unfortunately, the way the mode system in AP works, there's no good way to have a list of prioritized modes, which would be ideal though now I have opened a PR to extend the modes to 12, which solves this).
 
 
 ## Auto modes
@@ -230,6 +231,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on March 07, 2021. For any questions/feedback,
+Last updated on March 13, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

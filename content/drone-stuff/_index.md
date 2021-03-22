@@ -10,6 +10,7 @@ Click on a link in the list below to go to that page:
 
 1. [A simple guide to PID control](../../drone-stuff/a-simple-guide-to-pid-control)
 1. [Ardupilot setup checklist](../../drone-stuff/ardupilot-setup-checklist)
+1. [E6000 hinges](../../drone-stuff/e6000-hinges)
 1. [FPV frequency chart](../../drone-stuff/fpv-frequency-chart)
 1. [General RC tips](../../drone-stuff/general-rc-tips)
 1. [Getting uninverted SBUS on a no-name FrSky-compatible receiver](../../drone-stuff/getting-uninverted-sbus-on-a-no-name-frsky-compatible-receiver)

@@ -10,9 +10,11 @@ To isolate the servo 5V rail from the controller's 5V power supply, remove this 
 
 Now the servos' 5V rail can be powered from another 5V supply to avoid servo current backflow into the FC.
 
+There's also a 	[schematic for this FC](../../resources/805930c3bedc4393ba947f0e0bfa369d.pdf).
+
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on November 24, 2020. For any questions/feedback,
+Last updated on April 09, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

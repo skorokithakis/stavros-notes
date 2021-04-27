@@ -8,6 +8,13 @@ This is a short guide for setting up [ArduPilot](https://ardupilot.org/) on a fl
 
 You should keep the [full list of ArduPilot parameters](https://ardupilot.org/plane/docs/parameters.html) open, for your reference while tuning. 
 
+## Helper utility
+
+
+I have created a utility that lets you easily get/set/backup/restore parameters from the command line.
+It's called Parachute, and you can download it here:
+
+https://gitlab.com/stavros/parachute
 
 ## Building ArduPilot
 
@@ -53,7 +60,7 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 - [ ] Connect GPS to UART 6 (SERIAL4). You don't need to do anything else for GPS, it should work out of the box.
 - [ ] Connect Fport to a UART. I chose UART 3 (SERIAL2). If you want to use UART 1, you should set the RC input jumper to PPM on the F4 to disconnect the SBUS inverter from the pin.
 - [ ] To get Fport working with UART 3, you need to set `BRD_ALT_CONFIG=1`, to get UART 3 to act like a UART instead of I2C on the Omnibus F4.
-- [ ] Change the board orientation with `AHRS_ORIENTATION`.
+- [ ] Change the FC's orientation with `AHRS_ORIENTATION`.
 - [ ] Set the following for Fport on UART 3:
   ```
   SERIAL2_PROTOCOL = 23 (RCIN)
@@ -83,7 +90,7 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 - [ ] Set `SERVO_BLH_OTYPE=4` for DShot150 and `SERVO_BLH_MASK=1` to enable it for the motor.
 - [ ] Set `COMPASS_ENABLE=0` if you don't have a compass, otherwise calibrate it (not detailed here).
 - [ ] Set `TERRAIN_ENABLE=0` to get rid of the terrain warning.
-- [ ] Set the board orientation with `AHRS_TRIM_Y` and check that FBWA mode flies level.
+- [ ] Set the FC's pitch relative to the body with `AHRS_TRIM_Y` and check that FBWA mode flies level.
 - [ ] If you don't use logging, set `LOG_BACKEND_TYPE=0`.
 - [ ] Check the preflight errors to warn on, though usually leaving it set to "all" is fine.
 - [ ] Set up the OSD (Mission Planner has a very nice UI for that). Keep in mind that ArduPilot's airspeed and windspeed estimation are quite good, so you may want to add those even if you don't have an airspeed sensor. You may also want to set up multiple screens, I use a potentiometer to switch between the four different screens of the OSD:
@@ -124,15 +131,15 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 - [ ] Change `TKOFF_ALT` to the altitude you want takeoff to reach.
 - [ ] Set `THR_SUPP_MAN=1` so you can manually set the autolaunch "idle" throttle (before the throw).
 - [ ] Set `TKOFF_THR_MINACC=18` for the takeoff throw to activate takeoff with a minimum of 2g.
-- [ ] set `TKOFF_LVL_PITCH` to your desired angle (20 is a good value).
+- [ ] Set `TKOFF_LVL_PITCH` to your desired angle (20 is a good value).
 - [ ] Set `TKOFF_THR_DELAY` to the number of deciseconds that you want the motor to wait before it starts up.
-- [ ] Potentially set `TKOFF_THR_SLEW=127` to make the throttle spin up to full faster (within 0.8 sec).
+- [ ] Potentially set `TKOFF_THR_SLEW=-1` to make the throttle spin up faster.
 
 
 ## In the field
 
 - [ ] Run an autotune.
-- [ ] Fly in FBWA and see if you're gaining/losing altitude. Pitch up/down to fly level, check the pitch on the OSD, and use the formula `old_value+pitch*π/180` to get the new value (in radians).
+- [ ] Fly in FBWA and see if you're gaining/losing altitude. Pitch up/down to fly level, check the pitch on the OSD, and use the formula `old_value+pitch*π/180` to get the new value for `AHRS_TRIM_Y` (in radians).
 
 
 ## Tuning the TECS
@@ -231,6 +238,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on April 10, 2021. For any questions/feedback,
+Last updated on April 28, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

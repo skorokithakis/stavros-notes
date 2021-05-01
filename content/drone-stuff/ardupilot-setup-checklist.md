@@ -203,32 +203,32 @@ After you have the above measurements, you're ready to tune things.
 
 For the level flight measurements:
 
-- [ ] Set `TRIM_ARSPD_CM` to your "comfortable cruise speed".
-- [ ] Set `TRIM_THROTTLE` to your cruise throttle percentage.
-- [ ] Set `ARSPD_FBW_MAX` to something a bit less than the maximum airspeed you achieved in level flight.
-- [ ] Set `THR_MAX` to the throttle percentage at max speed.
-- [ ] Set `ARSPD_FBW_MIN` to the slowest speed you could turn at without stalling (maybe go a bit higher for some margin).
-- [ ] Set `STAB_PITCH_DOWN` to the pitch angle that keeps you from stalling.
+- [ ] Set `TRIM_ARSPD_CM` (cm/s) to your "comfortable cruise speed".
+- [ ] Set `TRIM_THROTTLE` (percentage) to your cruise throttle percentage.
+- [ ] Set `ARSPD_FBW_MAX` (m/s) to something a bit less than the maximum airspeed you achieved in level flight.
+- [ ] Set `THR_MAX` (percentage) to the throttle percentage at max speed.
+- [ ] Set `ARSPD_FBW_MIN` (m/s) to the slowest speed you could turn at without stalling (maybe go a bit higher for some margin).
+- [ ] Set `STAB_PITCH_DOWN` (degrees) to the pitch angle that keeps you from stalling.
 
 For the ascent measurements:
 
-- [ ] Set `TECS_PITCH_MAX` to the pitch angle you measured.
-- [ ] Set `TECS_CLMB_MAX` to the climb rate you measured.
+- [ ] Set `TECS_PITCH_MAX` (degrees) to the pitch angle you measured.
+- [ ] Set `TECS_CLMB_MAX` (m/s) to the climb rate you measured.
 
 For the descent measurements:
 
-- [ ] Set `TECS_SINK_MIN` to the descent rate you measured.
+- [ ] Set `TECS_SINK_MIN` (m/s) to the descent rate you measured.
 
 For the max descent measurements:
 
-- [ ] Set `TECS_PITCH_MIN` to the pitch angle you measured.
-- [ ] Set `TECS_SINK_MAX` to the descent rate you measured.
+- [ ] Set `TECS_PITCH_MIN` (degrees) to the pitch angle you measured.
+- [ ] Set `TECS_SINK_MAX` (m/s) to the descent rate you measured.
 
 Afterwards:
 
-- [ ] Set `LIM_PITCH_MAX` to something higher than `TECS_PITCH_MAX`.
+- [ ] Set `LIM_PITCH_MAX` (centidegrees) to something higher than `TECS_PITCH_MAX`.
   This is the maximum pitch you'll be achieving in FBWA.
-- [ ] Set `LIM_PITCH_MIN` to something lower than `TECS_PITCH_MIN`.
+- [ ] Set `LIM_PITCH_MIN` (centidegrees) to something lower than `TECS_PITCH_MIN`.
   This is the minimum pitch you'll be achieving in FBWA.
 
 That's it!

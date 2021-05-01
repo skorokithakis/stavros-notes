@@ -172,6 +172,7 @@ Fly straight and note down:
 #### Fly up
 
 Set the throttle to the maximum throttle percentage from the previous step and start slowly pulling back on pitch until your airspeed equals your "comfortable cruise speed" from the previous step.
+If you're higher than that speed and need to climb more, change `LIM_PITCH_MAX` to something higher and try again.
 Note down:
 
 - [ ] The pitch angle (in degrees).
@@ -182,12 +183,12 @@ Note down:
 Set the throttle to 0 and start pushing on the pitch stick until your airspeed equals your "comfortable cruise speed" from the previous step.
 Note down:
 
-- [ ] The pitch angle (in degrees).
 - [ ] The vertical speed from the variometer (in m/s).
 
 #### Fly down more
 
 Keep the throttle at 0 and pitch down until you reach your desired maximum speed from step 1.
+If you're lower than that speed and need to pitch down more, change `LIM_PITCH_MIN` to something lower and try again.
 Note down:
 
 - [ ] The pitch angle (in degrees).
@@ -238,6 +239,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on April 28, 2021. For any questions/feedback,
+Last updated on May 01, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

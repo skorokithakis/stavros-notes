@@ -8,13 +8,15 @@ This is a short guide for setting up [ArduPilot](https://ardupilot.org/) on a fl
 
 You should keep the [full list of ArduPilot parameters](https://ardupilot.org/plane/docs/parameters.html) open, for your reference while tuning. 
 
+
 ## Helper utility
 
 
 I have created a utility that lets you easily get/set/backup/restore parameters from the command line.
 It's called Parachute, and you can download it here:
 
-https://gitlab.com/stavros/parachute
+[https://gitlab.com/stavros/parachute](https://gitlab.com/stavros/parachute)
+
 
 ## Building ArduPilot
 
@@ -151,7 +153,6 @@ In tuning, there are two stages:
 
 - Take measurements in the field.
 - Set parameters on the bench, based on your measurements.
-
 
 ### In the field
 

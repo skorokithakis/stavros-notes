@@ -214,7 +214,7 @@ For the level flight measurements:
 For the ascent measurements:
 
 - [ ] Set `TECS_PITCH_MAX` (degrees) to the pitch angle you measured.
-- [ ] Set `TECS_CLMB_MAX` (m/s) to the climb rate you measured.
+- [ ] Set `TECS_CLMB_MAX` and `FBWB_CLIMB_RATE` (both in m/s) to the climb rate you measured.
 
 For the descent measurements:
 
@@ -256,6 +256,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on May 03, 2021. For any questions/feedback,
+Last updated on May 13, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

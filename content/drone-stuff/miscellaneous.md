@@ -12,10 +12,11 @@ This is a bunch of miscellaneous info that wouldn't fit anywhere else:
   For example, the ESC has one ground wire for power (to the battery) and one for signal (to the FC), you should *only* use one of the two (the one going to the battery).
   What you can do for the other ground wire, though, is twist it around the signal wire and only connect it to the FC side, to reduce emissions.
   If you have coaxial cable, you can do the same, connect the outer shielding to the FC's ground, and don't connect the other side anywhere, and use the core as signal.
+ - If you want to embed knurled nuts in foam so you can use screws, use a soldering iron. Set the iron to 150 C, put the nut on the tip of the iron, and push the nut into the foam. It will slowly melt the foam and embed itself quite firmly. Don't use a higher temperature or you'll open a larger hole and the nut won't fit snugly.
 
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on March 06, 2021. For any questions/feedback,
+Last updated on May 14, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

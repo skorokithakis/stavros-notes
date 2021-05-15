@@ -60,14 +60,14 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 
 
 - [ ] Connect GPS to UART 6 (SERIAL4). You don't need to do anything else for GPS, it should work out of the box.
+- [ ] Change the FC's orientation with `AHRS_ORIENTATION`.
 - [ ] Connect Fport to a UART. I chose UART 3 (SERIAL2). If you want to use UART 1, you should set the RC input jumper to PPM on the F4 to disconnect the SBUS inverter from the pin.
 - [ ] To get Fport working with UART 3, you need to set `BRD_ALT_CONFIG=1`, to get UART 3 to act like a UART instead of I2C on the Omnibus F4.
-- [ ] Change the FC's orientation with `AHRS_ORIENTATION`.
 - [ ] Set the following for Fport on UART 3:
   ```
   SERIAL2_PROTOCOL = 23 (RCIN)
   SERIAL2_BAUD=115
-  SERIAL2_OPTION=4
+  SERIAL2_OPTIONS=4
   RSSI_TYPE=3
   ```
 - [ ] Once Fport works, reverse the elevator with `RC2_REVERSED=1`.
@@ -256,6 +256,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on May 13, 2021. For any questions/feedback,
+Last updated on May 15, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

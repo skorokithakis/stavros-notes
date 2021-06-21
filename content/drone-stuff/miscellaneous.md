@@ -13,7 +13,7 @@ This is a bunch of miscellaneous info that wouldn't fit anywhere else:
   What you can do for the other ground wire, though, is twist it around the signal wire and only connect it to the FC side, to reduce emissions.
   If you have coaxial cable, you can do the same, connect the outer shielding to the FC's ground, and don't connect the other side anywhere, and use the core as signal.
  - If you want to embed knurled nuts in foam so you can use screws, use a soldering iron. Set the iron to 150 C, put the nut on the tip of the iron, and push the nut into the foam. It will slowly melt the foam and embed itself quite firmly. Don't use a higher temperature or you'll open a larger hole and the nut won't fit snugly.
- - This is the command I used to flash an ESP8285 M3 with [esp-link](https://github.com/jeelabs/esp-link/):
+ - This is the command I used to flash an ESP8285 M3 with [esp-link](https://github.com/jeelabs/esp-link/ ):
    ```
    esptool.py --port /dev/ttyUSB0 --baud 115200 write_flash -fs 1MB -fm dout \
                    0x00000 boot_v1.7.bin 0x1000 user1.bin \

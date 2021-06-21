@@ -252,11 +252,20 @@ When flipping the switch, throttle will reverse, so your plane will slow down in
 Be careful not to stall or otherwise hurt your craft, I don't recommend going over 20-30% reverse throttle.
 
 
+## Parachute parameters
+
+This is the regex I use with Parachute to transfer between planes only the parameters that are transferrable (ie non-plane-specific):
+
+`^(ACRO_LOCKING|OSD.*|RC[\d_]+.*|FLTMODE.*|FLIGHT_OPTIONS|FS_.*|RTL_CLIMB_MIN|RTL_RADIUS|THR_PASS_STAB|THR_SLEWRATE|THR_SUPP_MAN|TKOFF_ACCEL_CNT|TKOFF_ALT|TKOFF_DIST|TKOFF_THR_DELAY|HOME_RESET_ALT|ALT_HOLD_RTL)$`
+
+This will transfer things like the OSD settings, flight modes, failsafe options, etc etc, but will leave things like PID tuning alone.
+Use it to set up a new plane by copying over settings from an older plane.
+
 _(Many thanks to Michel Pastor for his help with everything in this note.)_
 
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on May 16, 2021. For any questions/feedback,
+Last updated on June 22, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

@@ -183,6 +183,22 @@ class JoplinExporter:
 
         self.clean_content_dir()
 
+        def is_private(note) -> bool:
+            """
+            Check whether a note is private.
+
+            This function checks a note's title and tags and returns whether it
+            should be considered private or whether it should be published.
+            """
+            hidden_keywords = ["private", "wip", "draft"]
+            for keyword in hidden_keywords:
+                if contains_word(keyword, note.title) or keyword in note.tags:
+                    print(
+                        f"Note is unpublished, skipping: {folder_title} - {note.title}."
+                    )
+                    return True
+            return False
+
         for folder_counter, folder in enumerate(folder_list, start=1):
             folder_id, folder_title = folder
             dir = self.content_dir / slugify(folder_title)
@@ -190,12 +206,7 @@ class JoplinExporter:
             contents = []
             note_counter = 0
             for note in sorted(self.notes[folder_id], key=lambda n: n.title):
-                if (
-                    contains_word("private", note.title)
-                    or contains_word("wip", note.title)
-                    or "wip" in note.tags
-                    or "private" in note.tags
-                ):
+                if is_private(note):
                     print(
                         f"Note is unpublished, skipping: {folder_title} - {note.title}."
                     )

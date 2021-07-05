@@ -40,8 +40,6 @@ To use this calculator, first follow the steps in the [TECS tuning section](../.
         + " \\\n    TECS_SINK_MIN=" + downSpeed
         + " \\\n    TECS_SINK_MAX=" + downMoreSpeed
         + " \\\n    FBWB_CLIMB_RATE=" + upSpeed
-        + " \\\n    LIM_PITCH_MAX=" + Math.round(upPitch * 1.2)
-        + " \\\n    LIM_PITCH_MIN=-" + Math.round(downMorePitch * 1.2)
         );
 	}
 </script>

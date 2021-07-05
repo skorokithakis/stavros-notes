@@ -150,10 +150,19 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 To tune the TECS, a helpful resource is the [TECS tuning guide](https://ardupilot.org/plane/docs/tecs-total-energy-control-system-for-speed-height-tuning-guide.html).
 Make sure you have run an autotune beforehand, and continue with the tuning below.
 
-In tuning, there are two stages:
+In tuning, there are three stages:
 
+- Prepare to measure
 - Take measurements in the field.
 - Set parameters on the bench, based on your measurements.
+
+### Preparation
+
+- [ ] Set `LIM_PITCH_MAX=4500` (centidegrees), or something similarly high.
+  This is the maximum pitch you'll be achieving in FBWA, and you don't want to be limited by this while trying to tune.
+- [ ] Set `LIM_PITCH_MIN=-4500` (centidegrees) or something similarly low.
+  This is the minimum pitch you'll be achieving in FBWA, and you don't want to be limited by this either.
+
 
 ### In the field
 
@@ -227,13 +236,6 @@ For the max descent measurements:
 
 - [ ] Set `TECS_PITCH_MIN` (degrees) to the pitch angle you measured.
 - [ ] Set `TECS_SINK_MAX` (m/s) to the descent rate you measured.
-
-Afterwards:
-
-- [ ] Set `LIM_PITCH_MAX` (centidegrees) to something higher than `TECS_PITCH_MAX`.
-  This is the maximum pitch you'll be achieving in FBWA.
-- [ ] Set `LIM_PITCH_MIN` (centidegrees) to something lower than `TECS_PITCH_MIN`.
-  This is the minimum pitch you'll be achieving in FBWA.
 
 That's it!
 

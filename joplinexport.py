@@ -91,9 +91,11 @@ class JoplinExporter:
                 new_url = self.get_resource_url_by_id(item_id)
                 if not new_url:
                     new_url = item_id
+            if match.group(2):
+                new_url += match.group(2)
             return f"](../../{new_url})"
 
-        return re.sub(r"\]\(:/([a-f0-9]{32})\)", replacement, note.body)
+        return re.sub(r"\]\(:/([a-f0-9]{32})(#.*?)?\)", replacement, note.body)
 
     def get_note_url_by_id(self, note_id: str) -> Optional[str]:
         """Return a note's relative URL by its ID."""

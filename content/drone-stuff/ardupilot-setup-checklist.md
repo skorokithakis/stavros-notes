@@ -1,5 +1,5 @@
 +++
-title = "Ardupilot setup checklist"
+title = "ArduPilot setup checklist"
 weight = 2
 sort_by = "weight"
 insert_anchor_links = "right"
@@ -203,6 +203,8 @@ You're done with this step.
 
 After you have the above measurements, you're ready to tune things.
 
+You can either do things manually (below), or use the [TECS tuning calculator](../../drone-stuff/tecs-tuning-calculator) to get the appropriate parameters automatically.
+
 For the level flight measurements:
 
 - [ ] Set `TRIM_ARSPD_CM` (cm/s) to your "comfortable cruise speed".
@@ -266,6 +268,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on June 22, 2021. For any questions/feedback,
+Last updated on July 06, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

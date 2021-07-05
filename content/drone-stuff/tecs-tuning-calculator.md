@@ -69,8 +69,10 @@ To use this calculator, first follow the steps in the [TECS tuning section](../.
     <button type="submit">Calculate parameters</button>
 </p>
 
+---
+
 <p>
-Run this command in a terminal, making sure you have [Parachute](https://gitlab.com/stavros/parachute) installed:
+Run this command in a terminal, making sure you have <a href="https://gitlab.com/stavros/parachute">Parachute</a> installed:
 <code>
 <pre id="parachuteCommand">
 (Please fill out the values above first)

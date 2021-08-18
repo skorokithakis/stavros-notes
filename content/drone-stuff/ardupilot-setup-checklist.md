@@ -43,14 +43,14 @@ git submodule update --init --recursive
 
 git checkout Dockerfile
 echo "RUN pip install intelhex" >> Dockerfile
-echo 'ENV PATH="/home/ardupilot/.local/bin:/usr/lib/ccache:/ardupilot/Tools/autotest:/opt/'$(ls -1 /opt/ | grep gcc-arm-none-eabi)'/bin:${PATH}"' >> Dockerfile
+echo 'ENV PATH="/home/ardupilot/.local/bin:/usr/lib/ccache:/opt/gcc-arm-none-eabi-10-2020-q4-major/bin:/ardupilot/Tools/autotest:${PATH}"' >> Dockerfile
 cat Dockerfile
 
 docker build . -t ardupilot
 git checkout Dockerfile
 
-docker run --rm -it -v "$(pwd)":/ardupilot ardupilot:latest ./waf configure --board="$BOARD"
-docker run --rm -it -v "$(pwd)":/ardupilot ardupilot:latest ./waf build
+docker run --rm -it -v "$(pwd)":/ardupilot ardupilot ./waf configure --board="$BOARD"
+docker run --rm -it -v "$(pwd)":/ardupilot ardupilot ./waf build
 ```
 
 

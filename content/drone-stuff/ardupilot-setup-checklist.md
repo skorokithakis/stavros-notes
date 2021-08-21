@@ -172,17 +172,17 @@ You should perform the measurements in four stages, all in the FBWA mode:
 
 Fly straight and note down:
 
-- [ ] A comfortable cruise speed (in km/h).
-- [ ] The throttle percentage at that cruise speed.
 - [ ] The maximum speed you want to be flying at (in km/h).
 - [ ] The throttle percentage at that maximum speed.
 - [ ] Start a turn at the maximum bank angle (full roll deflection to one side) and note the slowest speed you can fly at without stalling.
+- [ ] Fly straight at a speed 15% higher than the stall speed from the previous step, and note that speed. This is your trim speed.
+- [ ] Note the throttle percentage at that speed.
 - [ ] Turn throttle to 0 and pitch down a bit so you don't stall.
   Note the minimum amount of down-pitch required to keep you from stalling (this should only be in the 1-3 degree ballpark).
 
 #### Fly up
 
-Set the throttle to the maximum throttle percentage from the previous step and start slowly pulling back on pitch until your airspeed equals your "comfortable cruise speed" from the previous step.
+Set the throttle to the maximum throttle percentage from the previous step and start slowly pitching up until your airspeed equals your trim speed from the previous step.
 If you're higher than that speed and need to climb more, change `LIM_PITCH_MAX` to something higher and try again.
 Note down:
 
@@ -191,7 +191,7 @@ Note down:
 
 #### Fly down
 
-Set the throttle to 0 and start pushing on the pitch stick until your airspeed equals your "comfortable cruise speed" from the previous step.
+Set the throttle to 0 and start pitching down until your airspeed equals your trim speed from the previous step.
 Note down:
 
 - [ ] The vertical speed from the variometer (in m/s).
@@ -216,11 +216,11 @@ You can either do things manually (below), or use the [TECS tuning calculator](.
 
 For the level flight measurements:
 
-- [ ] Set `TRIM_ARSPD_CM` (cm/s) to your "comfortable cruise speed".
-- [ ] Set `TRIM_THROTTLE` (percentage) to your cruise throttle percentage.
 - [ ] Set `ARSPD_FBW_MAX` (m/s) to something a bit less than the maximum airspeed you achieved in level flight.
 - [ ] Set `THR_MAX` (percentage) to the throttle percentage at max speed.
 - [ ] Set `ARSPD_FBW_MIN` (m/s) to the slowest speed you could turn at without stalling (maybe go a bit higher for some margin).
+- [ ] Set `TRIM_ARSPD_CM` (cm/s) to your trim speed.
+- [ ] Set `TRIM_THROTTLE` (percentage) to your trim throttle percentage.
 - [ ] Set `STAB_PITCH_DOWN` (degrees) to the pitch angle that keeps you from stalling.
 
 For the ascent measurements:
@@ -270,6 +270,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on August 09, 2021. For any questions/feedback,
+Last updated on August 21, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

@@ -11,11 +11,11 @@ To use this calculator, first follow the steps in the [TECS tuning section](../.
     function kmhToCms(kmh) { return Math.round(kmh / 0.036); }
 
 	function calculateParameters(event) {
-		var cruiseSpeed = Number(document.getElementById("cruiseSpeed").value);
-		var cruiseThrottle = Number(document.getElementById("cruiseThrottle").value);
 		var maxSpeed = Number(document.getElementById("maxSpeed").value);
 		var maxThrottle = Number(document.getElementById("maxThrottle").value);
 		var stallSpeed = Number(document.getElementById("stallSpeed").value);
+		var trimSpeed = Number(document.getElementById("trimSpeed").value);
+		var trimThrottle = Number(document.getElementById("trimThrottle").value);
 		var downPitch = Number(document.getElementById("downPitch").value);
 
 		var upPitch = Number(document.getElementById("upPitch").value);
@@ -28,8 +28,8 @@ To use this calculator, first follow the steps in the [TECS tuning section](../.
 
 		var output = document.getElementById("parachuteCommand");
         output.textContent = ("parachute set"
-        + " \\\n    TRIM_ARSPD_CM=" + kmhToCms(cruiseSpeed)
-        + " \\\n    TRIM_THROTTLE=" + cruiseThrottle
+        + " \\\n    TRIM_ARSPD_CM=" + kmhToCms(trimSpeed)
+        + " \\\n    TRIM_THROTTLE=" + trimThrottle
         + " \\\n    THR_MAX=" + maxThrottle
         + " \\\n    ARSPD_FBW_MAX=" + kmhToMs(maxSpeed * 0.95)
         + " \\\n    ARSPD_FBW_MIN=" + kmhToMs(stallSpeed * 1.05)
@@ -47,11 +47,11 @@ To use this calculator, first follow the steps in the [TECS tuning section](../.
 <form onsubmit="calculateParameters(event); return false">
 
 <h2>Fly straight</h2>
-<p><label>Cruise speed (km/h): <input type="number" min="0" id="cruiseSpeed" /></label></p>
-<p><label>Cruise throttle percentage (%): <input type="number" min="0" max="100" id="cruiseThrottle" /></label></p>
 <p><label>Maximum speed (km/h): <input type="number" min="0" id="maxSpeed" /></label></p>
 <p><label>Maximum throttle (%): <input type="number" min="0" max="100" id="maxThrottle" /></label></p>
 <p><label>Slowest speed (km/h): <input type="number" min="0" id="stallSpeed" /></label></p>
+<p><label>Trim speed (km/h): <input type="number" min="0" id="trimSpeed" /></label></p>
+<p><label>Trim throttle percentage (%): <input type="number" min="0" max="100" id="trimThrottle" /></label></p>
 <p><label>Down pitch (deg): <input type="number" min="0" max="90" id="downPitch" /></label></p>
 
 <h2>Fly up</h2>
@@ -85,6 +85,6 @@ Run this command in a terminal, making sure you have <a href="https://gitlab.com
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on July 06, 2021. For any questions/feedback,
+Last updated on August 21, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

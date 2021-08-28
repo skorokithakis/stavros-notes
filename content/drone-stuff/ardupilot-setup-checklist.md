@@ -210,9 +210,11 @@ You're done with this step.
 
 ### On the bench
 
-After you have the above measurements, you're ready to tune things.
+After you have the above measurements, you're ready to tune things. You can use the automatic calculator:
 
-You can either do things manually (below), or use the [TECS tuning calculator](../../drone-stuff/tecs-tuning-calculator) to get the appropriate parameters automatically.
+### [TECS tuning calculator](../../drone-stuff/tecs-tuning-calculator)
+
+Otherwise, you can do things manually, following the steps below, but you should really use the calculator instead.
 
 For the level flight measurements:
 
@@ -270,6 +272,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on August 21, 2021. For any questions/feedback,
+Last updated on August 28, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

@@ -4,7 +4,7 @@ weight = 4
 sort_by = "weight"
 insert_anchor_links = "right"
 +++
-To use this calculator, first follow the steps in the [TECS tuning section](../../ardupilot/ardupilot-setup-checklist#tuning-the-tecs) of the ArduPilot setup checklist.
+To use this calculator, first follow the steps in [Tuning the TECS](../../ardupilot/tuning-the-tecs).
 
 <script>
     function kmhToMs(kmh) { return Math.round(kmh / 3.6); }

@@ -1,6 +1,6 @@
 +++
 title = "INAV tuning tips"
-weight = 8
+weight = 7
 sort_by = "weight"
 insert_anchor_links = "right"
 +++

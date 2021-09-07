@@ -1,10 +1,10 @@
 +++
 title = "TECS tuning calculator"
-weight = 13
+weight = 3
 sort_by = "weight"
 insert_anchor_links = "right"
 +++
-To use this calculator, first follow the steps in the [TECS tuning section](../../drone-stuff/ardupilot-setup-checklist#tuning-the-tecs) of the ArduPilot setup checklist.
+To use this calculator, first follow the steps in the [TECS tuning section](../../ardupilot/ardupilot-setup-checklist#tuning-the-tecs) of the ArduPilot setup checklist.
 
 <script>
     function kmhToMs(kmh) { return Math.round(kmh / 3.6); }
@@ -85,6 +85,6 @@ Run this command in a terminal, making sure you have <a href="https://gitlab.com
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on August 21, 2021. For any questions/feedback,
+Last updated on September 07, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

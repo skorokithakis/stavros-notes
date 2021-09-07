@@ -1,6 +1,6 @@
 +++
 title = "E6000 hinges"
-weight = 3
+weight = 2
 sort_by = "weight"
 insert_anchor_links = "right"
 +++

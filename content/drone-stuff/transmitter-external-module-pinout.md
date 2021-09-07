@@ -1,6 +1,6 @@
 +++
 title = "Transmitter external module pinout"
-weight = 14
+weight = 12
 sort_by = "weight"
 insert_anchor_links = "right"
 +++

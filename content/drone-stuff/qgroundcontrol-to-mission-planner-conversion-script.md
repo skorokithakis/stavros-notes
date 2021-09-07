@@ -1,6 +1,6 @@
 +++
 title = "QGroundControl to Mission Planner conversion script"
-weight = 12
+weight = 11
 sort_by = "weight"
 insert_anchor_links = "right"
 +++

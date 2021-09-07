@@ -1,6 +1,6 @@
 +++
 title = "ArduPilot setup checklist"
-weight = 2
+weight = 1
 sort_by = "weight"
 insert_anchor_links = "right"
 +++
@@ -10,8 +10,6 @@ You should keep the [full list of ArduPilot parameters](https://ardupilot.org/pl
 
 
 ## Helper utility
-
-
 I have created a utility that lets you easily get/set/backup/restore parameters from the command line.
 It's called Parachute, and you can download it here:
 
@@ -19,43 +17,10 @@ It's called Parachute, and you can download it here:
 
 
 ## Building ArduPilot
-
-Because building ArduPilot is a bit complicated, I've written a short script that uses Docker to build AP in a controlled environment.
-
-Copy it from here, save it to a file called `docker_build.sh` in the root of the ArduPilot repo, and run it with `docker_build.sh <your board>`. Output files will be stored in `build/<yourboard>/bin/`, and you can flash them with the [INAV configurator](https://github.com/iNavFlight/inav-configurator/releases) by putting your board in DFU mode and uploading the `arduplane_with_bl.hex` file:
-
-```bash
-#!/usr/bin/env bash
-
-set -euo pipefail
-
-if [ $# -ne 1 ]
-  then
-    echo "No board supplied, run as ./docker_build.sh <board name> or ./docker_build.sh list"
-    exit 1
-fi
-
-BOARD=$1
-
-cd "$(git rev-parse --show-toplevel)"
-
-git submodule update --init --recursive
-
-git checkout Dockerfile
-echo "RUN pip install intelhex" >> Dockerfile
-echo 'ENV PATH="/home/ardupilot/.local/bin:/usr/lib/ccache:/opt/gcc-arm-none-eabi-10-2020-q4-major/bin:/ardupilot/Tools/autotest:${PATH}"' >> Dockerfile
-cat Dockerfile
-
-docker build . -t ardupilot
-git checkout Dockerfile
-
-docker run --rm -it -v "$(pwd)":/ardupilot ardupilot ./waf configure --board="$BOARD"
-docker run --rm -it -v "$(pwd)":/ardupilot ardupilot ./waf build
-```
+See [Building ArduPilot](../../ardupilot/building-ardupilot) for instructions on how to build the latest version.
 
 
 ## Hardware setup
-
 The values in this section are specific to the Omnibus F4, but the settings aren't, so you'll usually need to adjust your outputs to your specific configuration but you probably won't need to skip many of the steps here.
 
 
@@ -104,7 +69,6 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 
 
 ## Radio-related
-
 - [ ] Set your radio channels to AETR and run the radio calibration in the calibration section of ArduPilot.
 - [ ] Add a killswitch to the radio that overrides the mode to manual and the throttle to 0.
   This way it's really easy to kill the motor right away, but you still need to go through the arming procedure to get the motor running (thanks to Michel Pastor for this great idea).
@@ -116,7 +80,6 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 
 
 ## Auto modes
-
 - [ ] Set `SERVO_AUTO_TRIM=1` so the aircraft trims itself while flying.
 - [ ] Set `FS_SHORT_ACTN`/`FS_SHORT_TIMEOUT`/`FS_LONG_ACTN`/`FS_LONG_TIMEOUT`. I tend to disable the short action and set long to RTL.
 - [ ] Set `RTL_CLIMB_MIN=30` so the aircraft climbs first before starting to return to home.
@@ -129,7 +92,6 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 
 
 ## Auto takeoff
-
 - [ ] Change `TKOFF_THR_MAX` to the desired max takeoff throttle.
 - [ ] Change `TKOFF_ALT` to the altitude you want takeoff to reach.
 - [ ] Set `THR_SUPP_MAN=1` so you can manually set the autolaunch "idle" throttle (before the throw).
@@ -140,13 +102,11 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 
 
 ## In the field
-
 - [ ] Run an autotune.
 - [ ] Fly in FBWA and see if you're gaining/losing altitude. Pitch up/down to fly level, check the pitch on the OSD, and use the formula `old_value+pitch*π/180` to get the new value for `AHRS_TRIM_Y` (in radians).
 
 
 ## Tuning the TECS
-
 To tune the TECS, a helpful resource is the [TECS tuning guide](https://ardupilot.org/plane/docs/tecs-total-energy-control-system-for-speed-height-tuning-guide.html).
 Make sure you have run an autotune beforehand, and continue with the tuning below.
 
@@ -157,7 +117,6 @@ In tuning, there are three stages:
 - Set parameters on the bench, based on your measurements.
 
 ### Preparation
-
 - [ ] Set `LIM_PITCH_MAX=4500` (centidegrees), or something similarly high.
   This is the maximum pitch you'll be achieving in FBWA, and you don't want to be limited by this while trying to tune.
 - [ ] Set `LIM_PITCH_MIN=-4500` (centidegrees) or something similarly low.
@@ -165,11 +124,9 @@ In tuning, there are three stages:
 
 
 ### In the field
-
 You should perform the measurements in four stages, all in the FBWA mode:
 
 #### Fly straight
-
 Fly straight and note down:
 
 - [ ] The maximum speed you want to be flying at (in km/h).
@@ -181,7 +138,6 @@ Fly straight and note down:
   Note the minimum amount of down-pitch required to keep you from stalling (this should only be in the 1-3 degree ballpark).
 
 #### Fly up
-
 Set the throttle to the maximum throttle percentage from the previous step and start slowly pitching up until your airspeed equals your trim speed from the previous step.
 If you're higher than that speed and need to climb more, change `LIM_PITCH_MAX` to something higher and try again.
 Note down:
@@ -190,14 +146,12 @@ Note down:
 - [ ] The vertical speed from the variometer (in m/s).
 
 #### Fly down
-
 Set the throttle to 0 and start pitching down until your airspeed equals your trim speed from the previous step.
 Note down:
 
 - [ ] The vertical speed from the variometer (in m/s).
 
 #### Fly down more
-
 Keep the throttle at 0 and pitch down until you reach your desired maximum speed from step 1.
 If you're lower than that speed and need to pitch down more, change `LIM_PITCH_MIN` to something lower and try again.
 Note down:
@@ -209,10 +163,9 @@ You're done with this step.
 
 
 ### On the bench
-
 After you have the above measurements, you're ready to tune things. You can use the automatic calculator:
 
-### [TECS tuning calculator](../../drone-stuff/tecs-tuning-calculator)
+### [TECS tuning calculator](../../ardupilot/tecs-tuning-calculator)
 
 Otherwise, you can do things manually, following the steps below, but you should really use the calculator instead.
 
@@ -243,7 +196,6 @@ That's it!
 
 
 ## Reverse thrust
-
 To set up reverse thrust (for higher braking when landing, for example), follow the steps below:
 
 - [ ] Set your BLHeli-compatible ESC to "Reversible soft" and make sure you're using DShot.
@@ -259,7 +211,6 @@ Be careful not to stall or otherwise hurt your craft, I don't recommend going ov
 
 
 ## Parachute parameters
-
 This is the regex I use with Parachute to transfer between planes only the parameters that are transferrable (ie non-plane-specific):
 
 `^(ACRO_LOCKING|OSD.*|RC[\d_]+.*|FLTMODE.*|FLIGHT_OPTIONS|FS_.*|RTL_CLIMB_MIN|RTL_RADIUS|THR_PASS_STAB|THR_SLEWRATE|THR_SUPP_MAN|TKOFF_ACCEL_CNT|TKOFF_ALT|TKOFF_DIST|TKOFF_THR_DELAY|HOME_RESET_ALT|ALT_HOLD_RTL)$`
@@ -272,6 +223,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on August 28, 2021. For any questions/feedback,
+Last updated on September 07, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

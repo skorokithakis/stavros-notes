@@ -5,7 +5,7 @@ sort_by = "weight"
 insert_anchor_links = "right"
 +++
 
-To tune the TECS, a helpful resource is the [TECS tuning guide](https://ardupilot.org/plane/docs/tecs-total-energy-control-system-for-speed-height-tuning-guide.html).
+To tune the TECS, a helpful resource is the official [TECS tuning guide](https://ardupilot.org/plane/docs/tecs-total-energy-control-system-for-speed-height-tuning-guide.html).
 Make sure you have run an autotune beforehand, and continue with the tuning below.
 
 In tuning, there are three stages:

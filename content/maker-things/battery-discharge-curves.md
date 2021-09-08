@@ -16,7 +16,7 @@ Here are the graphs:
 
 This is a genuine (as far as I can tell) Sony VTC6, fairly used in high amp draw situations (I use it in my plane), in a 3S configuration:
 
-![curve_old-3s_2021-09-08_02-53-53.png](../../resources/58a35a63ebd14513b13a8e50c6938289.png)
+![curve_old-3s_2021-09-08_02-53-53.png](../../resources/71aaa540c06d48e59559d05627ceffa4.png)
 
 You can see that it output around 2600 mAh before I stopped it at 3V, which is quite good.
 
@@ -24,9 +24,15 @@ You can see that it output around 2600 mAh before I stopped it at 3V, which is q
 
 This is a pretty blatantly fake "Sony VTC6", brand new, in a 2S configuration:
 
-![curve_new-vtc6_2021-09-08_18-54-58.png](../../resources/1be705ff4fe44682b6491cf8631effe7.png)
+![curve_new-vtc6_2021-09-08_18-54-58.png](../../resources/2d20e92b9b2247e39de7458e0b341d45.png)
 
 The performance falls off a cliff after around 3.6V, and it only outputs 1600 mAh before it dies completely.
+
+Trying to draw 6-7A is even more spectacular (and it gets very hot to the touch):
+
+![curve_new-vtc6-6a_2021-09-08_23-57-29.png](../../resources/b3a7a012f9d5418e9e2e9867fd23df61.png)
+
+Notice the huge voltage sag right as the load starts drawing.
 
 * * *
 

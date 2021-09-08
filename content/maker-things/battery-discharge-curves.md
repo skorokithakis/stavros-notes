@@ -4,7 +4,7 @@ weight = 1
 sort_by = "weight"
 insert_anchor_links = "right"
 +++
-I wanted to buy some Sony VTC6 batteries, and I was wary of fakes, so I wrote a [battery discharge calculator](https://gitlab.com/stavros/battery-discharge-calculator/) with an associated hardware component (just a simple current and voltage sensor). I then took some measurements of my known-good batteries, and the new ones I bought.
+I wanted to buy some Sony VTC6 batteries, and I was wary of fakes, so I wrote a [battery discharge calculator](https://gitlab.com/stavros/assault-and-battery/) with an associated hardware component (just a simple current and voltage sensor). I then took some measurements of my known-good batteries, and the new ones I bought.
 
 The methodology was the following: I connected the battery to the sensor, and the sensor to a configurable load. I set the load to draw a certain amount of amps until it reached a cutoff voltage, and then to stop. I then plotted mAh drawn versus voltage, as well as amps drawn.
 
@@ -31,6 +31,6 @@ The performance falls off a cliff after around 3.6V, and it only outputs 1600 mA
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on September 08, 2021. For any questions/feedback,
+Last updated on September 09, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

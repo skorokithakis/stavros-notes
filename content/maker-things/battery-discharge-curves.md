@@ -20,6 +20,13 @@ This is a genuine (as far as I can tell) Sony VTC6, fairly used in high amp draw
 
 You can see that it output around 2600 mAh before I stopped it at 3V, which is quite good.
 
+Here's a brand new genuine VTC6, again in a 3S configuration:
+
+![curve_new-vtc6-3s_2021-09-09_13-06-52.png](../../resources/9a2ed9fc5d474edfab2ec610e994c059.png)
+
+This time I ran it all the way down to 2.8, and you can see it output the full 3000 mAh.
+
+
 ## Fake Sony VTC6
 
 This is a pretty blatantly fake "Sony VTC6", brand new, in a 2S configuration:

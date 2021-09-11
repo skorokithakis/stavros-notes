@@ -41,9 +41,17 @@ Trying to draw 6-7A is even more spectacular (and it gets very hot to the touch)
 
 Notice the huge voltage sag right as the load starts drawing.
 
+## White CNHL 4S 4000 mAh
+
+This is a white CNHL 4S 4000 mAh LiPo battery, slightly used:
+
+![curve_cnhl-4ah-used_2021-09-11_20-29-53.png](../../resources/ba59455ecc2946fd8b2f001dfa32378a.png)
+
+You can see that it's pretty decent, outputting nearly all of its nominal mAh, decently linearly, with a slightly faster drop after 3.7 V.
+
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on September 09, 2021. For any questions/feedback,
+Last updated on September 12, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

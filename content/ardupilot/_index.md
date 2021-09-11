@@ -10,6 +10,7 @@ Click on a link in the list below to go to that page:
 
 1. [ArduPilot setup checklist](../../ardupilot/ardupilot-setup-checklist)
 1. [Building ArduPilot](../../ardupilot/building-ardupilot)
+1. [Configuring a switch as a relay](../../ardupilot/configuring-a-switch-as-a-relay)
 1. [Reverse thrust](../../ardupilot/reverse-thrust)
 1. [TECS tuning calculator](../../ardupilot/tecs-tuning-calculator)
 1. [Transfer config between craft](../../ardupilot/transfer-config-between-craft)

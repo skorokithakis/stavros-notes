@@ -59,6 +59,8 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 - [ ] Set `COMPASS_ENABLE=0` if you don't have a compass, otherwise calibrate it (not detailed here).
 - [ ] Set `TERRAIN_ENABLE=0` to get rid of the terrain warning.
 - [ ] Set the FC's pitch relative to the body with `AHRS_TRIM_Y` and check that FBWA mode flies level.
+- [ ] Set `INS_GYRO_FILTER=60` for faster updates.
+- [ ] Set `SCHED_LOOP_RATE=100` for the same reason.
 - [ ] If you don't use logging, set `LOG_BACKEND_TYPE=0`.
 - [ ] Check the preflight errors to warn on, though usually leaving it set to "all" is fine.
 - [ ] Set up the OSD (Mission Planner has a very nice UI for that). Keep in mind that ArduPilot's airspeed and windspeed estimation are quite good, so you may want to add those even if you don't have an airspeed sensor. You may also want to set up multiple screens, I use a potentiometer to switch between the four different screens of the OSD:
@@ -110,6 +112,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on September 07, 2021. For any questions/feedback,
+Last updated on September 22, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

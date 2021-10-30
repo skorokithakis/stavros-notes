@@ -22,6 +22,16 @@ RC_OPTION=800        # 5 - Arming check throttle.
                      # 9 - Suppress CRSF mode/rate message for ELRS.
 ```
 
+## Expo
+
+30% expo is a good starting point:
+
+```bash
+MAN_EXPO_ROLL=30
+MAN_EXPO_PITCH=30
+MAN_EXPO_RUDDER=30
+```
+
 ## Miscellaneous
 
 ```bash
@@ -32,6 +42,6 @@ SCHED_LOOP_RATE=100    # Faster scheduler updates.
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on October 30, 2021. For any questions/feedback,
+Last updated on October 31, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

@@ -24,7 +24,7 @@ See [Building ArduPilot](../../ardupilot/building-ardupilot) for instructions on
 The values in this section are specific to the Omnibus F4, but the settings aren't, so you'll usually need to adjust your outputs to your specific configuration but you probably won't need to skip many of the steps here.
 
 
-- [ ] Connect GPS to UART 6 (SERIAL4). You don't need to do anything else for GPS, it should work out of the box. If it doesn't, set `SERIALn_PROTOCOL=5 SERIALn_BAUD=115`
+- [ ] Connect GPS to UART 6 (SERIAL4). You don't need to do anything else for GPS, it should work out of the box. If it doesn't, set `SERIALn_PROTOCOL=5`.
 - [ ] Change the FC's orientation with `AHRS_ORIENTATION` and monitor the artificial horizon to see if it moves correctly.
 - [ ] Calibrate the accelerometer. "Forward" here needs to be the forward direction of the plane, not the arrow on the FC.
 - [ ] Connect Fport to a UART. I chose UART 3 (SERIAL2). If you want to use UART 1, you should set the RC input jumper to PPM on the F4 to disconnect the SBUS inverter from the pin.
@@ -113,6 +113,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on October 30, 2021. For any questions/feedback,
+Last updated on October 31, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

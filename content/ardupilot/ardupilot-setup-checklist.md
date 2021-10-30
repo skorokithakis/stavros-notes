@@ -1,6 +1,6 @@
 +++
 title = "ArduPilot setup checklist"
-weight = 1
+weight = 2
 sort_by = "weight"
 insert_anchor_links = "right"
 +++
@@ -24,7 +24,7 @@ See [Building ArduPilot](../../ardupilot/building-ardupilot) for instructions on
 The values in this section are specific to the Omnibus F4, but the settings aren't, so you'll usually need to adjust your outputs to your specific configuration but you probably won't need to skip many of the steps here.
 
 
-- [ ] Connect GPS to UART 6 (SERIAL4). You don't need to do anything else for GPS, it should work out of the box.
+- [ ] Connect GPS to UART 6 (SERIAL4). You don't need to do anything else for GPS, it should work out of the box. If it doesn't, set `SERIALn_PROTOCOL=5 SERIALn_BAUD=115`
 - [ ] Change the FC's orientation with `AHRS_ORIENTATION` and monitor the artificial horizon to see if it moves correctly.
 - [ ] Calibrate the accelerometer. "Forward" here needs to be the forward direction of the plane, not the arrow on the FC.
 - [ ] Connect Fport to a UART. I chose UART 3 (SERIAL2). If you want to use UART 1, you should set the RC input jumper to PPM on the F4 to disconnect the SBUS inverter from the pin.
@@ -59,8 +59,6 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 - [ ] Set `COMPASS_ENABLE=0` if you don't have a compass, otherwise calibrate it (not detailed here).
 - [ ] Set `TERRAIN_ENABLE=0` to get rid of the terrain warning.
 - [ ] Set the FC's pitch relative to the body with `AHRS_TRIM_Y` and check that FBWA mode flies level.
-- [ ] Set `INS_GYRO_FILTER=60` for faster updates.
-- [ ] Set `SCHED_LOOP_RATE=100` for the same reason.
 - [ ] If you don't use logging, set `LOG_BACKEND_TYPE=0`.
 - [ ] Check the preflight errors to warn on, though usually leaving it set to "all" is fine.
 - [ ] Set up the OSD (Mission Planner has a very nice UI for that). Keep in mind that ArduPilot's airspeed and windspeed estimation are quite good, so you may want to add those even if you don't have an airspeed sensor. You may also want to set up multiple screens, I use a potentiometer to switch between the four different screens of the OSD:
@@ -102,6 +100,9 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 - [ ] Set `TKOFF_THR_DELAY` to the number of deciseconds that you want the motor to wait before it starts up.
 - [ ] Potentially set `TKOFF_THR_SLEW=-1` to make the throttle spin up faster.
 
+## Recommended settings.
+
+See the [recommended settings](../../ardupilot/ardupilot-recommended-settings) page for other recommended defaults.
 
 ## In the field
 - [ ] Run an autotune.
@@ -112,6 +113,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on October 26, 2021. For any questions/feedback,
+Last updated on October 30, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

@@ -8,14 +8,14 @@ This section contains some recommended settings for ArduPilot. Nothing is set in
 
 ## GPS
 
-```
+```bash
 GPS_GNSS_MODE=71  # Enable GPS/SBAS/Galileo/GLONASS.
 GPS_RATE_MS=100   # 10 Hz update rate.
 ```
 
 ## Crossfire/ELRS
 
-```
+```bash
 SERIALn_PROTOCOL=23  # Crossfire/ELRS.
 RC_OPTION=800        # 5 - Arming check throttle.
                      # 8 - CRSF telemetry passthrough.
@@ -24,7 +24,7 @@ RC_OPTION=800        # 5 - Arming check throttle.
 
 ## Miscellaneous
 
-```
+```bash
 INS_GYRO_FILTER=60     # Faster gyro updates.
 SCHED_LOOP_RATE=100    # Faster scheduler updates.
 ```

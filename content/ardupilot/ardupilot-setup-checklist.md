@@ -30,15 +30,15 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 - [ ] Connect Fport to a UART. I chose UART 3 (SERIAL2). If you want to use UART 1, you should set the RC input jumper to PPM on the F4 to disconnect the SBUS inverter from the pin.
 - [ ] To get Fport working with UART 3, you need to set `BRD_ALT_CONFIG=1`, to get UART 3 to act like a UART instead of I2C on the Omnibus F4.
 - [ ] Set the following for Fport on UART 3:
-  ```
-  SERIAL2_PROTOCOL = 23 (RCIN)
+  ```bash
+  SERIAL2_PROTOCOL=23  # RCIN
   SERIAL2_BAUD=115
   SERIAL2_OPTIONS=4
   RSSI_TYPE=3
   ```
 - [ ] Once Fport works, reverse the elevator with `RC2_REVERSED=1`.
 - [ ] Set up your servo functions and trims:
-  ```
+  ```bash
   SERVO1_FUNCTION=70
   SERVO1_MIN=1000
   SERVO1_MAX=2000

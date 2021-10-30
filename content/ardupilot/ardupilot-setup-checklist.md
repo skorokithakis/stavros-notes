@@ -39,17 +39,17 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 - [ ] Once Fport works, reverse the elevator with `RC2_REVERSED=1`.
 - [ ] Set up your servo functions and trims:
   ```bash
-  SERVO1_FUNCTION=70
+  SERVO1_FUNCTION=70  # Throttle
   SERVO1_MIN=1000
   SERVO1_MAX=2000
   SERVO1_TRIM=1000
 
-  SERVO3_FUNCTION=77
+  SERVO3_FUNCTION=77  # Left elevon
   SERVO3_MIN=1000
   SERVO3_MAX=2000
   SERVO3_TRIM=1500
 
-  SERVO4_FUNCTION=78
+  SERVO4_FUNCTION=78  # Right elevon
   SERVO4_MIN=1000
   SERVO4_MAX=2000
   SERVO4_TRIM=1500

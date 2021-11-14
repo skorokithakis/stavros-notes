@@ -20,9 +20,22 @@ This is a bunch of miscellaneous info that wouldn't fit anywhere else:
                    0xFC000 esp_init_data_default.bin 0xFE000 blank.bin
    ```
 
+
+## Motor and prop stuff
+
+Here are the things I know about motors and propellers:
+
+- The larger and steeper the propeller, the harder it is for the motor to turn.
+- The more KV the motor is, the faster it turns, and the harder it is for it to turn.
+- The harder the motor has to turn, the more current it draws, and the hotter it gets.
+- The larger the (physical) size of the motor, the more heat it can dissipate.
+- If the motor gets too hot, some part of it may melt. This ruins the motor.
+- The smaller a propeller, the more quickly it can turn, and the more it can accelerate.
+- The larger a propeller, the more efficient it is.
+
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on May 26, 2021. For any questions/feedback,
+Last updated on November 15, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

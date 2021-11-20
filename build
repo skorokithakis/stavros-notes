@@ -6,14 +6,14 @@ rm -rf public/
 
 if [ -x "$(which mdbook)" ] ; then
     echo "mdBook found, running..."
+    mdbook build -d public
 else
     echo "mdBook not found, downloading..."
     wget https://github.com/rust-lang/mdBook/releases/download/v0.4.13/mdbook-v0.4.13-x86_64-unknown-linux-gnu.tar.gz -O mdbook.tgz
     tar zxvf mdbook.tgz
-    mv mdbook /usr/local/bin/
+    ./mdbook build -d public
 fi
 
-mdbook build -d public
 
 # Make checkboxes editable, just in case the user wants to keep their own checklist.
 find public/ -name "*.html" -type f -exec sed -i 's/input disabled=""/input/g' {} +

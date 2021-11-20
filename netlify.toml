@@ -1,7 +1,0 @@
-# We don't currently use Netlify for deployments/serving.
-
-[build]
-publish = "public"
-command = "./build"
-
-[build.environment]

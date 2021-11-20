@@ -8,9 +8,6 @@ build:
   script:
     - pip install pre-commit
     - pre-commit run -a --hook-stage=manual
-    - wget https://github.com/rust-lang/mdBook/releases/download/v0.4.13/mdbook-v0.4.13-x86_64-unknown-linux-gnu.tar.gz -O mdbook.tgz
-    - tar zxvf mdbook.tgz
-    - mv mdbook /usr/local/bin/
     - ./build
   artifacts:
     paths:

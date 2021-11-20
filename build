@@ -4,7 +4,7 @@ set -euxo pipefail
 
 rm -rf public/
 
-if [ -x $(which mdbook) ] ; then
+if [ -x "$(which mdbook)" ] ; then
     echo "mdBook found, running..."
 else
     echo "mdBook not found, downloading..."

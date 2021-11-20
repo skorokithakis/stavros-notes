@@ -1,9 +1,5 @@
-+++
-title = "A simple guide to PID control"
-weight = 1
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
+# A simple guide to PID control
+
 I made some changes to my quadcopter the other day for [a new photography project I'm working on](https://www.makerfol.io/project/m8xrLUp-light-painting-with-drones/).
 Unfortunately, it turned out that it wasn't good enough, and that I'd have to tune my [PID loop](https://en.wikipedia.org/wiki/PID_controller), which I knew nothing about.
 After watching a few videos and reading a few things, I learnt enough to be dangerous, and to hopefully be able to explain the concepts simply, so I want to write them down here before I forget.

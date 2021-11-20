@@ -1,12 +1,26 @@
-pages:
+stages:
+  - build
+  - pages
+
+build:
+  stage: build
   image: python
   script:
-    - wget https://github.com/getzola/zola/releases/download/v0.12.2/zola-v0.12.2-x86_64-unknown-linux-gnu.tar.gz -O zola.tgz
-    - tar zxvf zola.tgz
-    - mv zola /usr/local/bin/
-    - ./build.sh
+    - pip install pre-commit
+    - pre-commit run -a --hook-stage=manual
+    - wget https://github.com/rust-lang/mdBook/releases/download/v0.4.13/mdbook-v0.4.13-x86_64-unknown-linux-gnu.tar.gz -O mdbook.tgz
+    - tar zxvf mdbook.tgz
+    - mv mdbook /usr/local/bin/
+    - ./build
   artifacts:
     paths:
       - public
+
+pages:
+  stage: pages
+  script: ls -lah public/
   only:
   - master
+  artifacts:
+    paths:
+      - public

@@ -1,9 +1,5 @@
-+++
-title = "Configuring a switch as a relay"
-weight = 4
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
+# Configuring a switch as a relay
+
 If you want to connect a relay of some sort (something that accepts a low/high signal, like a camera control) to a PWM output (the servo outputs), you need to do a few quick things. The actual numbers will vary depending on your FC, but here's what worked for me with a Matek F405-Wing:
 
 1. Set the channel you want the relay to trigger on as a controller for the first relay (here I'll assume you want to control the first relay on channel 11):  

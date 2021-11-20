@@ -1,9 +1,5 @@
-+++
-title = "INAV tuning tips"
-weight = 7
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
+# INAV tuning tips
+
 Here are some general INAV tuning tips and things I've learned throughout my builds. Keep in mind that *these only apply to wings* (and maybe planes), not quads:
 
 * To make turns in automatic modes smoother, use `set nav_fw_control_smoothness = 8`.

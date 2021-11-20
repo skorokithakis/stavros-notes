@@ -1,9 +1,5 @@
-+++
-title = "Electronics tips"
-weight = 2
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
+# Electronics tips
+
 This page contains various notes and tips about electronics.
 
 ## Decoupling capacitors

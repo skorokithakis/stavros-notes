@@ -1,9 +1,5 @@
-+++
-title = "ArduPilot setup checklist"
-weight = 2
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
+# ArduPilot setup checklist
+
 This is a short guide for setting up [ArduPilot](https://ardupilot.org/) on a flying wing. I use an Omnibus F4 that was previously set up for INAV (so motor on 1, elevons on 3/4), so most of this guide will be geared to that. If you use a different controller, your mileage may vary.
 
 You should keep the [full list of ArduPilot parameters](https://ardupilot.org/plane/docs/parameters.html) open, for your reference while tuning. 
@@ -17,7 +13,7 @@ It's called Parachute, and you can download it here:
 
 
 ## Building ArduPilot
-See [Building ArduPilot](../../ardupilot/building-ardupilot) for instructions on how to build the latest version.
+See [Building ArduPilot](/ardupilot/building-ardupilot) for instructions on how to build the latest version.
 
 
 ## Hardware setup
@@ -30,7 +26,7 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 - [ ] Connect Fport to a UART. I chose UART 3 (SERIAL2). If you want to use UART 1, you should set the RC input jumper to PPM on the F4 to disconnect the SBUS inverter from the pin.
 - [ ] To get Fport working with UART 3, you need to set `BRD_ALT_CONFIG=1`, to get UART 3 to act like a UART instead of I2C on the Omnibus F4.
 - [ ] Set the following for Fport on UART 3:
-  ```bash
+  ```js
   SERIAL2_PROTOCOL=23  # RCIN
   SERIAL2_BAUD=115
   SERIAL2_OPTIONS=4
@@ -38,7 +34,7 @@ The values in this section are specific to the Omnibus F4, but the settings aren
   ```
 - [ ] Once Fport works, reverse the elevator with `RC2_REVERSED=1`.
 - [ ] Set up your servo functions and trims:
-  ```bash
+  ```js
   SERVO1_FUNCTION=70  # Throttle
   SERVO1_MIN=1000
   SERVO1_MAX=2000
@@ -102,7 +98,7 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 
 ## Recommended settings.
 
-See the [recommended settings](../../ardupilot/ardupilot-recommended-settings) page for other recommended defaults.
+See the [recommended settings](/ardupilot/ardupilot-recommended-settings) page for other recommended defaults.
 
 ## In the field
 - [ ] Run an autotune.
@@ -113,6 +109,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on October 31, 2021. For any questions/feedback,
+Last updated on November 19, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

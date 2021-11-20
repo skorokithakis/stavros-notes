@@ -1,9 +1,5 @@
-+++
-title = "Building ArduPilot"
-weight = 3
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
+# Building ArduPilot
+
 Because building ArduPilot is a bit complicated, I've written a short script that uses Docker to build AP in a controlled environment.
 
 Copy it from here, save it to a file called `docker_build.sh` in the root of the ArduPilot repo, and run it with `docker_build.sh <your board>`. Output files will be stored in `build/<yourboard>/bin/`, and you can flash them with the [INAV configurator](https://github.com/iNavFlight/inav-configurator/releases) by putting your board in DFU mode and uploading the `arduplane_with_bl.hex` file.

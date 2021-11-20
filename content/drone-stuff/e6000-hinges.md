@@ -1,9 +1,5 @@
-+++
-title = "E6000 hinges"
-weight = 2
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
+# E6000 hinges
+
 I love Goop/E6000 glue, it's very versatile and makes for a great bond.
 However, do remember to work with it outside, as it is not safe to breathe.
 One of the coolest things you can do with it is make hinges, for control surfaces as well as for any hatches you may have.

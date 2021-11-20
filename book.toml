@@ -1,0 +1,13 @@
+[book]
+authors = ["Stavros Korokithakis"]
+language = "en"
+multilingual = false
+src = "content"
+title = "Stavros' Notes"
+
+[output.html]
+curly-quotes = true
+no-section-label = false
+git-repository-url = "https://gitlab.com/stavros/notes/"
+git-repository-icon = "fa-gitlab"
+additional-css = ["static/custom.css"]

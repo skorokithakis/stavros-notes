@@ -1,16 +1,12 @@
-+++
-title = "Omnibus F4 V3 pinout"
-weight = 9
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
+# Omnibus F4 V3 pinout
+
 This is the pinout of the Omnibus F4 V3:
 
-[![53b3161d509dcc7bbfb43c89b16b0bae.png](../../resources/99f5c91454204c1d9740a8d9b876833b.png)](../../resources/99f5c91454204c1d9740a8d9b876833b.png)
+[![53b3161d509dcc7bbfb43c89b16b0bae.png](/resources/99f5c91454204c1d9740a8d9b876833b.png)](/resources/99f5c91454204c1d9740a8d9b876833b.png)
 
 Also:
 
-![omnibus-f4-v5-pinout2.jpg](../../resources/410f3ce004c64fe9af68bfd6856d3e53.jpg)
+![omnibus-f4-v5-pinout2.jpg](/resources/410f3ce004c64fe9af68bfd6856d3e53.jpg)
 
 
 

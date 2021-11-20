@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euxo pipefail
+
+rm -rf public/
+mdbook build -d public
+
+# Make checkboxes editable, just in case the user wants to keep their own checklist.
+find public/ -name "*.html" -type f -exec sed -i 's/input disabled=""/input/g' {} +
+
+cp -R static/* public/

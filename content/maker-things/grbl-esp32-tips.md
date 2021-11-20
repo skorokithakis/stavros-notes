@@ -1,9 +1,5 @@
-+++
-title = "GRBL_ESP32 tips"
-weight = 3
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
+# GRBL_ESP32 tips
+
 I made a CNC that uses [a custom board I designed](https://gitlab.com/stavros/esp32-cnc), and which runs [GRBL_ESP32](https://github.com/bdring/Grbl_Esp32/). I couldn't find the following info easily, so I've written it here:
 
 - You can specify the enable pin for the drivers with the `STEPPERS_DISABLE_PIN` option. This should be used like `#define STEPPERS_DISABLE_PIN GPIO_NUM_2`.

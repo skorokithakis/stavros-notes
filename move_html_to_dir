@@ -26,7 +26,7 @@ def replace_links(path: Path, replacements: Dict[str, str]):
 
 
 def main(path: Path):
-    replacements = {}
+    replacements: Dict[str, str] = {}
     for p in path.glob("**/*.html"):
         if str(p.parent) == ".":
             # Don't convert top-level files.

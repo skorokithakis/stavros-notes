@@ -1,3 +1,5 @@
 themes/
 public/
 book/
+.vscode/
+__pycache__/

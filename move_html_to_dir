@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+"""
+Rename files like `foo/bar.html` to `foo/bar/index.html` for prettier URLs.
+"""
+import os
+import re
+import sys
+from pathlib import Path
+from typing import Dict
+
+
+def replace_links(path: Path, replacements: Dict[str, str]):
+    for filename in path.glob("**/*.html"):
+        with filename.open("r+") as f:
+            contents = f.read()
+            f.truncate(0)
+            f.seek(0)
+            for source, target in replacements.items():
+                contents = contents.replace(source, target)
+
+            # Convert absolute links to relative.
+            contents = re.sub(
+                '((?:href|src|root)\s*=\s*")((?:\.\./)+)([^\.])', r"\1/\3", contents
+            )
+
+            f.write(contents)
+
+
+def main(path: Path):
+    replacements: Dict[str, str] = {}
+    for p in path.glob("**/*.html"):
+        if str(p.parent) == ".":
+            # Don't convert top-level files.
+            continue
+
+        if p.name == "index.html":
+            # Don't convert top-level files.
+            continue
+
+        print(f"Converting {p}...")
+
+        dir_path = p.parent / p.stem
+        dir_path.mkdir(parents=True, exist_ok=True)
+
+        new_path = dir_path / "index.html"
+        p.rename(new_path)
+        replacements[str(p.relative_to(path))] = str(new_path.relative_to(path))
+
+    replace_links(path, replacements)
+
+
+if __name__ == "__main__":
+    main(Path(sys.argv[1]))

@@ -150,8 +150,6 @@ class JoplinExporter:
         rmtree(self.static_dir, ignore_errors=True)
         self.content_dir.mkdir(parents=True)
         self.static_dir.mkdir(parents=True)
-        with open(self.content_dir / "index.md", mode="w") as outfile:
-            outfile.write('+++\nredirect_to = "welcome/stavros-notes/"\n+++')
 
     def resolve_note_links(self, note: Note) -> str:
         """Resolve the links between notes and replace them in the body."""

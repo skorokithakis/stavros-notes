@@ -43,7 +43,7 @@ def main(path: Path):
 
         new_path = dir_path / "index.html"
         p.rename(new_path)
-        replacements[str(p.relative_to(path))] = str(new_path.relative_to(path))
+        replacements[str(p.relative_to(path))] = f"{new_path.parent.relative_to(path)}/"
 
     replace_links(path, replacements)
 

@@ -7,7 +7,7 @@ title = "Stavros' Notes"
 
 [output.html]
 curly-quotes = true
-no-section-label = false
+no-section-label = true
 git-repository-url = "https://gitlab.com/stavros/notes/"
 git-repository-icon = "fa-gitlab"
 additional-css = ["static/custom.css"]

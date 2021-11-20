@@ -8,7 +8,7 @@ If you want to use the script and generate such a site for yourself, feel free t
 
 [https://gitlab.com/stavros/notes/](https://gitlab.com/stavros/notes/)
 
-Just run `./joplinexport` on your computer, it will read the database and create a site like this one and upload it to GitLab pages.
+Just run `./joplinexport` on your computer, it will read the database and create a site like this one and upload it to GitLab pages. Also, the `build` and `move_html_to_dir` scripts might be of interest.
 
 Otherwise, enjoy my notes!
 

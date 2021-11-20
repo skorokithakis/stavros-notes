@@ -21,8 +21,8 @@ repos:
       - --ignore=D100,D107,D203,D212
 - repo: local
   hooks:
-  - id: migrations-check
-    language: system
-    name: Export the notes.
-    entry: bash -c "./joplinexport.py"
-    pass_filenames: false
+  - id: no-todos
+    name: Forbid TODOs
+    entry: "TODO"
+    language: pygrep
+    types: [python]

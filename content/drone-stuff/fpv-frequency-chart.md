@@ -1,12 +1,8 @@
-+++
-title = "FPV frequency chart"
-weight = 3
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
+# FPV frequency chart
+
 If you're curious about which frequencies to use for video when there are multiple people flying FPV, as well as which bands are used by various manufacturers, here's a handy chart:
 
-[![FPV frequency chart](../../resources/48cfa1097ca847c5a9ff8229005e7f50.png)](../../resources/48cfa1097ca847c5a9ff8229005e7f50.png)
+[![FPV frequency chart](/resources/48cfa1097ca847c5a9ff8229005e7f50.png)](/resources/48cfa1097ca847c5a9ff8229005e7f50.png)
 
 It was made by [5zero7 RC](https://youtu.be/wScS5XloviM) with information from [a Propwashed article](https://www.propwashed.com/video-frequency-management/).
 

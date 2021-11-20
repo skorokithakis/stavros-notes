@@ -1,9 +1,5 @@
-+++
-title = "Miscellaneous"
-weight = 8
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
+# Miscellaneous
+
 This is a bunch of miscellaneous info that wouldn't fit anywhere else:
 
 - The ZOHD Dart 250g with the stock motor draws 4.5A on 2S with the 5x5 propeller. It draws the same amperage at exactly 75% throttle with a 3S battery and the same propeller.

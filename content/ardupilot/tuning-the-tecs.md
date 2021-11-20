@@ -1,9 +1,5 @@
-+++
-title = "Tuning the TECS"
-weight = 9
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
+# Tuning the TECS
+
 
 To tune the TECS, a helpful resource is the official [TECS tuning guide](https://ardupilot.org/plane/docs/tecs-total-energy-control-system-for-speed-height-tuning-guide.html).
 Make sure you have run an autotune beforehand, and continue with the tuning below.
@@ -64,7 +60,7 @@ You're done with this step.
 ### On the bench
 After you have the above measurements, you're ready to tune things. You can use the automatic calculator:
 
-### [TECS tuning calculator](../../ardupilot/tecs-tuning-calculator)
+### [TECS tuning calculator](/ardupilot/tecs-tuning-calculator)
 
 Otherwise, you can do things manually, following the steps below, but you should really use the calculator instead.
 

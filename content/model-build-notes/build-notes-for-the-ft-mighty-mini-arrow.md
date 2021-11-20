@@ -1,12 +1,8 @@
-+++
-title = "Build notes for the FT Mighty Mini Arrow"
-weight = 1
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
+# Build notes for the FT Mighty Mini Arrow
+
 These notes are a condensed version of the [FT Arrow build video](https://www.youtube.com/watch?v=cD2Ca2oskVs).
 
-![maxresdefault.jpeg](../../resources/d4819ca1c3d0490daaa12f62af09aa00.jpg)
+![maxresdefault.jpeg](/resources/d4819ca1c3d0490daaa12f62af09aa00.jpg)
 
 
 ## Wings

@@ -1,9 +1,5 @@
-+++
-title = "Transfer config between craft"
-weight = 8
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
+# Transfer config between craft
+
 This is the regex I use with Parachute to transfer between planes only the parameters that are transferrable (ie non-plane-specific):
 
 `^(ACRO_LOCKING|OSD.*|RC[\d_]+.*|FLTMODE.*|FLIGHT_OPTIONS|FS_.*|RTL_CLIMB_MIN|RTL_RADIUS|THR_PASS_STAB|THR_SLEWRATE|THR_SUPP_MAN|TKOFF_ACCEL_CNT|TKOFF_ALT|TKOFF_DIST|TKOFF_THR_DELAY|HOME_RESET_ALT|ALT_HOLD_RTL)$`

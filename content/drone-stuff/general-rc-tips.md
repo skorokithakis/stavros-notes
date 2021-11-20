@@ -1,9 +1,5 @@
-+++
-title = "General RC tips"
-weight = 4
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
+# General RC tips
+
 These are general tips for building RC planes/quads/whatever:
 
 * Propellers have a direction: The top usually has letters like, for example, "6040" (which denotes the size and pitch of the propeller), and the top needs to always point towards where the plane will be flying (the front). No matter if you have a pusher or puller, the top of the propeller needs to be pointing forward.

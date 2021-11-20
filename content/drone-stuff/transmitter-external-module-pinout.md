@@ -1,9 +1,5 @@
-+++
-title = "Transmitter external module pinout"
-weight = 12
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
+# Transmitter external module pinout
+
 The transmitter (Taranis, Jumper, RadioMaster, etc) pinout is, from top to bottom:
 
 * PPM
@@ -14,7 +10,7 @@ The transmitter (Taranis, Jumper, RadioMaster, etc) pinout is, from top to botto
 
 It's illustrated in this photo:
 
-[![pinout.jpeg](../../resources/72d23239af1541d4b170271c1e9e21eb.jpg)](../../resources/72d23239af1541d4b170271c1e9e21eb.jpg)
+[![pinout.jpeg](/resources/72d23239af1541d4b170271c1e9e21eb.jpg)](/resources/72d23239af1541d4b170271c1e9e21eb.jpg)
 
 
 

@@ -1,9 +1,5 @@
-+++
-title = "Mini Drak build condensed instructions"
-weight = 2
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
+# Mini Drak build condensed instructions
+
 Sources:
 
 1.  [Håvard's Mini Drak build video](https://www.youtube.com/watch?v=L4_dJxiQUjs)

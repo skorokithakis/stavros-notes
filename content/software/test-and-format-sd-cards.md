@@ -1,9 +1,5 @@
-+++
-title = "Test and format SD cards"
-weight = 2
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
+# Test and format SD cards
+
 I wrote a short bash script that tests SD cards with [F3](https://3ds.hacks.guide/f3-(linux).html) to see if they're fake, deletes everything on them, creates a new partition table and one exFAT partition on them.
 
 Here it is:

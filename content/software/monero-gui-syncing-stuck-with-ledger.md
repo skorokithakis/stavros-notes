@@ -1,9 +1,5 @@
-+++
-title = "Monero GUI syncing stuck with Ledger"
-weight = 1
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
+# Monero GUI syncing stuck with Ledger
+
 This is about the Monero desktop GUI, but probably also applies to Monerujo.
 
 If you're trying to sync the blockchain with your Ledger device, you might be getting the conflicting messages of "Waiting for daemon to sync" and "Daemon is synchronized", which then just stays there forever and doesn't move.

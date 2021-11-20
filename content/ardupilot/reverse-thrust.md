@@ -1,9 +1,5 @@
-+++
-title = "Reverse thrust"
-weight = 6
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
+# Reverse thrust
+
 To set up reverse thrust (for higher braking when landing, for example), follow the steps below:
 
 - [ ] Set your BLHeli-compatible ESC to "Reversible soft" and make sure you're using DShot.

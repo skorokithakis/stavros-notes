@@ -1,9 +1,5 @@
-+++
-title = "Miscellaneous notes"
-weight = 5
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
+# Miscellaneous notes
+
 These are random AP-related notes that wouldn't fit anywhere else:
 
 ## DJI FPV configuration

@@ -12,6 +12,7 @@ from typing import Dict
 from typing import List
 from typing import Optional
 from typing import Set
+from typing import Union
 
 
 def contains_word(word: str, text: str) -> bool:
@@ -29,20 +30,82 @@ def slugify(text):
 
 
 @dataclasses.dataclass
+class Folder:
+    """A helper type for a folder."""
+
+    id: str
+    parent_id: str
+    title: str
+
+    def is_private(self) -> bool:
+        """Return whether this folder is private."""
+        return contains_word("private", self.title)
+
+    def get_url(self) -> str:
+        """Return the folder's relative URL."""
+        return slugify(self.title)
+
+    def get_summary_line(self, level: int) -> str:
+        """Get the appropriate summary file line for this folder."""
+        return ("    " * (level - 1)) + f"- [{self.title}]({self.get_url()}/index.md)"
+
+    def __lt__(self, other: Union["Folder", "Note"]) -> bool:
+        """Support comparison, for sorting."""
+        if isinstance(other, Note):
+            # Folders always come before notes.
+            return True
+        return self.title.lower() < other.title.lower()
+
+    def __repr__(self) -> str:
+        """Pretty-print this class."""
+        return f"Folder: <{self.title}>"
+
+
+@dataclasses.dataclass
 class Note:
     """A helper type for a note."""
 
     id: str
-    parent_id: str
-    parent_title: str
+    folder: Folder
     title: str
     body: str
     updated_time: datetime
     tags: List[str] = dataclasses.field(default_factory=list)
 
-    def get_url(self):
+    def is_private(self) -> bool:
+        """
+        Check whether a note is private.
+
+        This function checks a note's title and tags and returns whether it
+        should be considered private or whether it should be published.
+        """
+        hidden_keywords = ["private", "wip", "draft"]
+        for keyword in hidden_keywords:
+            if contains_word(keyword, self.title) or keyword in self.tags:
+                return True
+        return False
+
+    def get_url(self) -> str:
         """Return the note's relative URL."""
-        return slugify(self.parent_title) + "/" + slugify(self.title)
+        return slugify(self.folder.title) + "/" + slugify(self.title)
+
+    def get_summary_line(self, level: int) -> str:
+        """
+        Get the appropriate summary file line for this note.
+
+        The introduction is level 0, and is treated differently here.
+        """
+        return (
+            "    " * (level - 1)
+        ) + f"{'- ' if level > 0 else ''}[{self.title}]({self.get_url()}.md)"
+
+    def __lt__(self, other: Union["Folder", "Note"]) -> bool:
+        """Support comparison, for sorting."""
+        return self.title.lower() < other.title.lower()
+
+    def __repr__(self) -> str:
+        """Pretty-print this class."""
+        return f"Note: <{self.title}>"
 
 
 @dataclasses.dataclass
@@ -65,20 +128,29 @@ class JoplinExporter:
     """The main exporter class."""
 
     content_dir = Path("content")
-    static_dir = Path("static/resources")
+    static_dir = Path("content/static/resources")
     joplin_dir = Path.home() / ".config/joplin-desktop"
 
     def __init__(self):
         self.resources: Dict[str, Resource] = {}
         self.used_resources: Set[str] = set()
 
+        # A mapping of {"note_id": Note()}.
+        self.note_lookup_dict: Dict[str, Note] = {}
+
+        # A mapping of {"folder_id": Folder()}.
+        self.folders: Dict[str, Folder] = {}
+
+        # A mapping of {"folder_id": [Note(), Note()]}.
+        self.notes: Dict[str, List[Note]] = defaultdict(list)
+
     def clean_content_dir(self):
         """Reset the content directory to a known state to begin."""
-        rmtree(self.content_dir)
-        rmtree(self.static_dir)
-        self.content_dir.mkdir()
-        self.static_dir.mkdir()
-        with open(self.content_dir / "_index.md", mode="w") as outfile:
+        rmtree(self.content_dir, ignore_errors=True)
+        rmtree(self.static_dir, ignore_errors=True)
+        self.content_dir.mkdir(parents=True)
+        self.static_dir.mkdir(parents=True)
+        with open(self.content_dir / "index.md", mode="w") as outfile:
             outfile.write('+++\nredirect_to = "welcome/stavros-notes/"\n+++')
 
     def resolve_note_links(self, note: Note) -> str:
@@ -93,7 +165,7 @@ class JoplinExporter:
                     new_url = item_id
             if match.group(2):
                 new_url += match.group(2)
-            return f"](../../{new_url})"
+            return f"](/{new_url})"
 
         return re.sub(r"\]\(:/([a-f0-9]{32})(#.*?)?\)", replacement, note.body)
 
@@ -128,8 +200,14 @@ class JoplinExporter:
         conn = sqlite3.connect(self.joplin_dir / "database.sqlite")
         c = conn.cursor()
 
-        c.execute("""SELECT id, title FROM folders;""")
-        self.folders = {id: title for id, title in c.fetchall()}
+        c.execute("""SELECT id, title, parent_id FROM folders;""")
+        self.folders = {
+            id: Folder(id, parent_id, title) for id, title, parent_id in c.fetchall()
+        }
+
+        self.folders = {
+            id: folder for id, folder in self.folders.items() if not folder.is_private()
+        }
 
         # Get the tags by ID.
         c.execute("""SELECT id, title FROM tags;""")
@@ -152,81 +230,106 @@ class JoplinExporter:
         }
 
         c.execute("""SELECT id, parent_id, title, body, updated_time FROM notes;""")
-        self.notes = defaultdict(list)
-        self.note_lookup_dict = {}
         for id, parent_id, title, body, updated_time in c.fetchall():
+            if parent_id not in self.folders:
+                # This note is in a private folder, continue.
+                continue
+
             note = Note(
                 id,
-                parent_id,
                 self.folders[parent_id],
                 title,
                 body,
                 datetime.fromtimestamp(updated_time / 1000),
                 tags=note_tags[id],
             )
-            self.notes[note.parent_id].append(note)
+            if note.is_private():
+                continue
+
+            self.notes[note.folder.id].append(note)
             self.note_lookup_dict[note.id] = note
 
         conn.close()
+
+    def write_summary(self):
+        """Write the SUMMARY.md that mdBook needs."""
+        # We construct a note tree by adding each note into its parent.
+        note_tree: Dict[str, List[Union[Note, Folder]]] = defaultdict(list)
+
+        # The note tree is a list of notes with their parents:
+        # [
+        #     [parent1, parent2, note1]
+        #     [parent1, parent3, note2]
+        # ]
+        # Then, we sort these by alphabetical order, and we're done.
+        note_tree = []
+        introduction: Optional[Note] = None  # The "introduction" note.
+        folders: List[Folder] = list
+        for note_list in self.notes.values():
+            for note in note_list:
+                if note.folder.title == "Welcome":
+                    introduction = note
+                    continue
+                note_item = [note]
+                item: Union[Folder, Note] = note
+                while True:
+                    if isinstance(item, Note):
+                        item = item.folder
+                    elif isinstance(item, Folder):
+                        item = self.folders.get(item.parent_id)
+                        if not item:
+                            break
+                    note_item.insert(0, item)
+
+                # Append the folders to the list if they weren't there before, as that's
+                # the only way this algorithm can generate headlines.
+                if folders != note_item[:-1]:
+                    folders = note_item[:-1]
+                    note_tree.append(folders)
+
+                note_tree.append(note_item)
+        note_tree.sort()
+
+        # Generate the summary file.
+        items = []
+        for note_list in note_tree:
+            level = len(note_list)
+            if isinstance(note_list[-1], Folder):
+                # The last item in the list is a folder, which means this is a header.
+                items.append(note_list[-1].get_summary_line(level))
+            else:
+                # This is a regular note.
+                note = note_list[-1]
+                print(f"Exporting {note.title}...")
+                items.append(note.get_summary_line(level))
+
+        with (self.content_dir / "SUMMARY.md").open("w") as outfile:
+            outfile.write("# Summary\n\n")
+            # Special-case the introduction.
+            outfile.write(introduction.get_summary_line(0) + "\n")
+            outfile.write("\n".join(items))
 
     def export(self):
         """Export all the notes to a static site."""
         self.read_data()
 
-        # Private notes shouldn't be published.
-        folder_list = list(
-            i for i in self.folders.items() if not contains_word("private", i[1])
-        )
-
-        # Sort "Welcome" last.
-        folder_list.sort(
-            key=lambda x: x[1].lower().strip() if x[1] != "Welcome" else "0"
-        )
+        folder_list = sorted(self.folders.values())
 
         self.clean_content_dir()
 
-        def is_private(note) -> bool:
-            """
-            Check whether a note is private.
-
-            This function checks a note's title and tags and returns whether it
-            should be considered private or whether it should be published.
-            """
-            hidden_keywords = ["private", "wip", "draft"]
-            for keyword in hidden_keywords:
-                if contains_word(keyword, note.title) or keyword in note.tags:
-                    print(
-                        f"Note is unpublished, skipping: {folder_title} - {note.title}."
-                    )
-                    return True
-            return False
-
-        for folder_counter, folder in enumerate(folder_list, start=1):
-            folder_id, folder_title = folder
-            dir = self.content_dir / slugify(folder_title)
-            dir.mkdir(parents=True)
+        for folder in folder_list:
             contents = []
-            note_counter = 0
-            for note in sorted(self.notes[folder_id], key=lambda n: n.title):
-                if is_private(note):
-                    print(
-                        f"Note is unpublished, skipping: {folder_title} - {note.title}."
-                    )
-                    continue
-
-                print(f"Exporting {folder_title} - {note.title}...")
-                note_counter += 1
-                contents.append((note.title, note.get_url()))
+            dir = self.content_dir / folder.get_url()
+            dir.mkdir(parents=True)
+            for note in sorted(self.notes[folder.id], key=lambda n: n.title):
+                print(f"Exporting {folder.title} - {note.title}...")
+                contents.append((note.title, f"{note.get_url()}.html"))
                 with (self.content_dir / (note.get_url() + ".md")).open(
                     mode="w"
                 ) as outfile:
                     outfile.write(
-                        f"""+++
-title = "{note.title}"
-weight = {note_counter}
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
+                        f"""# {note.title}
+
 {self.resolve_note_links(note)}
 
 * * *
@@ -238,18 +341,12 @@ email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 """
                     )
 
-            with (dir / "_index.md").open(mode="w") as outfile:
+            with (dir / "index.md").open(mode="w") as outfile:
                 contents_list = "\n1. ".join(
                     f"[{title}](../../{url})" for title, url in contents
                 )
                 outfile.write(
-                    f"""+++
-title = "{folder_title}"
-weight = {folder_counter}
-sort_by = "weight"
-insert_anchor_links = "right"
-+++
-## Contents
+                    f"""# Contents
 
 Click on a link in the list below to go to that page:
 
@@ -257,6 +354,7 @@ Click on a link in the list below to go to that page:
 """
                 )
 
+        self.write_summary()
         self.copy_resources()
 
 

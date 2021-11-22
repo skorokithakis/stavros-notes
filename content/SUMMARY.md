@@ -18,7 +18,6 @@
     - [A simple guide to PID control](drone-stuff/a-simple-guide-to-pid-control.md)
     - [E6000 hinges](drone-stuff/e6000-hinges.md)
     - [FPV frequency chart](drone-stuff/fpv-frequency-chart.md)
-    - [General RC tips](drone-stuff/general-rc-tips.md)
     - [Getting uninverted SBUS on a no-name FrSky-compatible receiver](drone-stuff/getting-uninverted-sbus-on-a-no-name-frsky-compatible-receiver.md)
     - [Getting uninverted SBUS/SmartPort on the FrSky XSR receiver](drone-stuff/getting-uninverted-sbus-smartport-on-the-frsky-xsr-receiver.md)
     - [INAV tuning tips](drone-stuff/inav-tuning-tips.md)

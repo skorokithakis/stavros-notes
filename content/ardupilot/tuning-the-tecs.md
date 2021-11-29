@@ -16,6 +16,7 @@ In tuning, there are three stages:
 - [ ] Set `LIM_PITCH_MIN=-4500` (centidegrees) or something similarly low.
   This is the minimum pitch you'll be achieving in FBWA, and you don't want to be limited by this either.
 - [ ] Set `THR_PASS_STAB=1` to avoid mapping your throttle to a curve in some modes. This is important because you want a raw (non-remapped) throttle value when measuring.
+- [ ] Add the airspeed and pitch angle elements to the OSD so you can actually take the measurements.
 
 
 ### In the field
@@ -92,6 +93,6 @@ That's it!
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on October 29, 2021. For any questions/feedback,
+Last updated on November 29, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

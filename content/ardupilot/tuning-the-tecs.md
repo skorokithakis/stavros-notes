@@ -17,6 +17,7 @@ In tuning, there are three stages:
   This is the minimum pitch you'll be achieving in FBWA, and you don't want to be limited by this either.
 - [ ] Set `THR_PASS_STAB=1` to avoid mapping your throttle to a curve in some modes. This is important because you want a raw (non-remapped) throttle value when measuring.
 - [ ] Add the airspeed and pitch angle elements to the OSD so you can actually take the measurements.
+- [ ] Enable throttle battery voltage compensation with `FWD_BAT_VOLT_MIN`/`FWD_BAT_VOLT_MAX`. Set the max to `4.2 * num_cells` and the min to `3 * num_cells` for Li-Ion and `3.5 * num_cells` for LiPo batteries. This makes your measurements more accurate, as a partially-depleted battery won't make your motor run slower and skew the results.
 
 
 ### In the field
@@ -26,15 +27,15 @@ You should perform the measurements in four stages, all in the FBWA mode:
 Fly straight and note down:
 
 - [ ] The maximum speed you want to be flying at (in km/h).
-- [ ] The throttle percentage at that maximum speed.
+- [ ] The throttle percentage at that maximum speed. Use the stick position, not the OSD item.
 - [ ] Start a turn at the maximum bank angle (full roll deflection to one side) and note the slowest speed you can fly at without stalling.
 - [ ] Fly straight at a speed 15% higher than the stall speed from the previous step, and note that speed. This is your trim speed.
-- [ ] Note the throttle percentage at that speed.
+- [ ] Note the throttle percentage at that speed. Use the stick position, not the OSD item.
 - [ ] Turn throttle to 0 and pitch down a bit so you don't stall.
   Note the minimum amount of down-pitch required to keep you from stalling (this should only be in the 1-3 degree ballpark).
 
 #### Fly up
-Set the throttle to the maximum throttle percentage from the previous step and start slowly pitching up until your airspeed equals your trim speed from the previous step.
+Set the throttle stick to the maximum throttle percentage from the previous step and start slowly pitching up until your airspeed equals your trim speed from the previous step.
 If you're higher than that speed and need to climb more, change `LIM_PITCH_MAX` to something higher and try again.
 Note down:
 
@@ -93,6 +94,6 @@ That's it!
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on November 29, 2021. For any questions/feedback,
+Last updated on December 08, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

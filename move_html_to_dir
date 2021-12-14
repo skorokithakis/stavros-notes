@@ -8,8 +8,69 @@ from pathlib import Path
 from typing import Dict
 
 
-def replace_links(path: Path, replacements: Dict[str, str]):
+def convert_relative_to_absolute(path: Path):
+    """
+    Convert relative links in files to absolute ones.
+
+    Sometimes files contain links relative to their location, e.g.
+    `public/test/foo.html` might contain a link to `bar/baz.html`, which makes it hard
+    for us to match `public/test/bar/baz.html` that way. This function converts that
+    into its full path (`public/test/bar/baz.html`) so we can match it later.
+    """
+
+    def replace_wrapper(filename: Path):
+        def replace_link(match: re.Match) -> str:
+            property, text, suffix = match.groups()
+            if "://" in text or text == "/" or text.startswith("#"):
+                # Not a valid filename, return it.
+                return f"{property}{text}{suffix}"
+
+            if text.startswith("/"):
+                filepath = (path / text[1:]).resolve()
+            else:
+                filepath = (filename.parent / text).resolve()
+
+            if not filepath.exists():
+                # Not a valid filename, return it.
+                sys.exit(f"Possible broken link in {filename}: {text}")
+
+            replacement_path = filepath.relative_to(path.absolute())
+            return f"{property}/{replacement_path}{suffix}"
+
+        return replace_link
+
     for filename in path.glob("**/*.html"):
+        print(f"Converting relative links in {filename}...")
+        with filename.open("r+") as f:
+            contents = f.read()
+            f.truncate(0)
+            f.seek(0)
+            contents = re.sub(
+                r"""
+                ((?:href|src|root)\s*=\s*")  # Various tags like href="
+                ([^\"]+?)                    # Anything non-quote, non-greedily.
+                (
+                (?:\#[^\"]*|)                # Either an anchor or nothing.
+                ")                           # Ending quote.
+                """,
+                replace_wrapper(filename),
+                contents,
+                flags=re.VERBOSE,
+            )
+            f.write(contents)
+
+
+def replace_links(path: Path, replacements: Dict[str, str]):
+    """
+    Convert links in files.
+
+    `path`         - The root of the repo.
+    `replacements` - A dictionary of replacement URLs in the form of
+                     `{"dir/file.html": "dir/file/"}`.
+    """
+
+    for filename in path.glob("**/*.html"):
+        print(f"Converting links in {filename}...")
         with filename.open("r+") as f:
             contents = f.read()
             f.truncate(0)
@@ -17,7 +78,7 @@ def replace_links(path: Path, replacements: Dict[str, str]):
             for source, target in replacements.items():
                 contents = contents.replace(source, target)
 
-            # Convert absolute links to relative.
+            # Convert relative links to absolute.
             contents = re.sub(
                 r'((?:href|src|root)\s*=\s*")((?:\.\./)+)([^\.])', r"\1/\3", contents
             )
@@ -26,6 +87,8 @@ def replace_links(path: Path, replacements: Dict[str, str]):
 
 
 def main(path: Path):
+    convert_relative_to_absolute(path)
+
     replacements: Dict[str, str] = {}
     for p in path.glob("**/*.html"):
         if str(p.parent) == ".":
@@ -36,13 +99,14 @@ def main(path: Path):
             # Don't convert top-level files.
             continue
 
-        print(f"Converting {p}...")
+        print(f"Renaming {p}...")
 
         dir_path = p.parent / p.stem
         dir_path.mkdir(parents=True, exist_ok=True)
 
         new_path = dir_path / "index.html"
         p.rename(new_path)
+        # Construct the dictionary of replacements that have been done.
         replacements[str(p.relative_to(path))] = f"{new_path.parent.relative_to(path)}/"
 
     replace_links(path, replacements)

@@ -1,6 +1,6 @@
 # TECS tuning calculator
 
-To use this calculator, first follow the steps in [Tuning the TECS](/ardupilot/tuning-the-tecs).
+To use this calculator, first follow the steps in [Tuning the TECS](/ardupilot/tuning-the-tecs.html).
 
 <script>
     function kmhToMs(kmh) { return Math.round(kmh / 3.6); }

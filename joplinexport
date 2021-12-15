@@ -157,7 +157,9 @@ class JoplinExporter:
         def replacement(match):
             item_id = match.group(1)
             new_url = self.get_note_url_by_id(item_id)
-            if not new_url:
+            if new_url:
+                new_url += ".html"
+            else:
                 new_url = self.get_resource_url_by_id(item_id)
                 if not new_url:
                     new_url = item_id

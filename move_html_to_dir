@@ -6,6 +6,54 @@ import re
 import sys
 from pathlib import Path
 from typing import Dict
+from typing import List
+
+
+def get_safe_path(root: Path, candidate: Path) -> Path:
+    """
+    Return the safe path between two paths.
+
+    This function checks that a candidate path is under the given root. If it is, it
+    returns the candidate path unchanged. If not, it returns the topmost ancestor that
+    is not part of the root, as the relative path.
+
+    For illustration, some inputs and outputs:
+    >>> get_safe_path("/var/www/mydocs", "/var/www/mydocs/foo")
+    "/var/www/mydocs/foo"
+
+    >>> get_safe_path("/var/www/mydocs", "/var/www/foo")
+    "/var/www/mydocs/foo"
+
+    >>> get_safe_path("/var/www/mydocs", "/foo")
+    "/var/www/mydocs/foo"
+    """
+    if not root.is_absolute() and candidate.is_absolute():
+        raise ValueError("Both paths must be absolute")
+
+    try:
+        # If the candidate is under the root, we're done.
+        candidate.relative_to(root)
+        return candidate
+    except ValueError:
+        pass
+
+    # Otherwise, look for the first point of divergence from the root.
+    for counter, part in enumerate(root.parts):
+        if counter >= len(candidate.parts):
+            parts: List[str] = []
+            break
+
+        if part != candidate.parts[counter]:
+            # Everything past that is what we need.
+            parts = candidate.parts[counter:]
+            break
+
+    outpath = root
+    # Tack the discovered parts onto the root.
+    for part in parts:
+        outpath /= part
+
+    return outpath
 
 
 def convert_relative_to_absolute(path: Path):
@@ -21,7 +69,12 @@ def convert_relative_to_absolute(path: Path):
     def replace_wrapper(filename: Path):
         def replace_link(match: re.Match) -> str:
             property, text, suffix = match.groups()
-            if "://" in text or text == "/" or text.startswith("#"):
+            if (
+                "://" in text
+                or text == "/"
+                or text.startswith("#")
+                or text.startswith("mailto")
+            ):
                 # Not a valid filename, return it.
                 return f"{property}{text}{suffix}"
 
@@ -30,6 +83,7 @@ def convert_relative_to_absolute(path: Path):
             else:
                 filepath = (filename.parent / text).resolve()
 
+            filepath = get_safe_path(path, filepath)
             if not filepath.exists():
                 # Not a valid filename, return it.
                 sys.exit(f"Possible broken link in {filename}: {text}")
@@ -87,6 +141,7 @@ def replace_links(path: Path, replacements: Dict[str, str]):
 
 
 def main(path: Path):
+    path = path.resolve()
     convert_relative_to_absolute(path)
 
     replacements: Dict[str, str] = {}

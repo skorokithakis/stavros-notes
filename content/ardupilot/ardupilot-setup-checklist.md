@@ -13,7 +13,7 @@ It's called Parachute, and you can download it here:
 
 
 ## Building ArduPilot
-See [Building ArduPilot](/ardupilot/building-ardupilot) for instructions on how to build the latest version.
+See [Building ArduPilot](/ardupilot/building-ardupilot.html) for instructions on how to build the latest version.
 
 
 ## Hardware setup
@@ -98,7 +98,7 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 
 ## Recommended settings.
 
-See the [recommended settings](/ardupilot/ardupilot-recommended-settings) page for other recommended defaults.
+See the [recommended settings](/ardupilot/ardupilot-recommended-settings.html) page for other recommended defaults.
 
 ## In the field
 - [ ] Run an autotune.

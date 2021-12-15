@@ -62,7 +62,7 @@ You're done with this step.
 ### On the bench
 After you have the above measurements, you're ready to tune things. You can use the automatic calculator:
 
-### [TECS tuning calculator](/ardupilot/tecs-tuning-calculator)
+### [TECS tuning calculator](/ardupilot/tecs-tuning-calculator.html)
 
 Otherwise, you can do things manually, following the steps below, but you should really use the calculator instead.
 

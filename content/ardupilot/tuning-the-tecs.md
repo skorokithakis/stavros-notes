@@ -1,6 +1,5 @@
 # Tuning the TECS
 
-
 To tune the TECS, a helpful resource is the official [TECS tuning guide](https://ardupilot.org/plane/docs/tecs-total-energy-control-system-for-speed-height-tuning-guide.html).
 Make sure you have run an autotune beforehand, and continue with the tuning below.
 
@@ -91,9 +90,18 @@ For the max descent measurements:
 
 That's it!
 
+
+## Advanced information
+
+This is some more advanced information on tuning the TECS:
+
+- If you want more altitude precision and more responsive control, you should lower the `TECS_SPDWEIGHT` parameter value below 1.
+- A right `KFF_THR2PTCH` value is crucial for the TECS to work correctly without pitot.
+- The `THR_SLEWRATE` value should be set so that the plane doesn't lose airspeed when you yank the pitch stick to `TECS_CLMB_MAX` degrees.
+
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on December 08, 2021. For any questions/feedback,
+Last updated on December 18, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

@@ -37,17 +37,11 @@ SCHED_LOOP_RATE=100    # Faster scheduler updates.
 
 ## Servo update rate
 
-If you want a higher servo update rate (because of digital servos), it is probably better to set the scheduler loop rate to the frequency you want, and enable ONESHOT (assuming you have a BLHeli ESC):
+If you want a higher servo update rate (because of digital servos), it is probably better to set the scheduler loop rate to the frequency you want, and enable ONESHOT on the servos:
 
 ```js
-SCHED_LOOP_RATE=100   # As above.
-SERVO_BLH_OTYPE=1     # For ONESHOT.
-```
-
-With no BLHeli ESCs, change your `SERVO_RATE`:
-
-```js
-SERVO_RATE=100
+SCHED_LOOP_RATE=200   # As above.
+ONESHOT_MASK=6        # Change to whatever channels your servos are on.
 ```
 
 * * *

@@ -7,6 +7,7 @@
         - [ArduPilot setup checklist](ardupilot/ardupilot-setup-checklist.md)
         - [Building ArduPilot](ardupilot/building-ardupilot.md)
         - [Configuring a switch as a relay](ardupilot/configuring-a-switch-as-a-relay.md)
+        - [DJI FPV configuration](ardupilot/dji-fpv-configuration.md)
         - [Miscellaneous notes](ardupilot/miscellaneous-notes.md)
         - [Reverse thrust](ardupilot/reverse-thrust.md)
         - [TECS tuning calculator](ardupilot/tecs-tuning-calculator.md)

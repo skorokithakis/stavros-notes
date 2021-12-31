@@ -35,9 +35,24 @@ INS_GYRO_FILTER=60     # Faster gyro updates.
 SCHED_LOOP_RATE=100    # Faster scheduler updates.
 ```
 
+## Servo update rate
+
+If you want a higher servo update rate (because of digital servos), it is probably better to set the scheduler loop rate to the frequency you want, and enable ONESHOT (assuming you have a BLHeli ESC):
+
+```js
+SCHED_LOOP_RATE=100   # As above.
+SERVO_BLH_OTYPE=1     # For ONESHOT.
+```
+
+With no BLHeli ESCs, change your `SERVO_RATE`:
+
+```js
+SERVO_RATE=100
+```
+
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on November 19, 2021. For any questions/feedback,
+Last updated on December 31, 2021. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

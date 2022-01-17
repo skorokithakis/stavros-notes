@@ -79,7 +79,6 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 - [ ] Set `SERVO_AUTO_TRIM=1` so the aircraft trims itself while flying.
 - [ ] Set `FS_SHORT_ACTN`/`FS_SHORT_TIMEOUT`/`FS_LONG_ACTN`/`FS_LONG_TIMEOUT`. I tend to disable the short action and set long to RTL.
 - [ ] Set `FLIGHT_OPTIONS+=16` so the aircraft climbs first before starting to return to home.
-- [ ] Set `FLIGHT_OPTIONS+=64` so the aircraft doesn't oscillate on auto takeoff without an airspeed sensor.
 - [ ] Set `ACRO_LOCKING=1` to avoid drifting when you aren't moving the sticks.
 - [ ] Change `AUTOTUNE_LEVEL` according to how aggressive you want the tune.
 - [ ] Set `ACRO_PITCH_RATE`/`ACRO_ROLL_RATE` according to your craft.
@@ -95,6 +94,7 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 - [ ] Set `TKOFF_THR_MINACC=18` for the takeoff throw to activate takeoff with a minimum of 2g.
 - [ ] Set `TKOFF_LVL_PITCH` to your desired angle (20 is a good value).
 - [ ] Set `TKOFF_THR_DELAY` to the number of deciseconds that you want the motor to wait before it starts up.
+- [ ] Set `FLIGHT_OPTIONS+=64` so the aircraft doesn't oscillate on auto takeoff without an airspeed sensor.
 - [ ] Potentially set `TKOFF_THR_SLEW=-1` to make the throttle spin up faster.
 
 ## Recommended settings.
@@ -110,6 +110,6 @@ _(Many thanks to Michel Pastor for his help with everything in this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on December 23, 2021. For any questions/feedback,
+Last updated on January 18, 2022. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

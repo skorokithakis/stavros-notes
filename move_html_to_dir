@@ -2,6 +2,7 @@
 """
 Rename files like `foo/bar.html` to `foo/bar/index.html` for prettier URLs.
 """
+import json
 import re
 import sys
 from pathlib import Path
@@ -140,6 +141,23 @@ def replace_links(path: Path, replacements: Dict[str, str]):
             f.write(contents)
 
 
+def fix_search_links(path: Path):
+    """Rename search links to remove the ".html" suffix."""
+    with (path / "searchindex.json").open() as infile:
+        index = json.load(infile)
+
+    doc_urls = [url.replace(".html", "/") for url in index["doc_urls"]]
+    index["doc_urls"] = doc_urls
+
+    index_json = json.dumps(index).strip()
+
+    with (path / "searchindex.json").open("w") as outfile:
+        outfile.write(index_json)
+
+    with (path / "searchindex.js").open("w") as outfile:
+        outfile.write(f"Object.assign(window.search, {index_json});")
+
+
 def main(path: Path):
     path = path.resolve()
     convert_relative_to_absolute(path)
@@ -165,6 +183,9 @@ def main(path: Path):
         replacements[str(p.relative_to(path))] = f"{new_path.parent.relative_to(path)}/"
 
     replace_links(path, replacements)
+
+    print("Rewriting search links...")
+    fix_search_links(path)
 
 
 if __name__ == "__main__":

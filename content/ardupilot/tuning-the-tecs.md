@@ -48,7 +48,7 @@ Note down:
 - [ ] The vertical speed from the variometer (in m/s).
 
 #### Fly down more
-Keep the throttle at 0 and pitch down until you reach your desired maximum speed from step 1.
+Keep the throttle at 0 and pitch down until you reach your desired max descent rate in auto modes, keeping in mind not to exceed your desired maximum speed from step 1.
 If you're lower than that speed and need to pitch down more, change `LIM_PITCH_MIN` to something lower and try again.
 Note down:
 
@@ -95,7 +95,7 @@ That's it!
 
 This is some more advanced information on tuning the TECS:
 
-- If you want more altitude precision and more responsive control, you should lower the `TECS_SPDWEIGHT` parameter value below 1.
+- If you have a pitot tube and want more altitude precision and more responsive control, you should lower the `TECS_SPDWEIGHT` parameter value below 1.
 - A right `KFF_THR2PTCH` value is crucial for the TECS to work correctly without pitot.
 - The `THR_SLEWRATE` value should be set so that the plane doesn't lose airspeed when you yank the pitch stick to `TECS_CLMB_MAX` degrees.
 

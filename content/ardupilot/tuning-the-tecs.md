@@ -28,7 +28,7 @@ Fly straight and note down:
 - [ ] The maximum speed you want to be flying at (in km/h).
 - [ ] The throttle percentage at that maximum speed. Use the stick position, not the OSD item.
 - [ ] Start a turn at the maximum bank angle (full roll deflection to one side) and note the slowest speed you can fly at without stalling.
-- [ ] Fly straight at a speed 15% higher than the stall speed from the previous step, and note that speed. This is your trim speed.
+- [ ] Fly straight at a speed at least 15% higher than the stall speed from the previous step, and note that speed. This is your trim speed.
 - [ ] Note the throttle percentage at that speed. Use the stick position, not the OSD item.
 - [ ] Turn throttle to 0 and pitch down a bit so you don't stall.
   Note the minimum amount of down-pitch required to keep you from stalling (this should only be in the 1-3 degree ballpark).

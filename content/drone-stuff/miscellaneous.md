@@ -35,9 +35,19 @@ Here are the things I know about motors and propellers:
 - The smaller a propeller, the more quickly it can turn, and the more it can accelerate.
 - The larger a propeller, the more efficient it is.
 
+## Recommended BLHeli ESC configuration for fixed wing
+
+If you have a BLHeli/BLHeli32 ESC, these settings are recommended:
+
+* Temperature protection: 90 C
+* Motor timing: Auto
+* Throttle cal enabled: Enabled
+* Non-damped mode: Enabled
+* Sine modulation mode: Enabled
+
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on November 22, 2021. For any questions/feedback,
+Last updated on January 21, 2022. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

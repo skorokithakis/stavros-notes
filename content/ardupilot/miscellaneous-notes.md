@@ -12,7 +12,9 @@ Some things to know are:
 - You should set `AUTOTUNE_LEVEL` depending on the size of your aircraft. For small/agile craft, you can set `AUTOTUNE_LEVEL` to 7 or more. For larger, more sluggish craft, 6 (or less) is a good level. Under the hood, a higher `AUTOTUNE_LEVEL` decreases `*2SRV_TCONST` and increases `*2SRV_RMAX`).
 
 
-Before you switch into `AUTOTUNE` mode, complete a circle or fly in different directions to allow the airspeed estimator to get an accurate value before running the autotune (or tuning the TECS). After you switch into `AUTOTUNE`, start with left and right roll inputs at maximum stick deflection. You don't need to wait until you hit the max roll angle, what I tend to do is roll max right, leave it for half a second, then roll max left, repeat.
+Before you switch into `AUTOTUNE` mode, complete a circle or fly in different directions to allow the airspeed estimator to get an accurate value before running the autotune (or tuning the TECS). Don't start the tune unless your airspeed estimation is (and remains) stable and reasonable, otherwise you'll get bad results (and it probably means something is very wrong and you should land).
+
+After you switch into `AUTOTUNE`, start with left and right roll inputs at maximum stick deflection. You don't need to wait until you hit the max roll angle, what I tend to do is roll max right, leave it for half a second, then roll max left, repeat.
 
 The OSD will start showing you PID numbers, continue until a message saying `ROLL FINISHED` appears. Afterwards, do the same with pitch. Hit full stick deflection up and down, without reaching max pitch limits.
 
@@ -32,6 +34,6 @@ That will enable DMA on UART3, at the expense of disabling the LED pad.
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on January 22, 2022. For any questions/feedback,
+Last updated on January 26, 2022. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

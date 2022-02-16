@@ -44,9 +44,18 @@ SCHED_LOOP_RATE=200   # As above.
 ONESHOT_MASK=6        # Change to whatever channels your servos are on.
 ```
 
+## Switch arming
+
+If you want to use switch arming rather than stick arming, here are the relevant parameters:
+
+```js
+RCx_OPTION=153
+ARMING_RUDDER=0
+```
+
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on December 31, 2021. For any questions/feedback,
+Last updated on February 16, 2022. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

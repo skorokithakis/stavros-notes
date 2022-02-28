@@ -23,3 +23,6 @@ sed -i "s/\(href\|src\)=\"[[:alnum:]\-]*\/\//\1=\"\//g" public/print.html
 
 # Make checkboxes editable, just in case the user wants to keep their own checklist.
 find public/ -name "*.html" -type f -exec sed -i 's/input disabled=""/input/g' {} +
+
+# Replace invalid `path_to_root`.
+find public/ -name "*.html" -type f -exec sed -i 's/var path_to_root = "\/.";/var path_to_root = "\/";/g' {} +

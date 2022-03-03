@@ -1,5 +1,7 @@
 # DJI FPV configuration
 
+## Configuring ArduPilot for DJI FPV
+
 If you're using the DJI FPV system, here's the relevant configuration you need to set:
 
 1. Set `OSD_TYPE=3`.
@@ -11,11 +13,17 @@ If you're using the DJI FPV system, here's the relevant configuration you need t
 
 That's it!
 
+## Synchronizing the video and audio of the DJI Air Unit
 
+The audio of the DJI air unit is slower than the video, leading to desynchronization, but it is slower by a constant factor, which means it can be easily corrected with the following command:
+
+```bash
+$ ffmpeg -i "$1" -c:v copy -filter:a atempo=1.001480,volume=20 -c:a aac -b:a 93k "$(basename "$1" .mp4)_fixed_audio.mp4"
+```
 
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on December 31, 2021. For any questions/feedback,
+Last updated on March 04, 2022. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

@@ -18,7 +18,8 @@ That's it!
 The audio of the DJI air unit is slower than the video, leading to desynchronization, but it is slower by a constant factor, which means it can be easily corrected with the following command:
 
 ```bash
-$ ffmpeg -i "$1" -c:v copy -filter:a atempo=1.001480,volume=20 -c:a aac -b:a 93k "$(basename "$1" .mp4)_fixed_audio.mp4"
+$ ffmpeg -i "$1" -c:v copy -filter:a atempo=1.001480,volume=20 \
+         -c:a aac -b:a 93k "$(basename "$1" .mp4)_fixed_audio.mp4"
 ```
 
 * * *

@@ -104,13 +104,13 @@ See the [recommended settings](/ardupilot/ardupilot-recommended-settings.html) p
 ## In the field
 - [ ] Run an [autotune](/ardupilot/miscellaneous-notes.html).
 - [ ] Fly in FBWA and see if you're gaining/losing altitude. Pitch up/down to fly level, check the pitch on the OSD, and use the formula `old_value+pitch*π/180` to get the new value for `AHRS_TRIM_Y` (in radians).
-- [ ] After you set `AHRS_TRIM_Y` correctly above, fly in FBWA at full throttle (or whatever throttle you feel is "full" enough, and note that value), and note the pitch you need so that the wing doesn't climb or sink. Then, set `KFF_THR2PITCH` with the formula `pitch_value_in_deg * 100 / throttle_percentage`. `pitch_value_in_deg` should be positive if you needed up pitch and negative if you needed down pitch.
+- [ ] After you set `AHRS_TRIM_Y` correctly above, fly in FBWA at full throttle (or whatever throttle you feel is "full" enough, and note that value), and note the pitch you need so that the wing doesn't climb or sink. Then, set `KFF_THR2PTCH` with the formula `pitch_value_in_deg * 100 / throttle_percentage`. `pitch_value_in_deg` should be positive if you needed up pitch and negative if you needed down pitch.
 
 _(Many thanks to Michel Pastor for his help with everything in this note.)_
 
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on February 16, 2022. For any questions/feedback,
+Last updated on March 23, 2022. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

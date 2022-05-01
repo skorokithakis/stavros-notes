@@ -52,7 +52,7 @@ The values in this section are specific to the Omnibus F4, but the settings aren
   SERVO4_TRIM=1500
   ```
   All these values are necessary, because usually the `SERVOn_TRIM` won't be at 1500.
-- [ ] Switch to FBWA and validate that the control surfaces move correctly. If they don't, set `SERVOn_REVERSED=1`.
+- [ ] Switch to FBWA and validate that the control surfaces move correctly. If they don't, set `SERVOn_REVERSED=1`. It needs to be FBWA and not MANUAL because FBWA has some additional processing like PIDs, etc.
 - [ ] Set `SERVO_BLH_OTYPE=4` for DShot150 and `SERVO_BLH_MASK=1` to enable it for the motor.
 - [ ] Set `COMPASS_ENABLE=0` if you don't have a compass, otherwise calibrate it (not detailed here).
 - [ ] Set `TERRAIN_ENABLE=0` to get rid of the terrain warning.
@@ -112,6 +112,6 @@ _(Many thanks to Michel Pastor and mfoos for their help with everything in this 
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on April 05, 2022. For any questions/feedback,
+Last updated on April 06, 2022. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

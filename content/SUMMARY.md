@@ -10,6 +10,7 @@
         - [DJI FPV configuration](ardupilot/dji-fpv-configuration.md)
         - [Miscellaneous notes](ardupilot/miscellaneous-notes.md)
         - [Reverse thrust](ardupilot/reverse-thrust.md)
+        - [Statistics calculator](ardupilot/statistics-calculator.md)
         - [TECS tuning calculator](ardupilot/tecs-tuning-calculator.md)
         - [Transfer config between craft](ardupilot/transfer-config-between-craft.md)
         - [Tuning the TECS](ardupilot/tuning-the-tecs.md)

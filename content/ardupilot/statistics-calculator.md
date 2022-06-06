@@ -70,29 +70,40 @@
     			tbdy.appendChild(tr);
     		}
     		tbl.appendChild(tbdy);
-    
+
     	    var tr = document.createElement('tr');
     		var td = document.createElement('td');
             td.appendChild(document.createTextNode("Average air efficiency"))
             tr.appendChild(td)
-    
+
     		var td = document.createElement('td');
             td.appendChild(document.createTextNode((stats["STAT_FLT_ENERGY"]["out"]/stats["STAT_TRAVEL_AIR"]["out"]).toFixed(2) + " Wh/km"))
     		td.style = "text-align:right"
             tr.appendChild(td)
     	    tbdy.appendChild(tr);
-    
+
     	    var tr = document.createElement('tr');
     		var td = document.createElement('td');
             td.appendChild(document.createTextNode("Average flight time efficiency"))
             tr.appendChild(td)
-    
+
     		var td = document.createElement('td');
             td.appendChild(document.createTextNode(((stats["STAT_FLT_TIME"]["out"]*60)/stats["STAT_FLT_ENERGY"]["out"]).toFixed(2) + " s/Wh"))
     		td.style = "text-align:right"
             tr.appendChild(td)
     	    tbdy.appendChild(tr);
-    
+
+			var tr = document.createElement('tr');
+			var td = document.createElement('td');
+    	    td.appendChild(document.createTextNode("Average flight efficiency"))
+        	tr.appendChild(td)
+
+			var td = document.createElement('td');
+        	td.appendChild(document.createTextNode((stats["STAT_FLT_ENERGY"]["out"]/(stats["STAT_FLT_TIME"]["out"])).toFixed(2) + " Wh/min"))
+			td.style = "text-align:right"
+    	    tr.appendChild(td)
+	    	tbdy.appendChild(tr);
+
     		document.getElementById("result").appendChild(tbl)
     	}
 </script>
@@ -133,6 +144,6 @@ _(Many thanks to mfoos for writing this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on May 28, 2022. For any questions/feedback,
+Last updated on June 07, 2022. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

@@ -74,8 +74,7 @@ The values in this section are specific to the Omnibus F4, but the settings aren
   What I do is set a given channel as the mode channel, and make that channel always output -100% on the radio. Then, I set up channel overrides for each switch, keeping in mind that overrides in OpenTX are executed in order (so the bottom override has the highest priority).  
   That way, I set MANUAL/ACRO/FBWA to be lowest priority (on the same switch), then CRUISE to override those, then LOITER, RTL in that order.  Finally, I add AUTO to a switch on its own channel.  
   Keep in mind that whatever mode you have on its own channel might be overridden if you flick a different switch.
-  Unfortunately, the way the mode system in AP works, there's no good way to have a list of prioritized modes, which would be ideal though now I have opened a PR to extend the modes to 12, which solves this).
-
+  
 
 ## Auto modes
 - [ ] Set `SERVO_AUTO_TRIM=1` so the aircraft trims itself while flying.
@@ -112,6 +111,6 @@ _(Many thanks to Michel Pastor and mfoos for their help with everything in this 
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on April 06, 2022. For any questions/feedback,
+Last updated on June 09, 2022. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

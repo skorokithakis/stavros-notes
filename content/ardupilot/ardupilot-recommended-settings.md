@@ -13,7 +13,7 @@ GPS_RATE_MS=100   # 10 Hz update rate.
 
 ```js
 SERIALn_PROTOCOL=23  # Crossfire/ELRS.
-RC_OPTION=800        # 5 - Arming check throttle.
+RC_OPTIONS=800        # 5 - Arming check throttle.
                      # 8 - CRSF telemetry passthrough.
                      # 9 - Suppress CRSF mode/rate message for ELRS.
 ```
@@ -56,6 +56,6 @@ ARMING_RUDDER=0
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on February 16, 2022. For any questions/feedback,
+Last updated on June 09, 2022. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

@@ -27,7 +27,7 @@
     			"STAT_TRAVEL_AIR":  { func: "m_to_km", "text": "Air distance traveled", "unit": "km"},
     			"STAT_TRAVEL_GND":  { func: "m_to_km", "text": "Ground distance traveled", "unit": "km"},
     			"STAT_HOMEALT_MAX": { func: "raw", "text": "Maximum altitude relative to home", "unit": "m"},
-    			"STAT_HOMEDST_MAX": { func: "m_to_km", "text": "Maximum distance from to home", "unit": "km"},
+    			"STAT_HOMEDST_MAX": { func: "m_to_km", "text": "Maximum distance from home", "unit": "km"},
     			"STAT_CURRENT_AVG": { func: "raw", "text": "Average current", "unit": "A"},
     			"STAT_CURRENT_MAX": { func: "raw", "text": "Maximum current", "unit": "A"},
     			"STAT_POWER_AVG":   { func: "raw", "text": "Average power", "unit": "W"},
@@ -144,6 +144,6 @@ _(Many thanks to mfoos for writing this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on June 07, 2022. For any questions/feedback,
+Last updated on July 20, 2022. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

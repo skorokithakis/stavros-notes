@@ -14,10 +14,15 @@ To actually load the profile, you need to enter the number `*#*#663368378#*#*` (
 
 ![screen1.png](/resources/b7e313de59d4412382b2c36675085fdc.png)
 
+Then press "Advanced":
+
 ![screen2.png](/resources/6489c6e219874e20a55fcb697dcd8ab3.png)
+
+Select `mbn_eea.txt` (if you're in Europe), and then press "validate".
 
 ![screen3.png](/resources/f4679b76f438463382a2849083f6d51d.png)
 
+ Wait for it to finish, then you should be set. Restart the phone, enable Airplane mode, enable WiFi and make a call. If it works, you're done.
 
 * * *
 

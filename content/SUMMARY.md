@@ -36,5 +36,6 @@
     - [How to properly level your 3D printer](maker-things/how-to-properly-level-your-3d-printer.md)
 - [Software](software/index.md)
     - [Black pills](software/black-pills.md)
+    - [Getting VoWiFi working on Xiaomi.eu](software/getting-vowifi-working-on-xiaomi-eu.md)
     - [Monero GUI syncing stuck with Ledger](software/monero-gui-syncing-stuck-with-ledger.md)
     - [Test and format SD cards](software/test-and-format-sd-cards.md)

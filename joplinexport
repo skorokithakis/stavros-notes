@@ -128,7 +128,7 @@ class JoplinExporter:
     """The main exporter class."""
 
     content_dir = Path("content")
-    static_dir = Path("content/static/resources")
+    static_dir = Path("static/resources")
     joplin_dir = Path.home() / ".config/joplin-desktop"
 
     def __init__(self):

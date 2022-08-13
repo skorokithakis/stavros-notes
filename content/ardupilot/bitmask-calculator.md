@@ -32,7 +32,6 @@ function loadBitmask(){
         const xml = parser.parseFromString(data, "application/xml");
 
         var params = xml.getElementsByTagName("param");
-		console.log(params);
 
 		for (var i = 0; i < params.length; i++) {
             var param = params[i].attributes.name.nodeValue;		//works, param name

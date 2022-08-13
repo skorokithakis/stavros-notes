@@ -4,11 +4,15 @@
     div.box{
         width: 90%;
     }
-	table {
-		border: 1px solid #222;
-	}
+    table {
+        border: 1px solid #222;
+    }
 </style>
+
 <script type="text/javascript">
+// 1660392804
+var bitmaskDescArr = [];
+
 function dec2bin(dec) {
     return reverse((dec >>> 0).toString(2));
 }
@@ -16,51 +20,76 @@ function reverse(str) {
     return str.split("").reverse().join("");
 }
 
-var bitmaskDescArr = [];
+async function loadBitmask(){
+    // using the function:
+    removeAll(document.getElementById('paramSelect'));
 
-function loadBitmask(){
     url = document.getElementById("built").value;
-
-	if (url == ""){
+    console.log("fetching: "+ url);
+    if (url == ""){
         return;
     }
 
-    fetch(url)
+    const response = await fetch(url,{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'text/plain'
+        }
+    })
     .then(response => response.text())
     .then(data => {
         const parser = new DOMParser();
         const xml = parser.parseFromString(data, "application/xml");
 
         var params = xml.getElementsByTagName("param");
-
-		for (var i = 0; i < params.length; i++) {
+        console.log("retrieved "+ params.length +" params")
+        for (var i = 0; i < params.length; i++) {
             var param = params[i].attributes.name.nodeValue;		//works, param name
-
+            param = param.replace("ArduPlane:","");
 
             if(params[i].childNodes[1]){
                 if( typeof params[i].childNodes[1].attributes.name == "object"){
                     if(params[i].childNodes[1].attributes.name.nodeValue && params[i].childNodes[1].attributes.name.nodeValue == "Bitmask"){
 
-// 						// populate dropdown
-                        var paramSelect = document.getElementById("paramSelect");
-                        var el = document.createElement("option");
-                        el.textContent = param.replace("ArduPlane:","");
-                        el.value = param;
-                        paramSelect.appendChild(el);
-
                         var bitmaskDescTxt = params[i].textContent.trim();
                         bitmaskDescArr[param] = bitmaskDescTxt.split(',');
-
                     }
                 }
             }
         }
+
     })
     .catch(console.error);
+
+    // console.log(bitmaskDescArr.length);
+    drawSelect();
+}
+
+
+function drawSelect(){
+    bitmaskDescArr.sort();
+    Object.keys(bitmaskDescArr)
+    .sort()
+    .forEach(function(p, i) {
+    // console.log(p);
+        var el = document.createElement("option");
+        el.textContent = p;
+        el.value = p;
+        document.getElementById("paramSelect").appendChild(el);
+
+    });
+}
+
+function removeAll(selectBox) {
+    while (selectBox.options.length > 0) {
+        selectBox.remove(0);
+    }
 }
 
 function bitbox(bit){
     dec = parseInt(document.getElementById("decimal").value);
+    if(!dec ){dec = parseInt(0);}
+
     if(document.getElementById(bit).checked == true){
         dec += parseInt(bit);
     }else{
@@ -75,11 +104,13 @@ function parseBitmask() {
 
     document.getElementById("result").innerHTML="";
     var tbl = document.createElement('table');
-    tbl.style="border: 1px solid #222";
+    tbl.style="border: 1px solid black; width: 100%";
     var tbdy = document.createElement('tbody');
 
     dec = document.getElementById("decimal").value;
     binary=dec2bin(document.getElementById("decimal").value);
+    if(!binary){binary = parseInt(0);}
+    if(!dec ){dec = parseInt(0);}
     var param = document.getElementById("paramSelect").value;
 
     for (var bit = 0; bit < bitmaskDescArr[param].length; bit++) {
@@ -133,11 +164,9 @@ function parseBitmask() {
 <div class="box">
     <div id="input">
         <select id="built" onChange="loadBitmask();">
-            <option value="">select your build</option>
-            <option value='https://arducustom.github.io/v/dev/ArduPlane/apm.pdef.xml'>ArduCustom master</option>
-            <option value='https://arducustom.github.io/v/10.0/ArduPlane/apm.pdef.xml'>ArduCustom v10</option>
-            <option value='https://arducustom.github.io/v/9.0/ArduPlane/apm.pdef.xml'>ArduCustom v9.0</option>
-            <!-- <option value='https://autotest.ardupilot.org/Parameters/ArduPlane/apm.pdef.xml'>ArduPlane offical master</option> -->
+            <option value='https://arducustom.github.io/v/dev/ArduPlane/apm.pdef.xml'>ArduCustom Plane master</option>
+            <option value='https://arducustom.github.io/v/10.0/ArduPlane/apm.pdef.xml'>ArduCustom Plane v10</option>
+            <option value='https://arducustom.github.io/v/9.0/ArduPlane/apm.pdef.xml'>ArduCustom Plane v9.0</option>
         </select>
         <select id="paramSelect" onChange="parseBitmask();">
         </select>
@@ -147,9 +176,12 @@ function parseBitmask() {
     <div id="result">
     </div>
 </div>
-
+<script type="text/javascript">
+    loadBitmask();
+</script>
 
 _(Many thanks to mfoos for writing this note.)_
+
 
 * * *
 

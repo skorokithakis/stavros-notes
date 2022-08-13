@@ -5,6 +5,7 @@
     - [ArduPilot](ardupilot/index.md)
         - [ArduPilot recommended settings](ardupilot/ardupilot-recommended-settings.md)
         - [ArduPilot setup checklist](ardupilot/ardupilot-setup-checklist.md)
+        - [Bitmask calculator](ardupilot/bitmask-calculator.md)
         - [Building ArduPilot](ardupilot/building-ardupilot.md)
         - [Configuring a switch as a relay](ardupilot/configuring-a-switch-as-a-relay.md)
         - [DJI FPV configuration](ardupilot/dji-fpv-configuration.md)

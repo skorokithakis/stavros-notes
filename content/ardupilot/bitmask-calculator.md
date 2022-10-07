@@ -10,7 +10,7 @@
 </style>
 
 <script type="text/javascript">
-// 1660392804
+// 1660727162
 var bitmaskDescArr = [];
 
 function dec2bin(dec) {
@@ -44,7 +44,7 @@ async function loadBitmask(){
         var params = xml.getElementsByTagName("param");
         console.log("retrieved "+ params.length +" params")
         for (var i = 0; i < params.length; i++) {
-            var param = params[i].attributes.name.nodeValue;		//works, param name
+            var param = params[i].attributes.name.nodeValue;        //works, param name
             param = param.replace("ArduPlane:","");
 
             if(params[i].childNodes[1]){
@@ -107,40 +107,40 @@ function parseBitmask() {
     tbl.style="border: 1px solid black; width: 100%";
     var tbdy = document.createElement('tbody');
 
-    dec = document.getElementById("decimal").value;
-    binary=dec2bin(document.getElementById("decimal").value);
-    if(!binary){binary = parseInt(0);}
-    if(!dec ){dec = parseInt(0);}
+    binarybitmask=dec2bin(document.getElementById("decimal").value);
+    if(!binarybitmask){binarybitmask = parseInt(0);}
+    console.log("binarybitmask: "+binarybitmask);
+
     var param = document.getElementById("paramSelect").value;
 
-    for (var bit = 0; bit < bitmaskDescArr[param].length; bit++) {
-        var val = binary[bit];
+    for (var option= 0; option < bitmaskDescArr[param].length; option++) {
+
+        var bit = parseInt(bitmaskDescArr[param][option].split(":",1));    //extract the first number before : of description
+        var enabled = binarybitmask[bit];            // check if it is enabled
+        if(!enabled){enabled=0};
+        var singleBitDecvalue = Math.pow(2,bit);    // convert the bit to a decimal
 
         var tr = document.createElement('tr');
-
         var td = document.createElement('td');
         td.style="border: 1px solid black;";
-        var singleBitDecvalue = Math.pow(2,bit);	// convert the bit to a decimal
+
         var checkbox = document.createElement('input');
         checkbox.type = "checkbox";
-        checkbox.name = "name";
-        checkbox.value = "checked";
         checkbox.id = singleBitDecvalue;
         checkbox.setAttribute("onclick","bitbox("+singleBitDecvalue+")");
 
-        if (val == "1"){
+        if (enabled == "1"){
             checkbox.checked = true;
         }else{
             checkbox.checked = false;
         }
+
         td.appendChild(checkbox);
         tr.appendChild(td);
 
-
         var td = document.createElement('td');
-        td.appendChild(document.createTextNode(bitmaskDescArr[param][bit]));
-
-        if (val == "1"){
+        td.appendChild(document.createTextNode(bitmaskDescArr[param][option]));
+        if (enabled == "1"){
             td.style  = "border: 1px solid black; color: green";
         }else{
             td.style  = "border: 1px solid black; color: red";
@@ -149,7 +149,7 @@ function parseBitmask() {
 
         var td = document.createElement('td');
         td.style="border: 1px solid black; color: grey";
-        td.appendChild(document.createTextNode(Math.pow(2,bit)));
+        td.appendChild(document.createTextNode(singleBitDecvalue));
         tr.appendChild(td);
 
         tbdy.appendChild(tr);
@@ -182,10 +182,9 @@ function parseBitmask() {
 
 _(Many thanks to mfoos for writing this note.)_
 
-
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on August 13, 2022. For any questions/feedback,
+Last updated on October 07, 2022. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

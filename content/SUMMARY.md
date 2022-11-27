@@ -10,6 +10,7 @@
         - [Configuring a switch as a relay](ardupilot/configuring-a-switch-as-a-relay.md)
         - [DJI FPV configuration](ardupilot/dji-fpv-configuration.md)
         - [ELRS preferred configuration](ardupilot/elrs-preferred-configuration.md)
+        - [Installing WTFOS on DJI](ardupilot/installing-wtfos-on-dji.md)
         - [Miscellaneous notes](ardupilot/miscellaneous-notes.md)
         - [Reverse thrust](ardupilot/reverse-thrust.md)
         - [Statistics calculator](ardupilot/statistics-calculator.md)

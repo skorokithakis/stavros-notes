@@ -30,6 +30,7 @@ To use this calculator, first follow the steps in [Tuning the TECS](/ardupilot/t
         + " \\\n    ARSPD_FBW_MAX=" + kmhToMs(maxSpeed * 0.95)
         + " \\\n    ARSPD_FBW_MIN=" + kmhToMs(stallSpeed * 1.05)
         + " \\\n    STAB_PITCH_DOWN=" + downPitch
+        + " \\\n    FBWA_PITCH_DOWN=" + downPitch
         + " \\\n    TECS_PITCH_MIN=-" + downMorePitch
         + " \\\n    TECS_PITCH_MAX=" + upPitch
         + " \\\n    TECS_CLMB_MAX=" + upSpeed
@@ -81,6 +82,6 @@ Run this command in a terminal, making sure you have <a href="https://gitlab.com
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on September 07, 2021. For any questions/feedback,
+Last updated on November 29, 2022. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

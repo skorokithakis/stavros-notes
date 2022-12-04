@@ -22,6 +22,7 @@
         - [Mini Drak build condensed instructions](model-build-notes/mini-drak-build-condensed-instructions.md)
     - [A simple guide to PID control](drone-stuff/a-simple-guide-to-pid-control.md)
     - [E6000 hinges](drone-stuff/e6000-hinges.md)
+    - [Fixing the Matek ELRS receivers](drone-stuff/fixing-the-matek-elrs-receivers.md)
     - [FPV frequency chart](drone-stuff/fpv-frequency-chart.md)
     - [Getting uninverted SBUS on a no-name FrSky-compatible receiver](drone-stuff/getting-uninverted-sbus-on-a-no-name-frsky-compatible-receiver.md)
     - [Getting uninverted SBUS/SmartPort on the FrSky XSR receiver](drone-stuff/getting-uninverted-sbus-smartport-on-the-frsky-xsr-receiver.md)

@@ -46,6 +46,11 @@ They seem to be very genuine:
 
 ![curve_reclaimed_NKON_VTC-6_2S_1.5A_2022-12-19_14-50-18.png](/resources/55e13b1a5b5142219d655504448e5b02.png)
 
+Not only are they genuine, but if we compare with the graph of the brand new VTC-6 above, we see that the reclaimed NKON batteries have had zero (or very few) cycles, as they gave the same Ah at 3.3V/cell as the new ones.
+
+
+If you need it, here is the [raw Assault and Battery CSV](/resources/29e39ead4d104c2c8133b028882b6a98.csv).
+
 
 ## White CNHL 4S 4000 mAh
 

@@ -8,6 +8,7 @@ The batteries I connected were in various states of use, and various configurati
 
 Here are the graphs:
 
+
 ## Genuine Sony VTC6
 
 This is a genuine (as far as I can tell) Sony VTC6, fairly used in high amp draw situations (I use it in my plane), in a 3S configuration:
@@ -37,6 +38,15 @@ Trying to draw 6-7A is even more spectacular (and it gets very hot to the touch)
 
 Notice the huge voltage sag right as the load starts drawing.
 
+## Reclaimed NKON VTC-6
+
+I bought some [reclaimed Sony VTC-6 from NKON.nl](https://www.nkon.nl/sony-us18650-vtc6-reclaimed.html), and I tested them here, in a 2S configuration at 1.5A.
+
+They seem to be very genuine:
+
+![curve_reclaimed_NKON_VTC-6_2S_1.5A_2022-12-19_14-50-18.png](/resources/55e13b1a5b5142219d655504448e5b02.png)
+
+
 ## White CNHL 4S 4000 mAh
 
 This is a white CNHL 4S 4000 mAh LiPo battery, slightly used:
@@ -48,6 +58,6 @@ You can see that it's pretty decent, outputting nearly all of its nominal mAh, d
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on September 12, 2021. For any questions/feedback,
+Last updated on December 19, 2022. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

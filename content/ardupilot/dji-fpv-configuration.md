@@ -13,6 +13,16 @@ If you're using the DJI FPV system, here's the relevant configuration you need t
 
 That's it!
 
+## Configuring AP for the DJI O3
+
+If you're using DJI O3, this is what you need to do:
+
+* Set , `OSD_TYPE=5` for MSP_DISPLAYPORT.
+* Set `SERIALn_PROTOCOL=42 SERIALn_BAUD=115 SERIALn_OPTIONS=0` for DisplayPort
+* Arrange your OSD elements as you want them.
+
+Done!
+
 ## Synchronizing the video and audio of the DJI Air Unit
 
 The audio of the DJI air unit is slower than the video, leading to desynchronization, but it is slower by a constant factor, which means it can be easily corrected with the following command:
@@ -25,6 +35,6 @@ $ ffmpeg -i "$1" -c:v copy -filter:a atempo=1.001480,volume=20 \
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on March 04, 2022. For any questions/feedback,
+Last updated on January 01, 2023. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

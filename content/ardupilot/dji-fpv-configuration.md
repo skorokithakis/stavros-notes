@@ -18,7 +18,8 @@ That's it!
 If you're using DJI O3, this is what you need to do:
 
 * Set , `OSD_TYPE=5` for MSP_DISPLAYPORT.
-* Set `SERIALn_PROTOCOL=42 SERIALn_BAUD=115 SERIALn_OPTIONS=0` for DisplayPort
+* Set `SERIALn_PROTOCOL=42 SERIALn_BAUD=115 SERIALn_OPTIONS=0` for DisplayPort.
+* Set `MSP_OPTIONS=5` for telemetry mode and BTFL fonts.
 * Arrange your OSD elements as you want them.
 
 Done!

@@ -8,8 +8,9 @@ Here's the process to install it:
 * Make sure you're on version V01.00.0606 on whatever you want to root.
 * If you're rooting an AU or Vista, use a fan to cool it down during this process.
 * Go to [the WTFOS Configurator's Root section](https://fpv.wtf/root) and click "Root device". Click on your device on the permission popup and continue. Wait until done. DO NOT REBOOT WHEN IT'S DONE.
+* Each step (there are five in total) should take around a minute to continue. If it takes longer, it's probably gone wrong, but it should be safe to just reboot the goggles/AU and try again. At least, it's never caused me a problem so far, and I've done it many times.
 * Once that's done, go to [the WTFOS Installer section](https://fpv.wtf/wtfos) and click "connect to device", and then "Install WTFOS".
-* After that's done, and if you're upgrading the goggles, go to [the Package Manager section](https://fpv.wtf/packages), and install `fcc-unlock` (for full power) and `msp-osd`. You can also install `auto-record` on the goggles, for automatically recording if your video link goes away and comes back. The rest probably isn't necessary.
+* After installation is done (or if you're upgrading), go to [the Package Manager section](https://fpv.wtf/packages), and install `fcc-unlock` (for full power) and `msp-osd`. You can also install `auto-record` on the goggles, for automatically recording if your video link goes away and comes back. The rest probably isn't necessary.
 
 ## On the goggles
 * Disable the custom OSD: Settings -> Display -> Custom OSD: Off.
@@ -26,6 +27,6 @@ That's all!
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on November 27, 2022. For any questions/feedback,
+Last updated on January 16, 2023. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

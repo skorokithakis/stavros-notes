@@ -44,10 +44,11 @@ If you have a BLHeli/BLHeli32 ESC, these settings are recommended:
 * Throttle cal enabled: Enabled
 * Non-damped mode: Enabled
 * Sine modulation mode: Enabled
+* Brake on stop: 100%
 
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on January 21, 2022. For any questions/feedback,
+Last updated on January 17, 2023. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

@@ -17,6 +17,11 @@ Here's the process to install it:
 * Download the font files [from the ArduCustom repository](https://github.com/ArduCustom/ardupilot/tree/master_custom/libraries/AP_OSD/fonts/HDFonts). Make sure to get the four fonts ending in `.bin`.
 * If they aren't already, rename them to add `_ardu` to the name after `font` (so `font_ardu.bin`, `font_ardu_2.bin`, `font_ardu_hd.bin`, `font_ardu_hd_2.bin`).
 * Put the four font files in the root of the goggles' SD card.
+* Go to the console and run, to enable MSP OSD recording:
+  ```
+  package-config set msp-osd rec_enabled true
+  package-config apply msp-osd
+  ```
 
 ## On the plane
 * Set `SERIALn_PROTOCOL=42` for DisplayPort, `OSD_TYPE=5` for MSP_DISPLAYPORT and `OSDn_TXT_RES=1` for 50x18 text resolution on the craft.
@@ -27,6 +32,6 @@ That's all!
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on January 16, 2023. For any questions/feedback,
+Last updated on January 20, 2023. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

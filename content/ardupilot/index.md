@@ -7,6 +7,7 @@ Click on a link in the list below to go to that page:
 1. [Bitmask calculator](../../ardupilot/bitmask-calculator.html)
 1. [Building ArduPilot](../../ardupilot/building-ardupilot.html)
 1. [Configuring a switch as a relay](../../ardupilot/configuring-a-switch-as-a-relay.html)
+1. [Current sensor calibrator](../../ardupilot/current-sensor-calibrator.html)
 1. [DJI FPV configuration](../../ardupilot/dji-fpv-configuration.html)
 1. [ELRS preferred configuration](../../ardupilot/elrs-preferred-configuration.html)
 1. [Installing WTFOS on DJI](../../ardupilot/installing-wtfos-on-dji.html)

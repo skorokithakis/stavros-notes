@@ -8,6 +8,7 @@
         - [Bitmask calculator](ardupilot/bitmask-calculator.md)
         - [Building ArduPilot](ardupilot/building-ardupilot.md)
         - [Configuring a switch as a relay](ardupilot/configuring-a-switch-as-a-relay.md)
+        - [Current sensor calibrator](ardupilot/current-sensor-calibrator.md)
         - [DJI FPV configuration](ardupilot/dji-fpv-configuration.md)
         - [ELRS preferred configuration](ardupilot/elrs-preferred-configuration.md)
         - [Installing WTFOS on DJI](ardupilot/installing-wtfos-on-dji.md)

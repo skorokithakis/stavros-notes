@@ -93,17 +93,17 @@ The steps to follow are:
     <div id="input">
         <table style="border: none">
             <tr>
-                <td>Throttle:</td>
+                <td>OSD current:</td>
                 <td>
-                    <input class="number" type="text" id="m1" value="25" placeholder="OSD value">
-                    <input class="number" type="text" id="m2" value="50" placeholder="OSD value">
-                    <input class="number" type="text" id="m3" value="75" placeholder="OSD value">
-                    <input class="number" type="text" id="m4" value="100" placeholder="OSD value">
+                    <input class="number" type="text" id="m1" value="1.7" placeholder="OSD value">
+                    <input class="number" type="text" id="m2" value="3.4" placeholder="OSD value">
+                    <input class="number" type="text" id="m3" value="7" placeholder="OSD value">
+                    <input class="number" type="text" id="m4" value="10.3" placeholder="OSD value">
                 </td>
             </tr>
             <tr>
                 <td>
-                    Current:
+                    Real current:
                 </td>
                 <td>
                     <input class="number" type="text" id="r1" value="2.0" placeholder="current meter">

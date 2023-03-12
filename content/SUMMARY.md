@@ -11,6 +11,7 @@
         - [Current sensor calibrator](ardupilot/current-sensor-calibrator.md)
         - [DJI FPV configuration](ardupilot/dji-fpv-configuration.md)
         - [ELRS preferred configuration](ardupilot/elrs-preferred-configuration.md)
+        - [HD OSD tool](ardupilot/hd-osd-tool.md)
         - [Installing WTFOS on DJI](ardupilot/installing-wtfos-on-dji.md)
         - [Miscellaneous notes](ardupilot/miscellaneous-notes.md)
         - [Reverse thrust](ardupilot/reverse-thrust.md)

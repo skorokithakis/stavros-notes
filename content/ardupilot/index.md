@@ -10,6 +10,7 @@ Click on a link in the list below to go to that page:
 1. [Current sensor calibrator](../../ardupilot/current-sensor-calibrator.html)
 1. [DJI FPV configuration](../../ardupilot/dji-fpv-configuration.html)
 1. [ELRS preferred configuration](../../ardupilot/elrs-preferred-configuration.html)
+1. [HD OSD tool](../../ardupilot/hd-osd-tool.html)
 1. [Installing WTFOS on DJI](../../ardupilot/installing-wtfos-on-dji.html)
 1. [Miscellaneous notes](../../ardupilot/miscellaneous-notes.html)
 1. [Reverse thrust](../../ardupilot/reverse-thrust.html)

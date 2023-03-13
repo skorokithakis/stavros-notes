@@ -201,13 +201,12 @@ This tool lets you configure your OSD, supporting larger grid sizes than the sta
 </div>
 <div id="maincontainer">
    <div style="float: left; border: none; float: left; clear: both; width: 1520px;">
-       <div class="background" id="background" style="position:relative">
-           <div id="grid" class="grid grid60x22"></div>
-       </div>
-       <div id="availableparameters" style="position: relative; overflow-y: scroll; height: 720px; width:auto; float: right; border: none;"></div>
-
-       <div id="parachute_command"  style=" border: 1px solid black; float: left; clear:both; padding:20px"></div> 
-   </div>        
+      <div class="background" id="background" style="position:relative">
+          <div id="grid" class="grid grid60x22"></div>
+      </div>
+      <div id="availableparameters" style="position: relative; overflow-y: scroll; height: 720px; width:auto; float: right; border: none;"></div>
+      <div id="parachute_command"  style=" border: 1px solid black; float: left; clear:both; padding:20px"></div> 
+  </div>        
 </div>
 
 <script src="https://unpkg.com/json5@2/dist/index.min.js"></script>

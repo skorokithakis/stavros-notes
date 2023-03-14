@@ -1,22 +1,23 @@
 # HD OSD tool
 
-This tool lets you configure your OSD, supporting larger grid sizes than the standard Ardupilot one.
-
 <style>
     body{
+       /* font-family: Arial, Helvetica, sans-serif; */
+       /* font-family: sans-serif, "Helvetica Neue", "Lucida Grande", Arial; */
+
        box-sizing: border-box;
        -moz-box-sizing: border-box;
        -webkit-box-sizing: border-box;
 
-   } 
+   }
    div.box{
        /* 50x18 & 53x20 */
-       width: 24px; 
+       width: 24px;
        height: 36px;
 
        background-color:lightskyblue transparent ;
 
-       border: 1px solid grey;
+       border: 1px solid rgb(196, 196, 196);
        border-style: none none solid solid;
        box-sizing: border-box;
        -moz-box-sizing: border-box;
@@ -29,18 +30,18 @@ This tool lets you configure your OSD, supporting larger grid sizes than the sta
    }
    div.box_50x18{
        /* 50x18 & 53x20 */
-       width: 24px; 
+       width: 24px;
        height: 36px;
    }
    div.box_53x20{
        /* 50x18 & 53x20 */
-       width: 24px; 
+       width: 24px;
        height: 36px;
    }
    div.box_60x22{
        /* 60x22 */
        width: 21px;
-       height: 30px; 
+       height: 30px;
    }
    div.ground{
        background-color:peru transparent;
@@ -54,10 +55,10 @@ This tool lets you configure your OSD, supporting larger grid sizes than the sta
    }
    div.start{
        clear: left;
-   }  
+   }
    div.used{
        background-color: rgba(128, 255, 0, 0.4);
-       color: rgba(232, 247, 217, 0.4);
+       color: rgba(232, 247, 217);
        border: 2px solid rgba(255, 78, 78, 0.7);
 
        font-weight: bold;
@@ -75,7 +76,7 @@ This tool lets you configure your OSD, supporting larger grid sizes than the sta
        z-index: 1001;
    }
    div.bottom{
-       position: absolute; 
+       position: absolute;
        bottom: 0px;
    }
    div.maincontainer{
@@ -88,8 +89,10 @@ This tool lets you configure your OSD, supporting larger grid sizes than the sta
        width: 1280px;
        height: 720px;
        z-index: 0;
-       background-image: url("https://imgz.org/iCRSQqkC.jpg");
+       /* background-image: url("https://imgz.org/iCRSQqkC.jpg"); */
        background-repeat: no-repeat;
+       background: linear-gradient(180deg, rgba(54,120,176,1) 0%, rgba(179,179,179,1) 50%, rgba(97,62,0,1) 100%);
+
        border: none;
        float: left;
        clear: left;
@@ -139,23 +142,26 @@ This tool lets you configure your OSD, supporting larger grid sizes than the sta
    }
 </style>
 <div  style="float: left;">
+    <p>
+        This tool lets you configure your OSD, supporting larger grid sizes than the standard Ardupilot one.
+    </p>
    <table>
        <tr>
            <td colspan="2">
-           <b>TIP: use OSDn_TXT_RES=3 to extend the grid from 50x18 to 60x22.*</b>
-           <p>To use the tool:</p>
-<ol>
-           <li>Create a parameter backup using Parachute or Mission Planner.</li>
-           <li>Paste your configuration in the textbox below. Your OSD items will be displayed.</li>
-           <li>Resize your browser window to your needs (strg +/- | cmd +/-).</li>
-           <li>Add OSD elements from the list on the right or re-arrange them as you like.</li>
-           <li>Copy the generated parachute command to the CLI or the Mission Planner config to a textfile and restore.</li>
-</ol>
+            <b>TIP: use OSDn_TXT_RES=3 to extend the grid from 50x18 to 60x22.*</b>
+            <p>To use the tool:</p>
+            <ol>
+                        <li>Create a parameter backup using Parachute or Mission Planner.</li>
+                        <li>Paste your configuration in the textbox below. Your OSD items will be displayed.</li>
+                        <li>Resize your browser window to your needs (strg +/- | cmd +/-).</li>
+                        <li>Add OSD elements from the list on the right or re-arrange them as you like.</li>
+                        <li>Copy the generated parachute command to the CLI or the Mission Planner config to a textfile and restore.</li>
+            </ol>
            </td>
        </tr>
        <tr>
            <td>
-               Show coordinates: 
+               Show coordinates:
            </td>
            <td>
                <input type="checkbox" id="showCoords" value="true" onClick="drawOSD();" unchecked><br>
@@ -163,7 +169,7 @@ This tool lets you configure your OSD, supporting larger grid sizes than the sta
        </tr>
        <tr>
            <td>
-               Grid: 
+               Grid:
            </td>
            <td>
                <select id="chooseGrid" onchange="switchGrid();"><option value="60x22">60x22 (WTF-OS)</option><option value="53x20">53x20 (Walksnail)</option><option value="50x18">50x18 (DJI-FPV)</option></select><br>
@@ -175,6 +181,7 @@ This tool lets you configure your OSD, supporting larger grid sizes than the sta
            </td>
            <td>
                <select id="chooseBackground" onchange="switchBackground();">
+                   <option value="---">none</option>
                    <option value="iCRSQqkC">4:3</option>
                    <option value="i5iVNkQY">4:3 DJI Elements</option>
                    <option value="i5jr5EsY">16:9</option>
@@ -183,8 +190,22 @@ This tool lets you configure your OSD, supporting larger grid sizes than the sta
            </td>
        </tr>
        <tr>
+        <td>
+            OSD Layout:
+        </td>
+        <td>
+            <select id="OSDnumber" onchange="setOSDnumber();">
+                <option value="1">OSD1</option>
+                <option value="2">OSD2</option>
+                <option value="3">OSD3</option>
+                <option value="4">OSD4</option>
+                <option value="5">OSD5</option>
+            </select>
+        </td>
+        </tr>
+       <tr>
            <td>
-               Paste your Parachute config:
+                Paste your Parachute or MissionPlanner config:
            </td>
            <td>
                <textarea id="config" oninput="compute();" style="width:500px;height:50px">
@@ -201,16 +222,21 @@ This tool lets you configure your OSD, supporting larger grid sizes than the sta
 </div>
 <div id="maincontainer">
    <div style="float: left; border: none; float: left; clear: both; width: 1520px;">
-      <div class="background" id="background" style="position:relative">
-          <div id="grid" class="grid grid60x22"></div>
-      </div>
-      <div id="availableparameters" style="position: relative; overflow-y: scroll; height: 720px; width:auto; float: right; border: none;"></div>
-      <div id="parachute_command"  style=" border: 1px solid black; float: left; clear:both; padding:20px"></div> 
-  </div>        
+        <div class="background" id="background" style="position:relative">
+            <div id="grid" class="grid grid60x22"></div>
+        </div>
+        <div id="availableparameters" style="position: relative; overflow-y: scroll; height: 720px; width:auto; float: right; border: none;"></div>
+        <div id="parachute_command"  style=" border: 1px solid black; float: left; clear:both; padding:20px"></div>
+   </div>
 </div>
 
 <script src="https://unpkg.com/json5@2/dist/index.min.js"></script>
 <script type="text/javascript">
+
+function setOSDnumber(){
+    osd_number = document.getElementById('OSDnumber').value;
+    compute();
+}
 
 function switchBackground(){
    document.getElementById('background').style.backgroundImage = "url(https://imgz.org/"+document.getElementById('chooseBackground').value+".jpg)";
@@ -244,9 +270,9 @@ function remove(ev) {
    var target = ev.target || ev.srcElement;
    var param = ev.dataTransfer.getData("paramName");
    var sourceid = ev.dataTransfer.getData("sourceid");
-   
+
    console.log("removing param: "+param+" from "+sourceid);
-   
+
    if(sourceid){
        document.getElementById(sourceid).innerHTML="";
    }
@@ -270,22 +296,31 @@ function drop(ev) {
    var sourceid = ev.dataTransfer.getData("sourceid");
    var targetid = ev.target.id;
 
-   osd_config[param]=parseInt(1);
-   osd_config[param.replace('_EN','_X')]=parseInt(ev.target.id.split("x")[0]);
-   osd_config[param.replace('_EN','_Y')]=parseInt(ev.target.id.split("x")[1]);
+    if(targetid){
+        osd_config[param]=parseInt(1);
+        osd_config[param.replace('_EN','_X')]=parseInt(ev.target.id.split("x")[0]);
+        osd_config[param.replace('_EN','_Y')]=parseInt(ev.target.id.split("x")[1]);
 
-   osd_update[param]=parseInt(1);
-   osd_update[param.replace('_EN','_X')]=parseInt(ev.target.id.split("x")[0]);
-   osd_update[param.replace('_EN','_Y')]=parseInt(ev.target.id.split("x")[1]);
+        osd_update[param]=parseInt(1);
+        osd_update[param.replace('_EN','_X')]=parseInt(ev.target.id.split("x")[0]);
+        osd_update[param.replace('_EN','_Y')]=parseInt(ev.target.id.split("x")[1]);
 
-   generateCoordinates();
-   generateOutput();
-   drawOSD();
-
-   document.getElementById(targetid).innerHTML = makePrettyParam(param);
-   if(sourceid){
-       document.getElementById(sourceid).innerHTML="";
+        document.getElementById(targetid).innerHTML = makePrettyParam(param);
+   }else{
+        osd_config[param]=parseInt(0);
+        delete osd_config[param.replace('_EN','_X')];
+        delete osd_config[param.replace('_EN','_Y')];
+        osd_update[param]=parseInt(0);
+        delete osd_update[param.replace('_EN','_X')]; //=parseInt(0);
+        delete osd_update[param.replace('_EN','_Y')]; //=parseInt(0);
    }
+
+    generateCoordinates();
+    generateOutput();
+    drawOSD();
+    if(sourceid){
+        document.getElementById(sourceid).innerHTML="";
+    }
 }
 
 
@@ -338,13 +373,14 @@ function drop(ev) {
    var osd_config={};          // the pasted configuration
    var osd_config_type='';     // might be parachute or missionplanner
    var gridSpec={ x:60, y:22 } // default grid size
+   var osd_number=1;
 
    function genereateOSDObject(){
        osd_update={};
        osd_config={}; // fixme; do we need this?
 
        var txt = document.getElementById("config").value
-       var json_converted_config = {}; 
+       var json_converted_config = {};
 
        document.getElementById("availableparameters").innerHTML="<div ondragover='allowDrop(event)' ondrop='remove(event)' style='margin:5px'><b>DROP HERE TO REMOVE</b></div>";
 
@@ -378,8 +414,8 @@ function drop(ev) {
            return;
        }
 
-       const active_osd_object   = Object.fromEntries(Object.entries(json_converted_config).filter(([key]) => key.includes('OSD1_')  &&  key.match('_EN$') && json_converted_config[key].value == 1 ));
-       const disabled_osd_object = Object.fromEntries(Object.entries(json_converted_config).filter(([key]) => key.includes('OSD1_')  &&  key.match('_EN$') && json_converted_config[key].value == 0 ));
+       const active_osd_object   = Object.fromEntries(Object.entries(json_converted_config).filter(([key]) => key.includes('OSD'+osd_number+'_')  &&  key.match('_EN$') && json_converted_config[key].value == 1 ));
+       const disabled_osd_object = Object.fromEntries(Object.entries(json_converted_config).filter(([key]) => key.includes('OSD'+osd_number+'_')  &&  key.match('_EN$') && json_converted_config[key].value == 0 ));
 
        // make  OSD drop list
        for (const [param, paramAttr] of Object.entries(disabled_osd_object)) {
@@ -389,7 +425,7 @@ function drop(ev) {
            div.setAttribute('draggable',"true");
            div.setAttribute('ondragstart',"drag(event)");
            div.setAttribute('class', 'param');
-           
+
            div.innerHTML = param; // param is OSD1_ALTITUDE_EN
 
            document.getElementById("availableparameters").appendChild(div);
@@ -397,7 +433,7 @@ function drop(ev) {
 
        console.log(active_osd_object);
        console.log("active elements: "+Object.entries(active_osd_object).length);
-       
+
        document.getElementById('error').innerHTML="";
        document.getElementById('error').style.display="none";
 
@@ -422,16 +458,16 @@ function drop(ev) {
 
    function generateCoordinates(){
        osd_coordinates={};
-       for ([param, paramValue] of Object.entries(osd_config).filter(([key]) => key.includes('OSD1_')  &&  key.match('_EN$') )){
-       
+       for ([param, paramValue] of Object.entries(osd_config).filter(([key]) => key.includes('OSD'+osd_number+'_')  &&  key.match('_EN$') )){
+
            var elmX = osd_config[param.replace('_EN','_X')];
            var elmY = osd_config[param.replace('_EN','_Y')];
-           
+
            console.log("generateCoordinates "+ param+" at "+elmX+"x"+elmY);
 
            if(typeof osd_coordinates[elmY] == 'undefined'){
                    osd_coordinates[elmY]={};
-               } 
+               }
 
            if (typeof osd_element_width[makePrettyParam(param)] !== 'undefined') {
                var elmStart = parseInt(elmX + 1 );
@@ -488,7 +524,7 @@ function drop(ev) {
                if(document.getElementById("showCoords").checked == true){
                    div.innerHTML = x+"<br>&nbsp;"+y;
                }
-               
+
                div.setAttribute('id',x+"x"+y);
                div.setAttribute('ondrop',"drop(event)");
                div.setAttribute('ondragover',"allowDrop(event)");
@@ -499,8 +535,8 @@ function drop(ev) {
                divClasses.push('box');
                divClasses.push('box_'+gridSpec['x']+'x'+gridSpec['y']);
 
-               if (typeof osd_coordinates[y] !== 'undefined') { 
-                   if (typeof osd_coordinates[y][x] !== 'undefined') { 
+               if (typeof osd_coordinates[y] !== 'undefined') {
+                   if (typeof osd_coordinates[y][x] !== 'undefined') {
                        divClasses.push('used');
                        if (osd_coordinates[y][x] != '.'){
                            var elemName = osd_coordinates[y][x];
@@ -526,18 +562,18 @@ function drop(ev) {
            }
        }
    }
-   
+
    function makePrettyParam(OSD1_param_EN){
-       return OSD1_param_EN.replace('OSD1_','').replace('_EN','');
+       return OSD1_param_EN.replace('OSD'+osd_number+'_','').replace('_EN','');
    }
 
    function makeParamName(param){
        if(param == ""){
            return;
-       }else if(param.match('^OSD1_')){
+       }else if(param.match('^OSD'+osd_number+'_')){
            return param;
        }else{
-           return 'OSD1_'+param+'_EN';
+           return 'OSD'+osd_number+'_'+param+'_EN';
        }
    }
 
@@ -567,11 +603,10 @@ function drop(ev) {
    compute();
 </script>
 
-_(Many thanks to mfoos for writing this note.)_
 
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on March 13, 2023. For any questions/feedback,
+Last updated on March 14, 2023. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

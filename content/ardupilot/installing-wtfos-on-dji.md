@@ -24,7 +24,7 @@ Here's the process to install it:
   ```
 
 ## On the plane
-* Set `SERIALn_PROTOCOL=42` for DisplayPort, `OSD_TYPE=5` for MSP_DISPLAYPORT and `OSDn_TXT_RES=1` for 50x18 text resolution on the craft.
+* Set `SERIALn_PROTOCOL=42` for DisplayPort, `OSD_TYPE=5` for MSP_DISPLAYPORT and `OSDn_TXT_RES=1` for 50x18 text resolution on the craft. You should also check that `OSD_OPTIONS=0`, just to make sure you don't have problems.
 * Arrange your OSD elements as you want them.
 
 That's all!
@@ -32,6 +32,6 @@ That's all!
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on January 20, 2023. For any questions/feedback,
+Last updated on March 20, 2023. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

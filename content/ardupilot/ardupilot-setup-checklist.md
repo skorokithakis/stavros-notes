@@ -85,6 +85,7 @@ The values in this section are specific to the Omnibus F4, but the settings aren
 - [ ] Set `THR_PASS_STAB=1` so you have total throttle control in ACRO/FBWA/STABILIZE.
 - [ ] Set `ARSPD_FBW_MIN`/`ARSPD_FBW_MAX` to the minimum and maximum airspeed you want auto modes to fly (see the TECS tuning guide below for details).
 - [ ] Set `MIN_GNDSPD_CM=833` (30 km/h) so the craft makes an effort to return even under high winds.
+- [ ] Set `RTL_SINK_MAX=2` to enable a very slow descent on RTL (you generally don't need to descend fast on RTL).
 
 
 ## Auto takeoff
@@ -111,6 +112,6 @@ _(Many thanks to Michel Pastor and mfoos for their help with everything in this 
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on July 21, 2022. For any questions/feedback,
+Last updated on April 15, 2023. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

@@ -45,4 +45,5 @@
     - [Black pills](software/black-pills.md)
     - [Getting VoWiFi working on Xiaomi.eu](software/getting-vowifi-working-on-xiaomi-eu.md)
     - [Monero GUI syncing stuck with Ledger](software/monero-gui-syncing-stuck-with-ledger.md)
+    - [Resetting TP-Link Powerline plugs](software/resetting-tp-link-powerline-plugs.md)
     - [Test and format SD cards](software/test-and-format-sd-cards.md)

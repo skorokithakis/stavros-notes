@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import dataclasses
+import json
 import mimetypes
 import re
 import sqlite3
@@ -36,6 +37,7 @@ class Folder:
     id: str
     parent_id: str
     title: str
+    icon: str
 
     def is_private(self) -> bool:
         """Return whether this folder is private."""
@@ -47,7 +49,11 @@ class Folder:
 
     def get_summary_line(self, level: int) -> str:
         """Get the appropriate summary file line for this folder."""
-        return ("    " * (level - 1)) + f"- [{self.title}]({self.get_url()}/index.md)"
+        return (
+            ("    " * (level - 1))
+            + f"- [{self.icon if self.icon else '📁'} "
+            + f"{self.title}]({self.get_url()}/index.md)"
+        )
 
     def __lt__(self, other: Union["Folder", "Note"]) -> bool:
         """Support comparison, for sorting."""
@@ -200,9 +206,12 @@ class JoplinExporter:
         conn = sqlite3.connect(self.joplin_dir / "database.sqlite")
         c = conn.cursor()
 
-        c.execute("""SELECT id, title, parent_id FROM folders;""")
+        c.execute("""SELECT id, title, parent_id, icon FROM folders;""")
         self.folders = {
-            id: Folder(id, parent_id, title) for id, title, parent_id in c.fetchall()
+            id: Folder(
+                id, parent_id, title, json.loads(icon).get("emoji", "") if icon else ""
+            )
+            for id, title, parent_id, icon in c.fetchall()
         }
 
         self.folders = {
@@ -285,14 +294,22 @@ class JoplinExporter:
                 # the only way this algorithm can generate headlines.
                 if folders != note_item[:-1]:
                     folders = note_item[:-1]
-                    note_tree.append(folders)
-
+                    # Append all the parent folders of the current folder, as otherwise
+                    # folders without a direct descendant note wouldn't show up.
+                    # This will lead to duplicates, but we'll deduplicate later.
+                    for x in range(1, len(folders) + 1):
+                        note_tree.append(folders[:x])
                 note_tree.append(note_item)
         note_tree.sort()
 
         # Generate the summary file.
         items = []
+        last_list = None
         for note_list in note_tree:
+            if last_list == note_list:
+                # Remove duplicates from above here.
+                continue
+            last_list = note_list
             level = len(note_list)
             if isinstance(note_list[-1], Folder):
                 # The last item in the list is a folder, which means this is a header.

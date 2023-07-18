@@ -58,8 +58,8 @@ class Folder:
     def __lt__(self, other: Union["Folder", "Note"]) -> bool:
         """Support comparison, for sorting."""
         if isinstance(other, Note):
-            # Folders always come before notes.
-            return True
+            # Folders always come after notes.
+            return False
         return self.title.lower() < other.title.lower()
 
     def __repr__(self) -> str:

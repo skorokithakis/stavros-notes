@@ -42,6 +42,7 @@
     - [🗈 How to properly level your 3D printer](maker-things/how-to-properly-level-your-3d-printer.md)
     - [🗈 Installing BLTouch-compatible firmware onto the TwoTrees Sapphire Pro](maker-things/installing-bltouch-compatible-firmware-onto-the-twotrees-sapphire-pro.md)
 - [🖥️ Programming](programming/index.md)
+    - [🗈 Interesting projects](programming/interesting-projects.md)
     - [🐍 Python](python/index.md)
         - [🗈 Decorator that runs a function in a thread](python/decorator-that-runs-a-function-in-a-thread.md)
 - [💽 Software](software/index.md)

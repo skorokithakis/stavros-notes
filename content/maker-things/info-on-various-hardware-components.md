@@ -21,6 +21,7 @@ The manufacturer has said that this is the truth table:
 | H | H | L |      15 |
 | H | L | L |      20 |
 
+This basically seems to be the same truth table as the original [USB PD decoy](https://hackaday.io/project/187112-usb-pd-decoy), except the logic levels are inverted (high becomes low and vice-versa), and SW1 in the original is M3, SW2 is M1, and SW3 is M2. Pretty convoluted, but it works.
 
 * * *
 

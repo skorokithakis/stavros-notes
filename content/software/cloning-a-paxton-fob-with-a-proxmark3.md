@@ -12,7 +12,7 @@ lf hitag read --ht2 -k BDF5E846
 
 If you're getting "Password failed!" or nothing back, move the fob around the 125KHz antenna (the top one), it should eventually work.
 
-Afterwards, [convert the fob pages to an EM4100 ID](https://static.badcfe.org/paxton-covert), and flash the ID to a T5577 emulator chip:
+Afterwards, [convert the fob pages to an EM4100 ID](https://static.badcfe.org/paxton-covert), and flash the ID to a T5577, emulating an EM4100 chip:
 
 ```
 lf em 410x clone --id <your hex id>

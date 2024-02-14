@@ -102,6 +102,6 @@ This is some more advanced information on tuning the TECS:
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on March 23, 2022. For any questions/feedback,
+Last updated on November 26, 2023. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

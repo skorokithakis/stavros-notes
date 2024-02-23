@@ -49,7 +49,7 @@
         - [🗈 Decorator that runs a function in a thread](python/decorator-that-runs-a-function-in-a-thread.md)
 - [💽 Software](software/index.md)
     - [🗈 Black pills](software/black-pills.md)
-    - [🗈 Cloning a Paxton fob with a Proxmark3](software/cloning-a-paxton-fob-with-a-proxmark3.md)
+    - [🗈 Cloning cards/fobs with a Proxmark3](software/cloning-cards-fobs-with-a-proxmark3.md)
     - [🗈 Getting VoWiFi working on Xiaomi.eu](software/getting-vowifi-working-on-xiaomi-eu.md)
     - [🗈 Monero GUI syncing stuck with Ledger](software/monero-gui-syncing-stuck-with-ledger.md)
     - [🗈 Pairing the Xbox One controller in Linux](software/pairing-the-xbox-one-controller-in-linux.md)

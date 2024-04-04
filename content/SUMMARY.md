@@ -37,6 +37,7 @@
         - [🗈 Mini Drak build condensed instructions](model-build-notes/mini-drak-build-condensed-instructions.md)
 - [📁 Maker things](maker-things/index.md)
     - [🗈 Battery discharge curves](maker-things/battery-discharge-curves.md)
+    - [🗈 Details about my Sapphire Pro](maker-things/details-about-my-sapphire-pro.md)
     - [🗈 Electronics tips](maker-things/electronics-tips.md)
     - [🗈 GRBL_ESP32 tips](maker-things/grbl-esp32-tips.md)
     - [🗈 How to properly level your 3D printer](maker-things/how-to-properly-level-your-3d-printer.md)

@@ -13,7 +13,9 @@ I've installed TMC2209 drivers and wired all their UARTs up to the same pin, PA1
 
 I've installed the SFS 2.0 motion runout sensor on MT_DET1 and MT_DET2. This means that the motion sensor pin is PE6, and the switch sensor is PA4. That doesn't work either, Marlin keeps thinking the printer has run out of filament.
 
-https://github.com/MarlinFirmware/Marlin/issues/26916
+Someone here had the same issue as me:
+
+[https://github.com/MarlinFirmware/Marlin/issues/26916](https://github.com/MarlinFirmware/Marlin/issues/26916)
 
 * * *
 

@@ -4,7 +4,7 @@
 
 Basically, follow this guide:
 
-https://badcfe.org/how-to-paxton-with-proxmark/
+[https://badcfe.org/how-to-paxton-with-proxmark/](https://badcfe.org/how-to-paxton-with-proxmark/)
 
 I managed to read my fob with:
 
@@ -33,6 +33,9 @@ You should be done, but I haven't tested it as I don't have a Paxton reader hand
 
 See [Cloning a Mifare Classic 1K](https://www.gavinjl.me/proxmark-3-cloning-a-mifare-classic-1k/).
 
+## Working with T5577
+
+Always remember to run `lf t55xx det` every time you change configuration (not content) to make sure your card is detected properly.
 
 ## Card cloner password
 
@@ -69,6 +72,6 @@ lf EM 410x clone --id <the ID from before>
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on March 04, 2024. For any questions/feedback,
+Last updated on May 27, 2024. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

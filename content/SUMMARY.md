@@ -50,6 +50,7 @@
         - [🗈 Decorator that runs a function in a thread](python/decorator-that-runs-a-function-in-a-thread.md)
 - [💽 Software](software/index.md)
     - [🗈 Black pills](software/black-pills.md)
+    - [🗈 Decrypt Audible audiobooks](software/decrypt-audible-audiobooks.md)
     - [🗈 Getting VoWiFi working on Xiaomi.eu](software/getting-vowifi-working-on-xiaomi-eu.md)
     - [🗈 Monero GUI syncing stuck with Ledger](software/monero-gui-syncing-stuck-with-ledger.md)
     - [🗈 Pairing the Xbox One controller in Linux](software/pairing-the-xbox-one-controller-in-linux.md)

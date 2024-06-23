@@ -2,8 +2,9 @@
 
 To decrypt Audible audiobooks:
 
-1. Use [audible-cli](https://github.com/mkb79/audible-cli) to get your activation bytes (run `audible quickstart`.
-2. Use [Libation](https://github.com/rmcrackan/Libation) to decrypt audiobooks.
+1. Use [audible-cli](https://github.com/mkb79/audible-cli) to get your activation bytes (run `audible quickstart`).
+2. Use [Libation](https://github.com/rmcrackan/Libation) to manage and decrypt your audiobooks.
+3. Play them on whatever player you like!
 
 Also, with ffmpeg:
 
@@ -11,7 +12,7 @@ Also, with ffmpeg:
 ffmpeg -y -activation_bytes <bytes here> -i  'book.AAX' -codec copy 'book.m4b'
 ```
 
-List of useful programs: https://github.com/rmcrackan/AudiobookHub
+List of useful programs: [https://github.com/rmcrackan/AudiobookHub](https://github.com/rmcrackan/AudiobookHub).
 
 OpenAudible is paid and expensive now.
 

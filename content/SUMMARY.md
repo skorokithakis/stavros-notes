@@ -59,3 +59,4 @@
     - [📁 RF stuff](rf-stuff/index.md)
         - [🗈 Cloning cards/fobs with a Proxmark3](rf-stuff/cloning-cards-fobs-with-a-proxmark3.md)
         - [🗈 Flipper Zero notes](rf-stuff/flipper-zero-notes.md)
+        - [🗈 MIFARE cracking info](rf-stuff/mifare-cracking-info.md)

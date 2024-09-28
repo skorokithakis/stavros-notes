@@ -48,6 +48,7 @@
     - [🗈 Interesting projects](programming/interesting-projects.md)
     - [🐍 Python](python/index.md)
         - [🗈 Decorator that runs a function in a thread](python/decorator-that-runs-a-function-in-a-thread.md)
+    - [🗈 Third party AirTags research](programming/third-party-airtags-research.md)
 - [💽 Software](software/index.md)
     - [🗈 Black pills](software/black-pills.md)
     - [🗈 Decrypt Audible audiobooks](software/decrypt-audible-audiobooks.md)

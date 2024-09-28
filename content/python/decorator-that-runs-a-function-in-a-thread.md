@@ -3,7 +3,7 @@
 I wrote a small decorator that will convert any function to run in a thread:
 
 
-```
+```python
 import threading
 
 def run_threaded(fn):
@@ -19,7 +19,7 @@ def run_threaded(fn):
 
 Example:
 
-```
+```python
 @run_threaded
 def add(x, y):
     # This runs in a separate thread.
@@ -33,6 +33,6 @@ That's it!
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on July 19, 2023. For any questions/feedback,
+Last updated on September 28, 2024. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

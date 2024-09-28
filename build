@@ -9,7 +9,7 @@ if [ -x "$(which mdbook)" ] ; then
     mdbook build -d public
 else
     echo "mdBook not found, downloading..."
-    wget https://github.com/rust-lang/mdBook/releases/download/v0.4.13/mdbook-v0.4.13-x86_64-unknown-linux-gnu.tar.gz -O mdbook.tgz
+    wget https://github.com/rust-lang/mdBook/releases/download/v0.4.40/mdbook-v0.4.40-x86_64-unknown-linux-gnu.tar.gz -O mdbook.tgz
     tar zxvf mdbook.tgz
     ./mdbook build -d public
 fi

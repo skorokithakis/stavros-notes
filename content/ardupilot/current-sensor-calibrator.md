@@ -79,9 +79,12 @@ function init() {
 window.onload = init;
 </script>
 
-This calculator will allow you to calibrate your current sensor better than with the mAh charged vs mAh consumed method. 
+This calculator will allow you to calibrate your current sensor better than with the mAh charged vs mAh consumed method.
+
 You need a current meter and a way to see what current and throttle percentage the FC reports (the OSD is a good way to do this).
+
 The steps to follow are:
+
 0. Make sure you have capacitors on ESCs so the measurement will not be influenced by errors from ESC noise.
 1. Set `BATT_AMP_PERVLT=100` and `BATT_AMP_OFFSET=0`.
 3. Power your plane with propellers on and a current meter connected between FC and pack.
@@ -144,6 +147,6 @@ _(Many thanks to mfoos for writing this note.)_
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on February 05, 2023. For any questions/feedback,
+Last updated on November 17, 2024. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

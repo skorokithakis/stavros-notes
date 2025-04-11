@@ -59,7 +59,7 @@ lf em 410x reader
 Write with:
 
 ```
-lf EM 410x clone --id <the ID from before>
+lf em 410x clone --id <the ID from before>
 ```
 
 
@@ -72,6 +72,6 @@ lf EM 410x clone --id <the ID from before>
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on May 27, 2024. For any questions/feedback,
+Last updated on January 14, 2025. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

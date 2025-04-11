@@ -5,11 +5,12 @@
 * [CAME protocol brute forcer](https://github.com/BitcoinRaven/CAMEbruteforcer).
 * [A more generic sub-Ghz brute forcer](https://github.com/tobiabocchi/flipperzero-bruteforce)
 * [How the sub-Ghz remote app works](https://www.reddit.com/r/flipperzero/comments/zbiuwo/subghz_remote_map_configure_tutorial_for_new/?utm_source=share&utm_medium=ios_app&utm_name=iossmf)
-* [How to store 2 to 3 different EM41xx on a single T5577](https://forum.dangerousthings.com/t/hack-store-2-to-3-different-em41xx-on-a-single-t5577/12116)
+* [How to store 2 to 3 different EM41xx on a single T5577](https://forum.dangerousthings.com/t/hack-store-2-to-3-different-em41xx-on-a-single-t5577/12116) (this never worked for me)
 * [Universal Radio Hacker](https://github.com/jopohl/urh)
 * [Flipper Maker](https://flippermaker.github.io/)
 * [Awesome Flipper Zero](https://github.com/djsime1/awesome-flipperzero)
 * [KeeLoq datasheet](http://ww1.microchip.com/downloads/en/devicedoc/21143b.pdf)
+* [Beginning NFC](https://www.oreilly.com/library/view/beginning-nfc/9781449324094/), a pretty comprehensive book on NFC
 
 # Videos
 
@@ -21,6 +22,6 @@
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on May 21, 2024. For any questions/feedback,
+Last updated on January 21, 2025. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

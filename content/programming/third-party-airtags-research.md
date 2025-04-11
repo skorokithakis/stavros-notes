@@ -11,10 +11,11 @@ It turns out you can buy some NRF51822 boards/tags on AliExpress (e.g. [this one
 
 ## General info
 * <https://positive.security/blog/find-you> - Details about how the anti-stalking features work (or don't).
+* <https://adamcatley.com/AirTag.html> - A really good deep dive into the BLE transmissions of AirTags.
 
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on October 14, 2024. For any questions/feedback,
+Last updated on November 18, 2024. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

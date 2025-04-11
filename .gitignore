@@ -3,3 +3,4 @@ public/
 book/
 .vscode/
 __pycache__/
+.envrc

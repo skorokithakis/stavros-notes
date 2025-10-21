@@ -36,6 +36,6 @@ $ ffmpeg -i "$1" -c:v copy -filter:a atempo=1.001480,volume=20 \
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on January 01, 2023. For any questions/feedback,
+Last updated on May 03, 2025. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

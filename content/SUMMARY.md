@@ -58,6 +58,7 @@
     - [🗈 Pairing the Xbox One controller in Linux](software/pairing-the-xbox-one-controller-in-linux.md)
     - [🗈 Resetting TP-Link Powerline plugs](software/resetting-tp-link-powerline-plugs.md)
     - [🗈 Test and format SD cards](software/test-and-format-sd-cards.md)
+    - [🗈 Various issues](software/various-issues.md)
     - [📁 RF stuff](rf-stuff/index.md)
         - [🗈 Cloning cards/fobs with a Proxmark3](rf-stuff/cloning-cards-fobs-with-a-proxmark3.md)
         - [🗈 Flipper Zero notes](rf-stuff/flipper-zero-notes.md)

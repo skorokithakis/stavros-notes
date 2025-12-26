@@ -11,3 +11,8 @@ no-section-label = true
 git-repository-url = "https://gitlab.com/stavros/notes/"
 git-repository-icon = "fa-gitlab"
 additional-css = ["static/custom.css"]
+
+[preprocessor.linkify]
+command = "python3 scripts/mdbook-linkify.py"
+renderers = ["html"]
+after = ["links"]

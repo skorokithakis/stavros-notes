@@ -1,15 +1,14 @@
 [book]
 authors = ["Stavros Korokithakis"]
 language = "en"
-multilingual = false
 src = "content"
 title = "Stavros' Notes"
 
 [output.html]
-curly-quotes = true
+smart-punctuation = true
 no-section-label = true
 git-repository-url = "https://gitlab.com/stavros/notes/"
-git-repository-icon = "fa-gitlab"
+git-repository-icon = "fab-gitlab"
 additional-css = ["static/custom.css"]
 
 [preprocessor.linkify]

@@ -131,6 +131,7 @@ The steps to follow are:
             <tr>
                 <td>
                     <code>BATT_AMP_PERVLT</code>:
+                </td>
                 <td>
                     <input class="number" type="text" id="r_scale" value="" placeholder="scale" >
                 </td>

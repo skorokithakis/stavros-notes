@@ -1,6 +1,9 @@
 # Summary
 
 [🗈 Stavros' notes](welcome/stavros-notes.md)
+- [📁 Build notes](build-notes/index.md)
+    - [🗈 Bedtime](build-notes/bedtime.md)
+    - [🗈 MSM8916 LTE stick Linux port](build-notes/msm8916-lte-stick-linux-port.md)
 - [🛸 Drone stuff](drone-stuff/index.md)
     - [🗈 A simple guide to PID control](drone-stuff/a-simple-guide-to-pid-control.md)
     - [🗈 E6000 hinges](drone-stuff/e6000-hinges.md)
@@ -42,9 +45,7 @@
     - [🗈 General TRMNL info](maker-things/general-trmnl-info.md)
     - [🗈 GRBL_ESP32 tips](maker-things/grbl-esp32-tips.md)
     - [🗈 How to properly level your 3D printer](maker-things/how-to-properly-level-your-3d-printer.md)
-    - [🗈 Info on various hardware components](maker-things/info-on-various-hardware-components.md)
     - [🗈 Installing BLTouch-compatible firmware onto the TwoTrees Sapphire Pro](maker-things/installing-bltouch-compatible-firmware-onto-the-twotrees-sapphire-pro.md)
-    - [🗈 Notes on my TimSav](maker-things/notes-on-my-timsav.md)
 - [🖥️ Programming](programming/index.md)
     - [🗈 Interesting projects](programming/interesting-projects.md)
     - [🐍 Python](python/index.md)

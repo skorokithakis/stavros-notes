@@ -5,6 +5,7 @@ Rename files like `foo/bar.html` to `foo/bar/index.html` for prettier URLs.
 import json
 import re
 import sys
+import ast
 from pathlib import Path
 from typing import Dict
 from typing import List
@@ -75,7 +76,6 @@ def convert_relative_to_absolute(path: Path):
                 or text == "/"
                 or text.startswith("#")
                 or text.startswith("mailto")
-                or not ("/" in text or text.endswith(".html"))  # Skip non-path values
             ):
                 # Not a valid filename, return it.
                 return f"{property}{text}{suffix}"
@@ -101,27 +101,13 @@ def convert_relative_to_absolute(path: Path):
             contents = f.read()
             f.truncate(0)
             f.seek(0)
-            # Handle double-quoted attributes (href, src, root, data-*)
             contents = re.sub(
                 r"""
-                ((?:href|src|root|data-\w+)\s*=\s*")  # Various tags like href=", data-path="
+                ((?:href|src|root)\s*=\s*")  # Various tags like href="
                 ([^\"]+?)                    # Anything non-quote, non-greedily.
                 (
                 (?:\#[^\"]*|)                # Either an anchor or nothing.
                 ")                           # Ending quote.
-                """,
-                replace_wrapper(filename),
-                contents,
-                flags=re.VERBOSE,
-            )
-            # Handle single-quoted attributes
-            contents = re.sub(
-                r"""
-                ((?:href|src|root|data-\w+)\s*=\s*')  # Various tags like href=', data-path='
-                ([^\']+?)                    # Anything non-quote, non-greedily.
-                (
-                (?:\#[^\']*|)                # Either an anchor or nothing.
-                ')                           # Ending quote.
                 """,
                 replace_wrapper(filename),
                 contents,
@@ -145,96 +131,91 @@ def replace_links(path: Path, replacements: Dict[str, str]):
             contents = f.read()
             f.truncate(0)
             f.seek(0)
-
-            # Fix malformed path patterns BEFORE applying replacements.
-            # Handle /. patterns (malformed paths from path_to_root issues)
-            # Handles both single and double quotes in HTML attributes and data-* attributes
-            contents = re.sub(
-                r'((?:href|src|root|data-\w+)\s*=\s*["\'])/\.', r"\1/", contents
-            )
-            # Handle ./ patterns (current directory references)
-            contents = re.sub(
-                r'((?:href|src|root|data-\w+)\s*=\s*["\'])\./', r"\1/", contents
-            )
-            # Also fix JavaScript path_to_root patterns more broadly
-            # This handles cases like: var path_to_root = "/.";
-            contents = re.sub(r'path_to_root\s*=\s*(["\'])/\.', r'path_to_root = \1/', contents)
-            # And cases like: "/." + "path" which produces "/.path"
-            contents = re.sub(r'(["\'])/\.(["\'])', r'\1/\2', contents)
-
-            # Apply file path replacements (e.g., .html -> /)
             for source, target in replacements.items():
                 contents = contents.replace(source, target)
-                # Also handle paths that might have ./ prefix in JavaScript
-                contents = contents.replace("./" + source, "./" + target)
-                contents = contents.replace("/" + source, "/" + target)
 
-            # Convert remaining relative links to absolute.
-            # Handle ../ patterns (parent directory references)
+            # Convert relative links to absolute.
             contents = re.sub(
-                r'((?:href|src|root|data-\w+)\s*=\s*["\'])((?:\.\./)+)([^\.])', r"\1/\3", contents
+                r'((?:href|src|root)\s*=\s*")((?:\.\./)+)([^\.])', r"\1/\3", contents
             )
 
             f.write(contents)
 
 
-def decode_js_single_quoted(s: str) -> str:
-    """Decode escape sequences in a JavaScript single-quoted string."""
-    result = []
-    i = 0
-    while i < len(s):
-        if s[i] == "\\" and i + 1 < len(s):
-            next_char = s[i + 1]
-            if next_char == "'":
-                result.append("'")
-                i += 2
-            elif next_char == "\\":
-                result.append("\\")
-                i += 2
-            else:
-                result.append(s[i])
-                i += 1
-        else:
-            result.append(s[i])
-            i += 1
-    return "".join(result)
+def _extract_json_parse_string(contents: str):
+    marker = "JSON.parse("
+    start_idx = contents.find(marker)
+    if start_idx == -1:
+        return None
+
+    i = start_idx + len(marker)
+    if i >= len(contents) or contents[i] not in ("'", '"'):
+        return None
+
+    quote = contents[i]
+    i += 1
+    payload_start = i
+    escaped = False
+    while i < len(contents):
+        ch = contents[i]
+        if escaped:
+            escaped = False
+        elif ch == "\\":
+            escaped = True
+        elif ch == quote:
+            payload_end = i
+            return contents[payload_start:payload_end], payload_start, payload_end, quote
+        i += 1
+
+    return None
 
 
 def fix_search_links(path: Path):
     """Rename search links to remove the ".html" suffix."""
-    # Find the hashed searchindex file (newer mdbook versions use hashed filenames).
-    searchindex_files = list(path.glob("searchindex-*.js"))
-    if not searchindex_files:
-        print("No searchindex file found, skipping search link fixes.")
+    json_path = path / "searchindex.json"
+    if json_path.exists():
+        with json_path.open() as infile:
+            index = json.load(infile)
+
+        doc_urls = [url.replace(".html", "/") for url in index["doc_urls"]]
+        index["doc_urls"] = doc_urls
+
+        index_json = json.dumps(index).strip()
+
+        with json_path.open("w") as outfile:
+            outfile.write(index_json)
+
+        with (path / "searchindex.js").open("w") as outfile:
+            outfile.write(f"Object.assign(window.search, {index_json});")
         return
 
-    searchindex_file = searchindex_files[0]
-
-    with searchindex_file.open() as infile:
-        contents = infile.read()
-
-    # The format is: window.search = Object.assign(window.search, JSON.parse('...'));
-    # Extract the JSON string from within JSON.parse('...').
-    match = re.search(r"JSON\.parse\('(.*)'\)", contents)
-    if not match:
-        print(f"Could not parse searchindex format in {searchindex_file}")
+    js_candidates = sorted(path.glob("searchindex-*.js"))
+    if not js_candidates:
+        print("No search index found; skipping search link rewrite.")
         return
 
-    # Decode JS single-quoted string escapes before parsing as JSON.
-    json_str = decode_js_single_quoted(match.group(1))
-    index = json.loads(json_str)
+    js_path = js_candidates[0]
+    contents = js_path.read_text()
+    extracted = _extract_json_parse_string(contents)
+    if not extracted:
+        print(f"Could not parse search index in {js_path}; skipping.")
+        return
+
+    payload, payload_start, payload_end, quote = extracted
+    try:
+        json_text = ast.literal_eval(f"{quote}{payload}{quote}")
+        index = json.loads(json_text)
+    except (ValueError, SyntaxError) as exc:
+        print(f"Could not decode search index in {js_path}: {exc}")
+        return
 
     doc_urls = [url.replace(".html", "/") for url in index["doc_urls"]]
     index["doc_urls"] = doc_urls
+    updated_json = json.dumps(index).strip()
+    escaped_json = updated_json.replace("\\", "\\\\").replace("'", "\\'")
 
-    # Escape for embedding back into JS single-quoted string.
-    index_json = json.dumps(index).replace("\\", "\\\\").replace("'", "\\'")
-
-    # Write back in the same format mdbook uses.
-    with searchindex_file.open("w") as outfile:
-        outfile.write(
-            f"window.search = Object.assign(window.search, JSON.parse('{index_json}'));"
-        )
+    updated_contents = f"{contents[:payload_start]}{escaped_json}{contents[payload_end:]}"
+    js_path.write_text(updated_contents)
 
 
 def main(path: Path):

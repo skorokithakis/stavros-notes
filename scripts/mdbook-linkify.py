@@ -10,6 +10,8 @@ TRAILING_PUNCT = ".,;:!?)\"'"
 # Things we should NOT touch
 FENCED_CODE_RE = re.compile(r"(^|\n)(```|~~~)[^\n]*\n.*?\n\2[ \t]*(?=\n|$)", re.DOTALL)
 INLINE_CODE_RE = re.compile(r"`[^`]*`")
+# Raw HTML tags should be left as-is, including attributes with URLs.
+HTML_TAG_RE = re.compile(r"<[^>]+>")
 # Inline links & images: [text](dest) and ![alt](dest)
 # This is a pragmatic regex; it won't perfectly handle all nested parentheses,
 # but it avoids breaking normal links like the one you showed.
@@ -53,6 +55,7 @@ def transform_markdown(text: str) -> str:
 
     # Mask in a safe order: big structures first.
     text = mask(text, FENCED_CODE_RE, store, "M")
+    text = mask(text, HTML_TAG_RE, store, "M")
     text = mask(text, INLINE_LINK_RE, store, "M")
     text = mask(text, INLINE_CODE_RE, store, "M")
     text = mask(text, HTML_ATTR_RE, store, "M")

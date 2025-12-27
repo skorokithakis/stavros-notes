@@ -103,7 +103,7 @@ class Note:
         """
         return (
             "    " * (level - 1)
-        ) + f"{'- ' if level > 0 else ''}[🗈 {self.title}]({self.get_url()}.md)"
+        ) + f"{'- ' if level > 0 else ''}[📄 {self.title}]({self.get_url()}.md)"
 
     def __lt__(self, other: Union["Folder", "Note"]) -> bool:
         """Support comparison, for sorting."""

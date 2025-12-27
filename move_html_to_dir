@@ -141,6 +141,14 @@ def replace_links(path: Path, replacements: Dict[str, str]):
 
             f.write(contents)
 
+    # The sidebar TOC is generated into a JS file; update its embedded links too.
+    for js_path in sorted(path.glob("toc-*.js")):
+        print(f"Converting links in {js_path}...")
+        contents = js_path.read_text()
+        for source, target in replacements.items():
+            contents = contents.replace(source, target)
+        js_path.write_text(contents)
+
 
 def _extract_json_parse_string(contents: str):
     marker = "JSON.parse("

@@ -147,7 +147,7 @@ def replace_links(path: Path, replacements: Dict[str, str]):
 
             # Fix malformed path patterns BEFORE applying replacements.
             # Handle /. patterns (malformed paths from path_to_root issues)
-            # Handles both single and double quotes
+            # Handles both single and double quotes in HTML attributes
             contents = re.sub(
                 r'((?:href|src|root)\s*=\s*["\'])/\.', r"\1/", contents
             )
@@ -155,6 +155,11 @@ def replace_links(path: Path, replacements: Dict[str, str]):
             contents = re.sub(
                 r'((?:href|src|root)\s*=\s*["\'])\./', r"\1/", contents
             )
+            # Also fix JavaScript path_to_root patterns more broadly
+            # This handles cases like: var path_to_root = "/.";
+            contents = re.sub(r'path_to_root\s*=\s*(["\'])/\.', r'path_to_root = \1/', contents)
+            # And cases like: "/." + "path" which produces "/.path"
+            contents = re.sub(r'(["\'])/\.(["\'])', r'\1/\2', contents)
 
             # Apply file path replacements (e.g., .html -> /)
             for source, target in replacements.items():

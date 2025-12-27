@@ -141,21 +141,63 @@ def replace_links(path: Path, replacements: Dict[str, str]):
             f.write(contents)
 
 
+def decode_js_single_quoted(s: str) -> str:
+    """Decode escape sequences in a JavaScript single-quoted string."""
+    result = []
+    i = 0
+    while i < len(s):
+        if s[i] == "\\" and i + 1 < len(s):
+            next_char = s[i + 1]
+            if next_char == "'":
+                result.append("'")
+                i += 2
+            elif next_char == "\\":
+                result.append("\\")
+                i += 2
+            else:
+                result.append(s[i])
+                i += 1
+        else:
+            result.append(s[i])
+            i += 1
+    return "".join(result)
+
+
 def fix_search_links(path: Path):
     """Rename search links to remove the ".html" suffix."""
-    with (path / "searchindex.json").open() as infile:
-        index = json.load(infile)
+    # Find the hashed searchindex file (newer mdbook versions use hashed filenames).
+    searchindex_files = list(path.glob("searchindex-*.js"))
+    if not searchindex_files:
+        print("No searchindex file found, skipping search link fixes.")
+        return
+
+    searchindex_file = searchindex_files[0]
+
+    with searchindex_file.open() as infile:
+        contents = infile.read()
+
+    # The format is: window.search = Object.assign(window.search, JSON.parse('...'));
+    # Extract the JSON string from within JSON.parse('...').
+    match = re.search(r"JSON\.parse\('(.*)'\)", contents)
+    if not match:
+        print(f"Could not parse searchindex format in {searchindex_file}")
+        return
+
+    # Decode JS single-quoted string escapes before parsing as JSON.
+    json_str = decode_js_single_quoted(match.group(1))
+    index = json.loads(json_str)
 
     doc_urls = [url.replace(".html", "/") for url in index["doc_urls"]]
     index["doc_urls"] = doc_urls
 
-    index_json = json.dumps(index).strip()
+    # Escape for embedding back into JS single-quoted string.
+    index_json = json.dumps(index).replace("\\", "\\\\").replace("'", "\\'")
 
-    with (path / "searchindex.json").open("w") as outfile:
-        outfile.write(index_json)
-
-    with (path / "searchindex.js").open("w") as outfile:
-        outfile.write(f"Object.assign(window.search, {index_json});")
+    # Write back in the same format mdbook uses.
+    with searchindex_file.open("w") as outfile:
+        outfile.write(
+            f"window.search = Object.assign(window.search, JSON.parse('{index_json}'));"
+        )
 
 
 def main(path: Path):

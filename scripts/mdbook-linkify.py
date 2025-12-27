@@ -14,6 +14,9 @@ INLINE_CODE_RE = re.compile(r"`[^`]*`")
 # This is a pragmatic regex; it won't perfectly handle all nested parentheses,
 # but it avoids breaking normal links like the one you showed.
 INLINE_LINK_RE = re.compile(r"!?(\[[^\]]*\])\([^\)]*\)")
+# HTML attributes containing URLs (href, src, value, etc.). Matches both single and
+# double quoted attributes. This prevents linkifying URLs that are already in HTML.
+HTML_ATTR_RE = re.compile(r'(?:href|src|value)\s*=\s*["\'][^"\']*["\']')
 
 
 def mask(text: str, pattern: re.Pattern, store: list, tag: str) -> str:
@@ -52,6 +55,7 @@ def transform_markdown(text: str) -> str:
     text = mask(text, FENCED_CODE_RE, store, "M")
     text = mask(text, INLINE_LINK_RE, store, "M")
     text = mask(text, INLINE_CODE_RE, store, "M")
+    text = mask(text, HTML_ATTR_RE, store, "M")
 
     text = linkify_bare_urls(text)
 

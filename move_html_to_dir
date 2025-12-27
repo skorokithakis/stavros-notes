@@ -130,10 +130,23 @@ def replace_links(path: Path, replacements: Dict[str, str]):
             contents = f.read()
             f.truncate(0)
             f.seek(0)
+
+            # Fix malformed path patterns BEFORE applying replacements.
+            # Handle /. patterns (malformed paths from path_to_root issues)
+            contents = re.sub(
+                r'((?:href|src|root)\s*=\s*")/\.', r"\1/", contents
+            )
+            # Handle ./ patterns (current directory references)
+            contents = re.sub(
+                r'((?:href|src|root)\s*=\s*")\./', r"\1/", contents
+            )
+
+            # Apply file path replacements (e.g., .html -> /)
             for source, target in replacements.items():
                 contents = contents.replace(source, target)
 
-            # Convert relative links to absolute.
+            # Convert remaining relative links to absolute.
+            # Handle ../ patterns (parent directory references)
             contents = re.sub(
                 r'((?:href|src|root)\s*=\s*")((?:\.\./)+)([^\.])', r"\1/\3", contents
             )

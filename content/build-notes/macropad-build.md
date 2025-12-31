@@ -1,7 +1,5 @@
 # Macropad build
 
-# Macropad build
-
 Custom macropad project based on void16 redux.
 
 ## Log
@@ -15,11 +13,11 @@ Custom macropad project based on void16 redux.
 - 2025-12-30: Works!
 - 2025-12-30: Connection stability issue - macropad disconnects/reconnects every few minutes. Conditions: device was charging, bluetooth headphones were also connected. Investigating.
 - 2025-12-30: Changed keymap from F13-F24 keys to regular keys with Ctrl+Shift+Super modifier. F-keys were triggering system actions (e.g., Alt+F20 mutes mic in GNOME). New layout: numbers (layer 0), QWERTY top row (layer 1), home row (layer 2), bottom row (layer 3). Removed Alt from modifier to avoid Alt+Shift triggering language switch.
-- 2025-12-30: Added combo to switch to bootloader.
 - 2025-12-30: Added combo to clear Bluetooth pairings (long-press all 4 layer buttons).
 - 2025-12-31: Switched from left control to right control for the modifier combo, to avoid conflicts with left-ctrl shortcuts.
 - 2025-12-31: Expanded from 4 layers to 15 layers using button combinations. Single buttons for layers 0-3, multiple simultaneous buttons for layers 4-14.
 - 2025-12-31: Added gaming layer (layer 12, activated by buttons 0+2+3) with WASD layout, ESC/TAB/CTRL on left column, ALT/Enter/Space on bottom row.
+- 2025-12-31: Printing new keycaps from https://www.printables.com/model/67474-flat-mx-keycap - red for layer buttons (top row, 4 keys), black for the rest (12 keys).
 
 * * *
 

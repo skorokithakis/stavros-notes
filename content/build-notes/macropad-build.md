@@ -21,6 +21,7 @@ Custom macropad project based on void16 redux.
 
 # Resources
 
+- https://jweather.github.io/macro.html
 - https://www.makerluis.com/making-a-macro-pad-from-scratch/
 - https://www.youtube.com/watch?v=_bRvMNMAWvo
 

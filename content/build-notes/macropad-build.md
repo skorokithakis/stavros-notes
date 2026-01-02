@@ -19,9 +19,14 @@ Custom macropad project based on void16 redux.
 - 2025-12-31: Added gaming layer (layer 12, activated by buttons 0+2+3) with WASD layout, ESC/TAB/CTRL on left column, ALT/Enter/Space on bottom row.
 - 2025-12-31: Printing new keycaps from https://www.printables.com/model/67474-flat-mx-keycap - red for layer buttons (top row, 4 keys), black for the rest (12 keys).
 
+# Resources
+
+- https://www.makerluis.com/making-a-macro-pad-from-scratch/
+- https://www.youtube.com/watch?v=_bRvMNMAWvo
+
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on December 31, 2025. For any questions/feedback,
+Last updated on January 02, 2026. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

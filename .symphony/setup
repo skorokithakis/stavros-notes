@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+repo_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$repo_root"
+export PATH="$repo_root:$PATH"
+
+if command -v mdbook >/dev/null 2>&1 && mdbook --version | grep -q 'v0\.5\.'; then
+    echo "mdBook 0.5.x found."
+else
+    echo "mdBook 0.5.x not found, downloading..."
+    wget https://github.com/rust-lang/mdBook/releases/download/v0.5.2/mdbook-v0.5.2-x86_64-unknown-linux-gnu.tar.gz -O mdbook.tgz
+    tar zxvf mdbook.tgz
+fi

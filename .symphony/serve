@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+source "$(dirname -- "${BASH_SOURCE[0]}")/setup"
+
+./build && python3 -m http.server --directory public "${PORT:-8000}"

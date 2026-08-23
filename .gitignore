@@ -4,3 +4,5 @@ book/
 .vscode/
 __pycache__/
 .envrc
+/mdbook
+/mdbook.tgz

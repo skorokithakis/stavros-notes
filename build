@@ -26,3 +26,6 @@ find public/ -name "*.html" -type f -exec sed -i 's/input disabled=""/input/g' {
 
 # Replace invalid `path_to_root`.
 find public/ -name "*.html" -type f -exec sed -i -E 's/(var|const) path_to_root = "\/.";/\1 path_to_root = "\/";/g' {} +
+
+# Replace invalid `path_to_searchindex_js`.
+find public/ -name "*.html" -type f -exec sed -i -E 's/(window\.path_to_searchindex_js = ")[^"]*(searchindex-[^"]+\.js)";/\1\/\2";/g' {} +

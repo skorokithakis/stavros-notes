@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import dataclasses
-import json
 import mimetypes
 import re
 import sqlite3
@@ -37,7 +36,6 @@ class Folder:
     id: str
     parent_id: str
     title: str
-    icon: str
 
     def is_private(self) -> bool:
         """Return whether this folder is private."""
@@ -49,11 +47,7 @@ class Folder:
 
     def get_summary_line(self, level: int) -> str:
         """Get the appropriate summary file line for this folder."""
-        return (
-            ("    " * (level - 1))
-            + f"- [{self.icon if self.icon else '📁'} "
-            + f"{self.title}]({self.get_url()}/index.md)"
-        )
+        return ("    " * (level - 1)) + f"- [{self.title}]({self.get_url()}/index.md)"
 
     def __lt__(self, other: Union["Folder", "Note"]) -> bool:
         """Support comparison, for sorting."""
@@ -103,7 +97,7 @@ class Note:
         """
         return (
             "    " * (level - 1)
-        ) + f"{'- ' if level > 0 else ''}[📄 {self.title}]({self.get_url()}.md)"
+        ) + f"{'- ' if level > 0 else ''}[{self.title}]({self.get_url()}.md)"
 
     def __lt__(self, other: Union["Folder", "Note"]) -> bool:
         """Support comparison, for sorting."""
@@ -206,12 +200,9 @@ class JoplinExporter:
         conn = sqlite3.connect(self.joplin_dir / "database.sqlite")
         c = conn.cursor()
 
-        c.execute("""SELECT id, title, parent_id, icon FROM folders;""")
+        c.execute("""SELECT id, title, parent_id FROM folders;""")
         self.folders = {
-            id: Folder(
-                id, parent_id, title, json.loads(icon).get("emoji", "") if icon else ""
-            )
-            for id, title, parent_id, icon in c.fetchall()
+            id: Folder(id, parent_id, title) for id, title, parent_id in c.fetchall()
         }
 
         self.folders = {

@@ -2,6 +2,8 @@
 
 **Project:** ESP32-driven analog wall clock - replace the timing IC and drive the coil directly from GPIO, enabling custom movement modes.
 
+**Status:** ✅ Complete - mounted on wall 2026-02-24
+
 **Repo:** https://github.com/skorokithakis/sleight-of-hand
 
 ## Details
@@ -37,8 +39,7 @@
 
 ### Ticking movement
 
-- Experimenting with a 150 Ω series resistor to lower tick strength
-- Still tuning the resistor value
+- Used a 150 Ω series resistor to lower tick strength
 
 ### Communication
 
@@ -61,7 +62,7 @@
 - **2026-02-12:** Measured 960 pulses/revolution. Rewrote firmware to NTP-anchored 960-pulse model with steady and rush_wait modes.
 - **2026-02-12:** Added MQTT control and UDP broadcast logging. Done and working.
 - **2026-02-23:** Working on adding ticking movement support. Debugging an off-by-one error in the ticking timing code - hard to pin down.
-- **2026-02-24:** Experimenting with a 150 Ω series resistor to reduce tick strength on the ticking movement. Still tuning.
+- **2026-02-24:** Tuned ticking movement with 150 Ω series resistor. Project complete - glued wall holder, mounting clock on wall.
 
 * * *
 

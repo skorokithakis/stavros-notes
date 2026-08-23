@@ -2,7 +2,7 @@
 
 I got an [RC receiver](https://www.banggood.com/2_4G-8CH-D8-Mini-FrSky-Compatibel-Receiver-With-PWM-PPM-SBUS-Output-p-1140478.html?rmmds=myorder&cur_warehouse=CN) from Banggood. 
 
-To bind, hold the button down while plugging in the power. When the LED is solid blue, you've bound.
+To bind, hold the button down while plugging in the power. When the LED is solid blue, you've bound. To get PWM out of its channels, desolder both PPM/SBUS bridges (or, at least, I *think* this is necessary).
 
 ![bea490ccc458840c97c9b4d0dac29c22.png](/resources/3ab56ddd639a4147bf34fde0222bcbe0.png)
 
@@ -21,6 +21,6 @@ To break this out to the SBUS pad, I had to remove/bridge the resistor that is c
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on February 07, 2026. For any questions/feedback,
+Last updated on April 17, 2026. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

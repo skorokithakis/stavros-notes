@@ -6,6 +6,7 @@
     - [📄 Macropad build](build-notes/macropad-build.md)
     - [📄 Middle pendant firmware bring-up](build-notes/middle-pendant-firmware-bring-up.md)
     - [📄 MSM8916 LTE stick Linux port](build-notes/msm8916-lte-stick-linux-port.md)
+    - [📄 Sky Team PCB](build-notes/sky-team-pcb.md)
     - [📄 Sleight of hand](build-notes/sleight-of-hand.md)
 - [🛸 Drone stuff](drone-stuff/index.md)
     - [📄 A simple guide to PID control](drone-stuff/a-simple-guide-to-pid-control.md)

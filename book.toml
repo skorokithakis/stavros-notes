@@ -8,8 +8,8 @@ title = "Stavros' Notes"
 smart-punctuation = true
 no-section-label = true
 preferred-dark-theme = "coal"
-git-repository-url = "https://gitlab.com/stavros/notes/"
-git-repository-icon = "fab-gitlab"
+git-repository-url = "https://github.com/skorokithakis/stavros-notes/"
+git-repository-icon = "fab-github"
 additional-css = ["static/custom.css"]
 
 [preprocessor.linkify]

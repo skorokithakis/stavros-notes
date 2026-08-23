@@ -1,227 +1,349 @@
-@font-face {
-    font-family: "Source Serif 4";
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url("/fonts/source-serif-4-regular-latin-ext.woff2") format("woff2");
-    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
+/* ────────────────────────────────────────────────────────────────────────────
+   Notes — a custom look for mdBook.  CSS only; no template changes.
 
-@font-face {
-    font-family: "Source Serif 4";
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url("/fonts/source-serif-4-regular-latin.woff2") format("woff2");
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
+   Written against mdBook 0.5.2 output (see the built HTML in public/).
+   The visual reference was theme/custom.css from "Custom notes site styling.zip",
+   which targeted mdBook 0.4; all chrome selectors below were re-derived from
+   the 0.5.2 markup (e.g. #mdbook-menu-bar, #mdbook-searchbar, li.chapter-item
+   > span.chapter-link-wrapper > a).
 
-@font-face {
-    font-family: "Source Serif 4";
-    font-style: italic;
-    font-weight: 400;
-    font-display: swap;
-    src: url("/fonts/source-serif-4-italic-latin-ext.woff2") format("woff2");
-    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
+   book.toml:
+     [output.html]
+     additional-css = ["static/custom.css"]
+     preferred-dark-theme = "coal"
+   ──────────────────────────────────────────────────────────────────────────── */
 
-@font-face {
-    font-family: "Source Serif 4";
-    font-style: italic;
-    font-weight: 400;
-    font-display: swap;
-    src: url("/fonts/source-serif-4-italic-latin.woff2") format("woff2");
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
+/* Google Fonts: Newsreader (body), Public Sans (headings/UI), JetBrains Mono
+   (code and labels).  Must stay the first rule of the file. */
+@import url("https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap");
 
-@font-face {
-    font-family: "Source Serif 4";
-    font-style: normal;
-    font-weight: 600;
-    font-display: swap;
-    src: url("/fonts/source-serif-4-semibold-latin-ext.woff2") format("woff2");
-    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
+/* ── Tokens ─────────────────────────────────────────────────────────────── */
 
-@font-face {
-    font-family: "Source Serif 4";
-    font-style: normal;
-    font-weight: 600;
-    font-display: swap;
-    src: url("/fonts/source-serif-4-semibold-latin.woff2") format("woff2");
-    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
+/* Design tokens, light palette.  mdBook pins html { font-size: 62.5% }, so
+   1rem = 10px; all rem values below are px / 10. */
 :root {
-    --content-max-width: 680px;
-    --mono-font: "Source Code Pro", Consolas, "Ubuntu Mono", Menlo, "DejaVu Sans Mono", monospace;
-    --searchbar-margin-block-start: 7px;
-    --ui-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --paper:        #FBFAF7;   /* page background, cool paper */
+    --paper-raised: #FFFFFF;   /* cards (sidebar, pre, search results) */
+    --paper-sunk:   #F2F0EA;   /* recessed fills, hover fills */
+    --ink:          #1C1B19;   /* primary text */
+    --ink-2:        #514E48;   /* secondary text */
+    --ink-3:        #6E6A61;   /* muted text, icons */
+    --ink-4:        #B8B3A7;   /* faint text, borders on dark */
+    --rule:         #E3DFD6;   /* hard rules */
+    --rule-soft:    #EDEAE3;   /* soft rules, rails */
+    --accent:       #A64B2A;   /* terracotta accent */
+    --accent-soft:  #F6EBE5;   /* accent-tinted fill (active rows) */
+    --accent-ink:   #7E3719;   /* accent at text contrast */
+    --link-rule:    #E0C3B4;   /* link underline, terracotta-tinted */
+
+    --serif: "Newsreader", Georgia, serif;
+    --sans:  "Public Sans", system-ui, -apple-system, sans-serif;
+    --mono:  "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+    /* mdBook's own knobs, retuned */
+    --content-max-width: 720px;
+    --mono-font: var(--mono);
+    --searchbar-margin-block-start: 9px;
 }
 
+/* Design tokens, dark palette */
+html.coal,
+html.navy,
+html.ayu {
+    --paper:        #17171A;
+    --paper-raised: #1E1E22;
+    --paper-sunk:   #26262B;
+    --ink:          #EDEAE3;
+    --ink-2:        #B9B4AA;
+    --ink-3:        #A29D92;
+    --ink-4:        #605C55;
+    --rule:         #33333A;
+    --rule-soft:    #2A2A30;
+    --accent:       #E08A5F;
+    --accent-soft:  #33241D;
+    --accent-ink:   #F0A87F;
+    --link-rule:    #6B4A38;
+}
+
+/* mdBook theme variables, remapped so its built-in rules inherit the look.
+   Light palette is on bare `html` unconditionally (an unstyled state must be
+   unreachable for visitors whose localStorage holds an old theme choice) plus
+   html.light/html.rust; the dark palette on html.coal/html.navy/html.ayu. */
 html,
 html.light,
 html.rust {
-    --accent: hsl(16 48% 36%);
-    --bg: hsl(40 33% 97%);
-    --fg: hsl(26 16% 19%);
-    --sidebar-bg: hsl(40 27% 94%);
-    --sidebar-fg: hsl(27 14% 25%);
-    --sidebar-non-existant: hsl(27 9% 52%);
+    --bg: var(--paper);
+    --fg: var(--ink);
+
+    --sidebar-bg: transparent;   /* the sidebar is a floating card, not a slab */
+    --sidebar-fg: var(--ink);
+    --sidebar-non-existant: var(--ink-4);
     --sidebar-active: var(--accent);
-    --sidebar-spacer: hsl(34 16% 82%);
-    --scrollbar: hsl(30 11% 55%);
-    --icons: hsl(27 10% 44%);
-    --icons-hover: var(--fg);
+    --sidebar-spacer: var(--rule-soft);
+
+    --scrollbar: var(--ink-4);
+    --icons: var(--ink-3);
+    --icons-hover: var(--ink);
     --links: var(--accent);
-    --inline-code-color: hsl(17 42% 31%);
-    --inline-code-bg: hsl(32 28% 93%);
-    --code-bg: hsl(38 25% 94%);
-    --code-border: hsl(33 16% 84%);
-    --theme-popup-bg: hsl(40 27% 94%);
-    --theme-popup-border: hsl(30 13% 72%);
-    --theme-hover: hsl(35 24% 89%);
-    --quote-bg: transparent;
-    --quote-border: hsl(17 45% 47%);
-    --warning-border: hsl(39 68% 35%);
-    --table-border-color: hsl(33 17% 83%);
-    --table-header-bg: transparent;
-    --table-alternate-bg: transparent;
-    --searchbar-border-color: hsl(28 13% 70%);
-    --searchbar-bg: hsl(40 33% 98%);
-    --searchbar-fg: var(--fg);
-    --searchbar-shadow-color: hsl(16 48% 54%);
-    --searchresults-header-fg: hsl(27 11% 38%);
-    --searchresults-border-color: hsl(30 13% 70%);
-    --searchresults-li-bg: hsl(35 29% 91%);
-    --search-mark-bg: hsl(42 72% 77%);
+
+    --inline-code-color: var(--accent-ink);
+    --inline-code-bg: var(--paper-sunk);
+    --code-bg: var(--paper-raised);
+    --code-border: var(--rule);
+
+    --theme-popup-bg: var(--paper-raised);
+    --theme-popup-border: var(--rule);
+    --theme-hover: var(--accent-soft);
+
+    --quote-bg: var(--paper-sunk);
+    --quote-border: var(--rule);
+    --warning-border: #9A6B1F;
+
+    --table-border-color: var(--rule);
+    --table-header-bg: var(--paper-sunk);
+    --table-alternate-bg: #FCFBF8;
+
+    --searchbar-border-color: var(--rule);
+    --searchbar-bg: var(--paper-raised);
+    --searchbar-fg: var(--ink);
+    --searchbar-shadow-color: rgb(28 27 25 / 10%);
+    --searchresults-header-fg: var(--ink-3);
+    --searchresults-border-color: var(--rule);
+    --searchresults-li-bg: var(--accent-soft);
+    --search-mark-bg: #F7E3B0;
+
     --color-scheme: light;
-    --copy-button-filter: invert(39%) sepia(10%) saturate(648%) hue-rotate(338deg) brightness(89%) contrast(87%);
-    --copy-button-filter-hover: invert(28%) sepia(26%) saturate(1125%) hue-rotate(335deg) brightness(89%) contrast(86%);
-    --footnote-highlight: hsl(16 45% 60%);
-    --overlay-bg: rgb(57 47 39 / 32%);
-    --blockquote-note-color: hsl(208 61% 41%);
-    --blockquote-tip-color: hsl(132 34% 37%);
-    --blockquote-important-color: hsl(267 31% 47%);
-    --blockquote-warning-color: hsl(39 68% 35%);
-    --blockquote-caution-color: hsl(1 47% 46%);
+    /* Tuned so the (black) copy glyph renders in the accent */
+    --copy-button-filter: invert(30%) sepia(100%) saturate(180%) hue-rotate(330deg) brightness(116%) contrast(181%);
+    --copy-button-filter-hover: invert(35%) sepia(73%) saturate(202%) hue-rotate(332deg) brightness(93%) contrast(190%);
+    --footnote-highlight: #C97B57;
+    --overlay-bg: rgb(28 27 25 / 25%);
+
+    --blockquote-note-color: #2F6DB1;
+    --blockquote-tip-color: #3D7A44;
+    --blockquote-important-color: #7A5FB8;
+    --blockquote-warning-color: #9A6B1F;
+    --blockquote-caution-color: #B03A34;
+
     --sidebar-header-border-color: var(--accent);
 }
 
 html.coal,
 html.navy,
 html.ayu {
-    --accent: hsl(16 54% 66%);
-    --bg: hsl(30 8% 11%);
-    --fg: hsl(37 22% 91%);
-    --sidebar-bg: hsl(28 9% 14%);
-    --sidebar-fg: hsl(35 17% 80%);
-    --sidebar-non-existant: hsl(28 7% 48%);
+    --bg: var(--paper);
+    --fg: var(--ink);
+
+    --sidebar-bg: transparent;
+    --sidebar-fg: var(--ink);
+    --sidebar-non-existant: var(--ink-4);
     --sidebar-active: var(--accent);
-    --sidebar-spacer: hsl(29 8% 25%);
-    --scrollbar: hsl(30 8% 43%);
-    --icons: hsl(30 8% 57%);
-    --icons-hover: var(--fg);
+    --sidebar-spacer: var(--rule-soft);
+
+    --scrollbar: var(--ink-4);
+    --icons: var(--ink-3);
+    --icons-hover: var(--ink);
     --links: var(--accent);
-    --inline-code-color: hsl(25 47% 72%);
-    --inline-code-bg: hsl(28 9% 16%);
-    --code-bg: hsl(29 8% 15%);
-    --code-border: hsl(29 8% 26%);
-    --theme-popup-bg: hsl(28 9% 14%);
-    --theme-popup-border: hsl(30 8% 34%);
-    --theme-hover: hsl(28 8% 19%);
-    --quote-bg: transparent;
-    --quote-border: hsl(16 46% 55%);
-    --warning-border: hsl(39 61% 59%);
-    --table-border-color: hsl(29 8% 27%);
-    --table-header-bg: transparent;
-    --table-alternate-bg: transparent;
-    --searchbar-border-color: hsl(31 9% 37%);
-    --searchbar-bg: hsl(30 8% 15%);
-    --searchbar-fg: var(--fg);
-    --searchbar-shadow-color: hsl(16 54% 54%);
-    --searchresults-header-fg: hsl(34 11% 65%);
-    --searchresults-border-color: hsl(30 8% 34%);
-    --searchresults-li-bg: hsl(29 9% 20%);
-    --search-mark-bg: hsl(39 52% 43%);
+
+    --inline-code-color: var(--accent-ink);
+    --inline-code-bg: var(--paper-sunk);
+    --code-bg: var(--paper-raised);
+    --code-border: var(--rule);
+
+    --theme-popup-bg: var(--paper-raised);
+    --theme-popup-border: var(--rule);
+    --theme-hover: var(--accent-soft);
+
+    --quote-bg: var(--paper-sunk);
+    --quote-border: var(--rule);
+    --warning-border: #D8A93C;
+
+    --table-border-color: var(--rule);
+    --table-header-bg: var(--paper-sunk);
+    --table-alternate-bg: #1B1B1F;
+
+    --searchbar-border-color: var(--rule);
+    --searchbar-bg: var(--paper-raised);
+    --searchbar-fg: var(--ink);
+    --searchbar-shadow-color: rgb(0 0 0 / 35%);
+    --searchresults-header-fg: var(--ink-3);
+    --searchresults-border-color: var(--rule);
+    --searchresults-li-bg: var(--paper-sunk);
+    --search-mark-bg: #6B5428;
+
     --color-scheme: dark;
-    --copy-button-filter: invert(66%) sepia(10%) saturate(770%) hue-rotate(339deg) brightness(96%) contrast(89%);
-    --copy-button-filter-hover: invert(77%) sepia(39%) saturate(803%) hue-rotate(330deg) brightness(94%) contrast(88%);
-    --footnote-highlight: hsl(16 45% 54%);
-    --overlay-bg: rgb(15 13 12 / 68%);
-    --blockquote-note-color: hsl(209 74% 72%);
-    --blockquote-tip-color: hsl(131 42% 66%);
-    --blockquote-important-color: hsl(270 53% 76%);
-    --blockquote-warning-color: hsl(39 61% 64%);
-    --blockquote-caution-color: hsl(4 61% 68%);
+    /* Tuned so the (black) copy glyph renders in the accent */
+    --copy-button-filter: invert(40%) sepia(90%) saturate(150%) hue-rotate(335deg) brightness(116%) contrast(185%);
+    --copy-button-filter-hover: invert(55%) sepia(94%) saturate(130%) hue-rotate(338deg) brightness(96%) contrast(158%);
+    --footnote-highlight: #C97B57;
+    --overlay-bg: rgb(0 0 0 / 60%);
+
+    --blockquote-note-color: #6EA9E8;
+    --blockquote-tip-color: #7FBF88;
+    --blockquote-important-color: #B39BE8;
+    --blockquote-warning-color: #D8A93C;
+    --blockquote-caution-color: #E87A72;
+
     --sidebar-header-border-color: var(--accent);
 }
 
+/* ── Page frame ────────────────────────────────────────────────────────── */
+
+/* Body text is the serif stack; the chrome below opts back into sans. */
 html {
-    font-family: "Source Serif 4", Georgia, serif;
+    font-family: var(--serif);
 }
 
 body {
-    font-size: 1.75rem;
+    font-size: 1.85rem;
     line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
 }
 
+::selection {
+    background-color: #F7DCC9;
+}
+
+html.coal ::selection,
+html.navy ::selection,
+html.ayu ::selection {
+    background-color: #4A3428;
+}
+
+/* UI chrome: menu bar, sidebar, search, help popup */
 #mdbook-menu-bar,
 #mdbook-search-wrapper,
 #mdbook-help-container,
 .sidebar,
-.sidebar-iframe-inner,
-.nav-wrapper {
-    font-family: var(--ui-font);
+.sidebar-iframe-inner {
+    font-family: var(--sans);
+}
+
+#mdbook-searchbar,
+#mdbook-help-popup {
+    font-family: var(--sans);
 }
 
 #mdbook-theme-toggle {
     display: none;
 }
 
+/* ── Menu bar ──────────────────────────────────────────────────────────── */
+
 #mdbook-menu-bar {
-    border-block-end-color: var(--table-border-color);
+    background-color: var(--bg);
+    background-color: color-mix(in srgb, var(--bg) 84%, transparent);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-block-end-color: var(--rule-soft);
+    box-shadow: none;
+}
+
+#mdbook-menu-bar .icon-button,
+#mdbook-menu-bar .right-buttons a {
+    color: var(--ink-3);
+    border-radius: 8px;
+    transition: background-color 0.12s ease, color 0.12s ease;
+}
+
+#mdbook-menu-bar .icon-button:hover,
+#mdbook-menu-bar .right-buttons a:hover {
+    background-color: var(--paper-sunk);
+    color: var(--ink);
 }
 
 #mdbook-menu-bar .menu-title {
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 1.35rem;
+    font-weight: 500;
     letter-spacing: 0.01em;
+    color: var(--ink-3);
 }
 
-#mdbook-searchbar,
-#mdbook-help-popup {
-    font-family: var(--ui-font);
+/* ── Search ────────────────────────────────────────────────────────────── */
+
+#mdbook-search-wrapper {
+    font-size: 1.5rem;
 }
 
 #mdbook-searchbar {
-    box-sizing: border-box;
-    border-radius: 4px;
+    font-size: 1.5rem;
+    padding: 11px 14px;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    box-shadow: none;
 }
 
 #mdbook-searchbar:focus,
 #mdbook-searchbar.active {
+    border-color: var(--accent);
     outline: 2px solid var(--accent);
-    outline-offset: 2px;
+    outline-offset: 1px;
 }
 
-.nav-wide-wrapper {
-    display: none;
+#mdbook-searchresults-header {
+    font-family: var(--mono);
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
 }
 
-.nav-wrapper {
-    display: block;
-    max-width: var(--content-max-width);
-    margin-block-start: 3rem;
-    margin-inline: auto;
+#mdbook-searchresults li {
+    font-size: 1.5rem;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--rule-soft);
 }
 
-.mobile-nav-chapters {
-    width: 4.5rem;
-    font-size: 2.2rem;
-    line-height: 2;
-    border: 1px solid var(--table-border-color);
-    background-color: var(--sidebar-bg);
+#mdbook-searchresults li.focus {
+    border-color: var(--rule);
+}
+
+#mdbook-searchresults a:hover {
+    text-decoration: underline;
+}
+
+#mdbook-searchresults span.teaser em {
+    font-style: normal;
+    background-color: var(--search-mark-bg);
+}
+
+/* ── Sidebar: a floating rounded card, not a slab ──────────────────────── */
+
+.sidebar {
+    background: transparent;
+}
+
+.sidebar .sidebar-scrollbox {
+    height: 100%;
+    box-sizing: border-box;
+    /* The scrollbox is absolutely positioned, so it ignores .sidebar's
+       padding (absolute elements position against the padding box).  Inset
+       it explicitly to float the card on the paper surround. */
+    top: 16px;
+    bottom: 16px;
+    left: 16px;
+    right: 0;
+    padding: 22px 12px 24px;
+    background-color: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    box-shadow: 0 1px 2px rgb(28 27 25 / 4%), 0 12px 28px -18px rgb(28 27 25 / 28%);
+    scrollbar-width: thin;
+}
+
+/* No-JS fallback: the sidebar is <iframe class="sidebar-iframe-outer" src="/toc/">
+   and custom.css is loaded inside that document, so the card has to be drawn
+   on the iframe body itself, with its own paper surround (the iframe's root
+   background is opaque; the parent page's paper does not show through). */
+.sidebar-iframe-inner {
+    box-sizing: border-box;
+    margin: 16px 0 16px 16px;
+    min-height: calc(100vh - 32px);
+    padding: 22px 12px 24px;
+    background-color: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    box-shadow: 0 1px 2px rgb(28 27 25 / 4%), 0 12px 28px -18px rgb(28 27 25 / 28%);
 }
 
 .sidebar,
@@ -230,10 +352,7 @@ body {
     line-height: 1.4;
 }
 
-.sidebar .sidebar-scrollbox {
-    padding: 1.2rem;
-}
-
+/* Nav rows: pill-shaped, the whole wrapper row is the pill */
 .chapter {
     margin: 0;
     line-height: 1.4;
@@ -253,52 +372,150 @@ body {
 }
 
 .chapter .chapter-link-wrapper {
-    padding: 0.15em 0.25em;
+    display: flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 8px;
+    transition: background-color 0.12s ease;
 }
 
 .chapter .chapter-link-wrapper > a:first-child {
     flex: 1;
+    font-size: 1.45rem;
+    color: var(--sidebar-fg);
+    text-decoration: none;
 }
 
-.chapter .chapter-item:has(> .section) > .chapter-link-wrapper > a {
-    font-size: 0.95em;
+/* Top-level folders become uppercase mono labels.  There are no part titles
+   in this book (SUMMARY.md has 1 top-level page and 5 top-level folders), so
+   the labels are derived from structure: a chapter item that owns a section.
+   They are real links, so they get hover/active states for discoverability.
+   (These rules come before the hover rules below; equal-specificity hover
+   rules must win so the label reacts to hovering.) */
+.chapter > .chapter-item:has(> .section) {
+    margin-block-start: 1.5em;
+}
+
+.chapter > .chapter-item:has(> .section) > .chapter-link-wrapper > a {
+    font-family: var(--mono);
+    font-size: 1.05rem;
+    font-weight: 500;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+}
+
+/* Depth-1 folders: semibold sans — uppercase mono at two nesting levels
+   would be noisy. */
+.chapter .section > .chapter-item:has(> .section) > .chapter-link-wrapper > a {
     font-weight: 600;
     letter-spacing: 0.01em;
 }
 
+/* Nesting: a hairline rail rather than blank indentation */
 .chapter .section {
-    margin: 0.45em 0 0.75em 0.55em;
-    padding-inline-start: 0.85em;
-    border-inline-start: 1px solid var(--sidebar-spacer);
+    margin: 2px 0 6px 15px;
+    padding-inline-start: 9px;
+    border-inline-start: 1px solid var(--rule-soft);
     line-height: 1.35;
 }
 
 .chapter .section .chapter-item {
-    margin-block-start: 0.4em;
+    margin-block-start: 0.3em;
 }
 
-.chapter a.active,
-.chapter a.current-header {
-    color: var(--sidebar-active);
-    font-weight: 600;
+.chapter .section .chapter-link-wrapper > a:first-child {
+    font-size: 1.4rem;
+}
+
+.chapter .chapter-link-wrapper:hover {
+    background-color: var(--paper-sunk);
+}
+
+.chapter .chapter-link-wrapper:hover > a:first-child {
+    color: var(--ink);
 }
 
 .chapter .chapter-link-wrapper:has(a.active),
 .chapter .chapter-link-wrapper:has(a.current-header) {
-    margin-inline-start: -0.65em;
-    padding-inline-start: 0.55em;
-    border-inline-start: 2px solid var(--sidebar-active);
-    border-radius: 0 3px 3px 0;
-    background-color: var(--theme-hover);
+    background-color: var(--accent-soft);
 }
 
-.on-this-page {
-    margin: 0.7em 0 0.2em 0.65em;
-    padding: 0.1em 0 0.1em 0.85em;
-    border-inline-start-width: 1px;
+.chapter .chapter-link-wrapper > a.active,
+.chapter .chapter-link-wrapper > a.current-header {
+    color: var(--accent-ink);
+    font-weight: 600;
 }
+
+.chapter > .chapter-item:has(> .section) > .chapter-link-wrapper > a.active,
+.chapter > .chapter-item:has(> .section) > .chapter-link-wrapper > a.current-header {
+    color: var(--accent-ink);
+    font-weight: 600;
+}
+
+/* Collapse chevron (only used in the on-this-page header list) */
+.chapter .chapter-fold-toggle {
+    color: var(--ink-4);
+    transition: color 0.12s ease, opacity 0.12s ease;
+}
+
+.chapter .chapter-fold-toggle:hover {
+    color: var(--ink-2);
+    opacity: 1;
+}
+
+/* The on-this-page heading list (built by toc.js into the active row's li)
+   is an ordinary nested section: the rail and pill-row look come from
+   .chapter .section and .chapter .chapter-link-wrapper, which already apply
+   to it.  The wrapper itself only tucks the list under the active row's pill
+   and clears mdBook's default chrome.css treatment (22px margin, 8px padding,
+   and a 4px --sidebar-header-border-color rail) that this restyle doesn't
+   use.  The old rule's border-inline-start-width drew an accidental second
+   rail next to the section's own: chrome.css's shorthand still supplied the
+   style and colour, so clear the border entirely and let the section rail
+   stand. */
+.on-this-page {
+    margin: 0.35em 0 0;
+    padding: 0;
+    border-inline-start: 0;
+}
+
+/* Same vertical rhythm as chapter-tree rows inside a section. */
+.on-this-page .header-item {
+    margin-block-start: 0.3em;
+}
+
+/* A heading that is itself a markdown link (e.g. `### [text](url)`) is
+   invalid HTML, so mdBook emits the link as a second anchor and the parser
+   un-nests it: the heading's first child ends up an empty `a.header`.
+   toc.js copies only that anchor into the sidebar row, so the row has no
+   text to display.  Hide only the row's own wrapper, not the containing
+   <li>: toc.js nests deeper headings inside that same <li>, and those must
+   stay visible (the text cannot be recovered from the DOM). */
+.on-this-page .header-item:has(> .chapter-link-wrapper > a:empty) > .chapter-link-wrapper {
+    display: none;
+}
+
+/* ── Prev/next navigation: dropped (this book has no reading sequences) ─── */
+
+.nav-wrapper,
+.nav-wide-wrapper,
+.mobile-nav-chapters {
+    display: none;
+}
+
+/* ── The note itself ─────────────────────────────────────────────────────
+   Content-column styling.  Based on theme/custom.css from the visual
+   reference, re-derived for mdBook 0.5.2 markup and the 10px rem base
+   (1rem = 10px, so the reference's px values divide by 10). */
 
 .content {
+    font-family: var(--serif);
+    font-size: 1.85rem;
+    line-height: 1.65;
+    color: var(--ink);
+    text-wrap: pretty;
+    overflow-wrap: break-word;
     padding-bottom: 4rem;
 }
 
@@ -314,13 +531,24 @@ body {
 
 .content ol,
 .content ul {
-    margin-block: 0.9em 1.25em;
-    padding-inline-start: 1.4em;
+    margin-block: 0 1.15em;
+    padding-inline-start: 1.35em;
 }
 
-.content li + li {
-    margin-block-start: 0.3em;
+.content li {
+    margin: 0.32em 0;
+    padding-inline-start: 0.15em;
 }
+
+.content li::marker {
+    color: var(--ink-4);
+}
+
+.content :is(ul, ol) :is(ul, ol) {
+    margin-block: 0.3em;
+}
+
+/* ── Headings ─────────────────────────────────────────────────────────── */
 
 .content h1,
 .content h2,
@@ -328,56 +556,66 @@ body {
 .content h4,
 .content h5,
 .content h6 {
+    font-family: var(--sans);
     font-weight: 600;
-    line-height: 1.18;
-    letter-spacing: -0.012em;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    line-height: 1.2;
+    text-wrap: balance;
 }
 
+/* h1 is the page title: it gets a hairline rule below it.  The h2 underline
+   of the old stylesheet is gone. */
 .content h1 {
-    margin: 0.95em 0 0.35em;
-    font-size: 3.6rem;
+    margin: 1.2em 0 0.5em;
+    padding-bottom: 0.45em;
+    border-bottom: 1px solid var(--rule);
+    font-size: 3.4rem;
+    letter-spacing: -0.028em;
 }
 
 .content h2 {
-    margin: 2.7em 0 0.45em;
-    padding-bottom: 0.32em;
-    border-bottom: 1px solid var(--table-border-color);
-    font-size: 2.7rem;
+    margin: 2.3em 0 0.55em;
+    font-size: 2.25rem;
 }
 
 .content h3 {
-    margin: 2.25em 0 0.4em;
-    font-size: 2.15rem;
+    margin: 1.9em 0 0.45em;
+    font-size: 1.8rem;
 }
 
-.content h4,
-.content h5,
-.content h6 {
-    margin: 1.8em 0 0.35em;
+/* h4 stays a plain sans heading at body size — the reference's uppercase
+   mono label style reads wrong for ordinary subheadings like "Fly straight". */
+.content h4 {
+    margin: 1.7em 0 0.4em;
     font-size: 1.85rem;
 }
 
-.content strong,
-.content b {
-    font-weight: 600;
+.content h5,
+.content h6 {
+    margin: 1.7em 0 0.4em;
+    font-size: 1.5rem;
 }
 
-.content main a:not(.header) {
-    color: var(--links);
-    text-decoration: underline;
-    text-decoration-thickness: 0.08em;
-    text-underline-offset: 0.14em;
+.content h6 {
+    font-size: 1.4rem;
 }
 
-.content :is(h1, h2, h3, h4, h5, h6) a:not(.header) {
+/* Heading anchor links: hidden until hover, in the margin */
+.content :is(h1, h2, h3, h4, h5, h6) > a.header {
     color: inherit;
     text-decoration: none;
+    border-bottom: 0;
+    position: relative;
 }
 
-.content :is(h1, h2, h3, h4, h5, h6) a:not(.header):hover {
-    text-decoration: underline;
-    text-decoration-thickness: 0.05em;
-    text-underline-offset: 0.12em;
+.content :is(h1, h2, h3, h4, h5, h6) > a.header:hover::before {
+    content: "#";
+    position: absolute;
+    left: -1.1em;
+    color: var(--ink-4);
+    font-family: var(--mono);
+    font-weight: 400;
 }
 
 .content .header:link,
@@ -386,70 +624,234 @@ body {
     text-decoration: none;
 }
 
-.content :not(pre) > code,
-.content :not(pre) > .hljs {
-    padding: 0.05em 0.2em;
-    border-radius: 2px;
-    background: var(--inline-code-bg);
-    box-shadow: inset 0 -1px 0 var(--table-border-color);
+/* ── Links ────────────────────────────────────────────────────────────── */
+
+.content main a:not(.header) {
+    color: var(--links);
+    text-decoration: none;
+    border-bottom: 1px solid var(--link-rule);
 }
 
+.content main a:not(.header):hover {
+    color: var(--accent-ink);
+    border-bottom-color: var(--accent);
+}
+
+/* Image links: the picture is the link, not a text underline */
+.content main a:not(.header):has(> img) {
+    border-bottom: 0;
+}
+
+/* Links inside headings: inherit the heading colour, no underline at rest,
+   underline on hover.  (a.header anchor links are styled separately above;
+   these rules come after the general link rules so they win at equal
+   specificity.) */
+.content :is(h1, h2, h3, h4, h5, h6) a:not(.header) {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 0;
+}
+
+.content :is(h1, h2, h3, h4, h5, h6) a:not(.header):hover {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 0.05em;
+    text-underline-offset: 0.12em;
+}
+
+.content strong,
+.content b {
+    font-weight: 600;
+}
+
+.content em {
+    font-style: italic;
+}
+
+/* ── Code ─────────────────────────────────────────────────────────────── */
+
+.content :not(pre) > code,
+.content :not(pre) > .hljs {
+    font-size: 0.82em;
+    padding: 0.14em 0.38em;
+    border-radius: 5px;
+    border: 1px solid var(--rule-soft);
+    background: var(--paper-sunk);
+    color: var(--accent-ink);
+}
+
+/* Pre blocks: raised rounded cards */
 .content pre {
+    position: relative;
     box-sizing: border-box;
     margin-block: 1.75em;
-    border: 1px solid var(--code-border);
-    border-radius: 5px;
-    background: var(--code-bg);
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgb(28 27 25 / 4%), 0 12px 28px -18px rgb(28 27 25 / 28%);
+    overflow: hidden;
 }
 
 .content pre > code {
-    padding: 1.3rem;
-    line-height: 1.55;
+    display: block;
+    padding: 18px 20px;
+    font-size: 1.35rem;
+    line-height: 1.62;
+    background: transparent;
+    border: 0;
+    color: var(--ink);
+    overflow-x: auto;
 }
 
 .content pre > .hljs {
     background: transparent;
 }
 
+/* Copy button: appears on hover */
+.content pre > .buttons {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.content pre:hover > .buttons {
+    opacity: 1;
+}
+
+.content pre > .buttons button {
+    background: var(--paper-sunk);
+    border: 1px solid var(--rule);
+    border-radius: 7px;
+    color: var(--ink-3);
+    cursor: pointer;
+}
+
+.content pre > .buttons button:hover {
+    color: var(--ink);
+    border-color: var(--ink-4);
+}
+
+/* Syntax colours tuned to the palette (highlight.js classes).  The dark
+   palette needs its own shades: the light colours above are too dim
+   against the dark paper, so each light group gets a lighter twin. */
+.content .hljs-comment,
+.content .hljs-quote {
+    color: var(--ink-3);
+    font-style: italic;
+}
+
+.content .hljs-keyword,
+.content .hljs-selector-tag,
+.content .hljs-literal {
+    color: #8A3FA0;
+}
+
+.content .hljs-string,
+.content .hljs-attr {
+    color: #1F6B4C;
+}
+
+.content .hljs-number,
+.content .hljs-symbol {
+    color: var(--accent);
+}
+
+.content .hljs-title,
+.content .hljs-function .hljs-title,
+.content .hljs-name {
+    color: #2A5DA8;
+}
+
+.content .hljs-type,
+.content .hljs-built_in {
+    color: #94551F;
+}
+
+html.coal .content .hljs-string,
+html.coal .content .hljs-attr,
+html.navy .content .hljs-string,
+html.navy .content .hljs-attr,
+html.ayu .content .hljs-string,
+html.ayu .content .hljs-attr {
+    color: #8FCFAE;
+}
+
+html.coal .content .hljs-keyword,
+html.coal .content .hljs-selector-tag,
+html.coal .content .hljs-literal,
+html.navy .content .hljs-keyword,
+html.navy .content .hljs-selector-tag,
+html.navy .content .hljs-literal,
+html.ayu .content .hljs-keyword,
+html.ayu .content .hljs-selector-tag,
+html.ayu .content .hljs-literal {
+    color: #C79BE0;
+}
+
+html.coal .content .hljs-title,
+html.coal .content .hljs-function .hljs-title,
+html.coal .content .hljs-name,
+html.navy .content .hljs-title,
+html.navy .content .hljs-function .hljs-title,
+html.navy .content .hljs-name,
+html.ayu .content .hljs-title,
+html.ayu .content .hljs-function .hljs-title,
+html.ayu .content .hljs-name {
+    color: #86B4F0;
+}
+
+html.coal .content .hljs-type,
+html.coal .content .hljs-built_in,
+html.navy .content .hljs-type,
+html.navy .content .hljs-built_in,
+html.ayu .content .hljs-type,
+html.ayu .content .hljs-built_in {
+    color: #D8A93C;
+}
+
+/* ── Tables ───────────────────────────────────────────────────────────── */
+
 .content .table-wrapper {
     margin-block: 1.75em;
 }
 
 .content table {
-    width: max-content;
-    min-width: 100%;
-    margin: 0;
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--sans);
+    font-size: 1.5rem;
 }
 
 .content table th,
 .content table td {
-    padding: 0.55em 0.85em;
-    border: 0;
-    border-bottom: 1px solid var(--table-border-color);
+    padding: 9px 13px;
+    border: 1px solid var(--rule);
     text-align: start;
 }
 
-.content table thead,
-.content table tbody tr:nth-child(2n) {
-    background: transparent;
-}
-
-.content table thead tr {
-    border: 0;
-}
-
-.content table thead th,
-.content table thead td {
-    border-bottom-width: 2px;
+.content table thead th {
+    background: var(--paper-sunk);
     font-weight: 600;
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-2);
 }
 
+.content table tbody tr:nth-child(2n) {
+    background: var(--table-alternate-bg);
+}
+
+/* ── Blockquotes, rules, footnotes ────────────────────────────────────── */
+
+/* Blockquotes: flush, marked by an accent rule, italic */
 .content blockquote {
     margin: 1.75em 0;
     padding: 0.1em 0 0.1em 1.25em;
-    border-block: 0;
-    border-inline-start: 3px solid var(--quote-border);
+    border: 0;
+    border-inline-start: 2px solid var(--accent);
     background: transparent;
+    color: var(--ink-2);
+    font-style: italic;
 }
 
 .content blockquote > :first-child {
@@ -460,9 +862,10 @@ body {
     margin-block-end: 0.2em;
 }
 
+/* mdBook blockquote tags ([!NOTE] and friends) and the legacy .warning */
 .content .blockquote-tag {
     padding: 0.2em 0 0.2em 1.25em;
-    border-inline-start-width: 3px;
+    border-inline-start-width: 2px;
     background: transparent;
 }
 
@@ -473,11 +876,23 @@ body {
 }
 
 .content hr {
-    width: 35%;
-    margin: 3em auto;
+    height: 1px;
+    margin: 2.6em 0;
     border: 0;
-    border-top: 1px solid var(--table-border-color);
+    background: var(--rule);
 }
+
+.content .footnote-definition {
+    font-family: var(--sans);
+    font-size: 1.5rem;
+    color: var(--ink-2);
+}
+
+.content .footnote-definition sup.footnote-definition-label {
+    color: var(--accent);
+}
+
+/* ── Images ───────────────────────────────────────────────────────────── */
 
 .content img,
 .content video {
@@ -485,36 +900,65 @@ body {
     max-width: 100%;
 }
 
-.content input[type="checkbox"] {
+/* The border and corner radius apply only to images that are the sole
+   content of their paragraph — a blanket border looks wrong on small
+   inline images.  (Images here are often link-wrapped, so cover both.) */
+.content p > img:only-child,
+.content p > a:only-child > img:only-child {
+    display: block;
+    box-sizing: border-box;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+}
+
+/* ── Task lists ───────────────────────────────────────────────────────── */
+
+.content li > input[type="checkbox"] {
     width: 1em;
     height: 1em;
-    margin-inline-end: 0.35em;
+    margin-inline-end: 0.5em;
     accent-color: var(--accent);
     cursor: pointer;
     vertical-align: -0.08em;
 }
 
-@media (min-width: 760px) {
-    .content pre,
-    .content .table-wrapper {
-        width: min(760px, calc(100% + 80px));
-        margin-inline: calc((100% - min(760px, calc(100% + 80px))) / 2);
-    }
-}
+/* ── Responsive ───────────────────────────────────────────────────────── */
 
-@media (max-width: 620px) {
+@media only screen and (max-width: 620px) {
+    :root {
+        --page-padding: 18px;
+    }
+
+    /* The sidebar card flattens against the edge of the screen */
+    .sidebar .sidebar-scrollbox,
+    .sidebar-iframe-inner {
+        border-radius: 0;
+        border: 0;
+        box-shadow: none;
+    }
+
+    .sidebar .sidebar-scrollbox {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .sidebar-iframe-inner {
+        margin: 0;
+        min-height: 100vh;
+    }
+
+    .content {
+        font-size: 1.75rem;
+    }
+
     .content h1 {
-        font-size: 3.2rem;
-    }
-
-    .content h2 {
-        font-size: 2.5rem;
-    }
-
-    .content h3 {
-        font-size: 2rem;
+        font-size: 2.8rem;
     }
 }
+
+/* ── Print ────────────────────────────────────────────────────────────── */
 
 @media print {
     html,
@@ -526,11 +970,54 @@ body {
         --bg: #fff;
         --fg: #000;
         --links: #4183c4;
+        --link-rule: #c5c5c5;
         --color-scheme: light;
+
+        /* Our own token layer, too: the theme class stays on <html> when
+           printing, so without this a dark palette would print light ink
+           on white paper. */
+        --paper: #fff;
+        --paper-raised: #fff;
+        --paper-sunk: #f2f2f2;
+        --ink: #000;
+        --ink-2: #333;
+        --ink-3: #555;
+        --ink-4: #999;
+        --rule: #ccc;
+        --rule-soft: #ddd;
+        --accent: #A64B2A;
+        --accent-soft: #F6EBE5;
+        --accent-ink: #7E3719;
+        --table-alternate-bg: #FCFBF8;
     }
 
-    .nav-wrapper {
-        display: none;
+    /* Syntax colours: force the light set (these selectors match the dark
+       palette overrides in specificity, and win by coming later) so code
+       stays legible on white paper even when printing from a dark theme. */
+    html:is(.coal, .navy, .ayu) .content .hljs-string,
+    html:is(.coal, .navy, .ayu) .content .hljs-attr {
+        color: #1F6B4C;
+    }
+
+    html:is(.coal, .navy, .ayu) .content .hljs-keyword,
+    html:is(.coal, .navy, .ayu) .content .hljs-selector-tag,
+    html:is(.coal, .navy, .ayu) .content .hljs-literal {
+        color: #8A3FA0;
+    }
+
+    html:is(.coal, .navy, .ayu) .content .hljs-title,
+    html:is(.coal, .navy, .ayu) .content .hljs-function .hljs-title,
+    html:is(.coal, .navy, .ayu) .content .hljs-name {
+        color: #2A5DA8;
+    }
+
+    html:is(.coal, .navy, .ayu) .content .hljs-type,
+    html:is(.coal, .navy, .ayu) .content .hljs-built_in {
+        color: #94551F;
+    }
+
+    .content {
+        font-size: 11pt;
     }
 
     .content main {
@@ -541,6 +1028,11 @@ body {
     .content .table-wrapper {
         width: auto;
         margin-inline: 0;
+    }
+
+    .content pre {
+        border-color: #ccc;
+        box-shadow: none;
     }
 
     .content main a:not(.header) {

@@ -29,3 +29,35 @@ find public/ -name "*.html" -type f -exec sed -i -E 's/(var|const) path_to_root 
 
 # Replace invalid `path_to_searchindex_js`.
 find public/ -name "*.html" -type f -exec sed -i -E 's/(window\.path_to_searchindex_js = ")[^"]*(searchindex-[^"]+\.js)";/\1\/\2";/g' {} +
+
+# Fix active-link detection in the vendored toc-*.js.  Same family as the two
+# rewrites above: move_html_to_dir changes page URLs after mdBook has computed
+# its own.  mdBook compares link.href against a current_page it has already
+# appended 'index.html' to, but move_html_to_dir leaves the sidebar links as
+# trailing-slash URLs, so the comparison never matches on note pages and the
+# sidebar highlight (plus the on-this-page list it gates) is dead.  Normalise
+# both sides at comparison time only: the href attribute itself must keep the
+# pretty /x/y/ URL, or clicks would go to /x/y/index.html.  The replacement
+# is an inline expression, so it introduces no binding that could collide
+# with a future toc.js.  The file is vendored and hash-named (toc-<hash>.js),
+# so assert exact occurrence counts before and after: a silent no-op here
+# would fail exactly like path_to_searchindex_js did on the live site (dead
+# UI, no visible error).
+toc_count="$(find public/ -maxdepth 1 -type f -name 'toc-*.js' | wc -l)"
+if [ "$toc_count" -ne 1 ]; then
+    echo "error: expected exactly one public/toc-*.js (found $toc_count); mdBook may have renamed the sidebar script" >&2
+    exit 1
+fi
+toc_file="$(find public/ -maxdepth 1 -type f -name 'toc-*.js')"
+old_count="$(grep -oF 'if (link.href === current_page' "$toc_file" | wc -l)" || true
+if [ "$old_count" -ne 1 ]; then
+    echo "error: expected exactly one 'if (link.href === current_page' in $toc_file (found $old_count); mdBook upgraded?" >&2
+    exit 1
+fi
+sed -i "s|if (link\.href === current_page|if ((link.href.endsWith('/') ? link.href + 'index.html' : link.href) === current_page|" "$toc_file"
+new_count="$(grep -oF "if ((link.href.endsWith('/') ? link.href + 'index.html' : link.href) === current_page" "$toc_file" | wc -l)" || true
+leftover_count="$(grep -oF 'if (link.href === current_page' "$toc_file" | wc -l)" || true
+if [ "$new_count" -ne 1 ] || [ "$leftover_count" -ne 0 ]; then
+    echo "error: active-link patch did not apply cleanly to $toc_file (new: $new_count, old left: $leftover_count)" >&2
+    exit 1
+fi

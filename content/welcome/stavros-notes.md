@@ -8,13 +8,13 @@ If you want to use the script and generate such a site for yourself, feel free t
 
 [https://github.com/skorokithakis/stavros-notes/](https://github.com/skorokithakis/stavros-notes/)
 
-Just run `./joplinexport` on your computer, it will read the database and create a site like this one. Also, the `build` and `move_html_to_dir` scripts might be of interest.
+Just run `./joplinexport` on your computer, it will read the database and create a site like this one and upload it to GitHub pages. Also, the `build` and `move_html_to_dir` scripts might be of interest.
 
 Otherwise, enjoy my notes!
 
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on April 12, 2025. For any questions/feedback,
+Last updated on August 23, 2026. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

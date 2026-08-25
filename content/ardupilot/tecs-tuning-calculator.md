@@ -70,11 +70,8 @@ To use this calculator, first follow the steps in [Tuning the TECS](/ardupilot/t
 
 <p>
 Run this command in a terminal, making sure you have <a href="https://gitlab.com/stavros/parachute">Parachute</a> installed:
-<code>
-<pre id="parachuteCommand">
-(Please fill out the values above first)
-</pre>
-</code>
+<pre><code id="parachuteCommand">(Please fill out the values above first)
+</code></pre>
 </p>
 </form>
 
@@ -82,6 +79,6 @@ Run this command in a terminal, making sure you have <a href="https://gitlab.com
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on November 29, 2022. For any questions/feedback,
+Last updated on August 25, 2026. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

@@ -1,0 +1,15 @@
+# mdBook fingerprints its JS/CSS, and Joplin resources receive a new ID when their content changes.
+# These rules deliberately share one value, so overlap is harmless.  A later rule with a
+# different value must not overlap them: Cloudflare joins values with a comma instead of overriding.
+
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/resources/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon-*
+  Cache-Control: public, max-age=31536000, immutable

@@ -14,7 +14,18 @@ else
     ./mdbook build -d public
 fi
 
-cp -R static/* public/
+# mdBook emits the linked, fingerprinted custom CSS itself.  Do not copy the
+# unhashed source, which would match the immutable CSS header rule.
+static_asset_count="$(find static/ -mindepth 1 -maxdepth 1 ! -name 'custom.css' | wc -l)"
+if [ "$static_asset_count" -eq 0 ]; then
+    echo "error: expected static assets other than static/custom.css to copy" >&2
+    exit 1
+fi
+find static/ -mindepth 1 -maxdepth 1 ! -name 'custom.css' -exec cp -R -t public/ {} +
+if [ -e public/custom.css ] || [ ! -f public/_headers ] || [ ! -f public/favicon.ico ] || [ ! -d public/resources ]; then
+    echo "error: static copy did not produce _headers, favicon.ico, and resources/ without custom.css" >&2
+    exit 1
+fi
 
 # Work around some print.html bugs.
 sed -i "s/\(href\|src\)=\"[[:alnum:]\-]*\/\//\1=\"\//g" public/print.html
@@ -59,5 +70,72 @@ new_count="$(grep -oF "if ((link.href.endsWith('/') ? link.href + 'index.html' :
 leftover_count="$(grep -oF 'if (link.href === current_page' "$toc_file" | wc -l)" || true
 if [ "$new_count" -ne 1 ] || [ "$leftover_count" -ne 0 ]; then
     echo "error: active-link patch did not apply cleanly to $toc_file (new: $new_count, old left: $leftover_count)" >&2
+    exit 1
+fi
+
+# mdBook hashes the vendored toc file before the active-link patch above changes
+# it.  Re-fingerprint it and rewrite its root-absolute HTML references so an
+# immutable response can never retain the patched file under its old name.
+toc_count_before_rehash="$(find public/ -maxdepth 1 -type f -name 'toc-*.js' | wc -l)"
+if [ "$toc_count_before_rehash" -ne 1 ]; then
+    echo "error: expected exactly one public/toc-*.js before rehashing (found $toc_count_before_rehash)" >&2
+    exit 1
+fi
+old_toc_name="$(basename "$toc_file")"
+if ! [[ "$old_toc_name" =~ ^toc-[0-9a-f]{8}\.js$ ]]; then
+    echo "error: expected mdBook's toc-<8 lowercase hex>.js name, found $old_toc_name" >&2
+    exit 1
+fi
+old_toc_hash="${old_toc_name#toc-}"
+old_toc_hash="${old_toc_hash%.js}"
+new_toc_hash="$(sha256sum "$toc_file" | cut -c1-8)"
+if ! [[ "$new_toc_hash" =~ ^[0-9a-f]{8}$ ]]; then
+    echo "error: failed to compute an 8-character lowercase hex digest for $toc_file" >&2
+    exit 1
+fi
+new_toc_name="toc-$new_toc_hash.js"
+new_toc_file="public/$new_toc_name"
+if [ "$new_toc_name" = "$old_toc_name" ]; then
+    echo "error: patched $toc_file already matches its content-derived name; cannot safely rehash it" >&2
+    exit 1
+fi
+if [ -e "$new_toc_file" ]; then
+    echo "error: refusing to replace existing $new_toc_file while rehashing $toc_file" >&2
+    exit 1
+fi
+toc_html_count="$(grep -rlIF --include='*.html' -- "/$old_toc_name" public/ | wc -l)" || true
+if [ "$toc_html_count" -eq 0 ]; then
+    echo "error: expected HTML references to /$old_toc_name before rewriting them" >&2
+    exit 1
+fi
+mv "$toc_file" "$new_toc_file"
+if [ -e "$toc_file" ] || [ ! -f "$new_toc_file" ]; then
+    echo "error: failed to rename $toc_file to $new_toc_file" >&2
+    exit 1
+fi
+toc_count="$(find public/ -maxdepth 1 -type f -name 'toc-*.js' | wc -l)"
+final_toc_hash="$(sha256sum "$new_toc_file" | cut -c1-8)"
+if [ "$toc_count" -ne 1 ] || [ "$final_toc_hash" != "$new_toc_hash" ]; then
+    echo "error: toc rehash did not apply cleanly (files: $toc_count, digest: $final_toc_hash, expected: $new_toc_hash)" >&2
+    exit 1
+fi
+find public/ -name "*.html" -type f -exec sed -i "s|/toc-$old_toc_hash\\.js|/$new_toc_name|g" {} +
+leftover_toc_reference_count="$(grep -rlIF -- "$old_toc_name" public/ | wc -l)" || true
+new_toc_reference_count="$(grep -rlIF --include='*.html' -- "/$new_toc_name" public/ | wc -l)" || true
+if [ "$leftover_toc_reference_count" -ne 0 ] || [ "$new_toc_reference_count" -ne "$toc_html_count" ]; then
+    echo "error: toc reference rewrite did not apply cleanly (old refs left: $leftover_toc_reference_count, new refs: $new_toc_reference_count, expected: $toc_html_count)" >&2
+    exit 1
+fi
+
+# Immutable headers cover every generated JS/CSS asset outside resources/.  This
+# script accepts any installed mdBook, so reject an un-fingerprinted filename
+# before an upgrade can silently make a stable asset immutable.
+unfingerprinted_assets="$(
+    find public/ -path public/resources -prune -o -type f \( -name '*.js' -o -name '*.css' \) -print |
+        grep -Ev -- '-[0-9a-f]{8}(\.min)?\.(js|css)$'
+)" || true
+if [ -n "$unfingerprinted_assets" ]; then
+    echo "error: immutable-cache assets need mdBook fingerprints:" >&2
+    printf '%s\n' "$unfingerprinted_assets" >&2
     exit 1
 fi

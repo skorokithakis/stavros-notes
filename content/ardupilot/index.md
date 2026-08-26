@@ -16,5 +16,6 @@ Click on a link in the list below to go to that page:
 1. [Reverse thrust](../../ardupilot/reverse-thrust.html)
 1. [Statistics calculator](../../ardupilot/statistics-calculator.html)
 1. [TECS tuning calculator](../../ardupilot/tecs-tuning-calculator.html)
+1. [TECS tuning calculator](../../ardupilot/tecs-tuning-calculator.html)
 1. [Transfer config between craft](../../ardupilot/transfer-config-between-craft.html)
 1. [Tuning the TECS](../../ardupilot/tuning-the-tecs.html)

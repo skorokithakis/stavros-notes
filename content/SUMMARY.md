@@ -3,6 +3,7 @@
 [Stavros' notes](welcome/stavros-notes.md)
 - [Build notes](build-notes/index.md)
     - [Bedtime](build-notes/bedtime.md)
+    - [Dead Man’s Switch](build-notes/dead-man-s-switch.md)
     - [Macropad build](build-notes/macropad-build.md)
     - [Middle pendant firmware bring-up](build-notes/middle-pendant-firmware-bring-up.md)
     - [MSM8916 LTE stick Linux port](build-notes/msm8916-lte-stick-linux-port.md)

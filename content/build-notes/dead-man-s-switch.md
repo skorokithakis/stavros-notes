@@ -9,6 +9,6 @@
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on August 30, 2026. For any questions/feedback,
+Last updated on September 08, 2026. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

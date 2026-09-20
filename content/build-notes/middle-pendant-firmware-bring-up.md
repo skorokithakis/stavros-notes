@@ -2,6 +2,8 @@
 
 **Project:** Voice recorder pendant - ESP32-S3 wearable with BLE sync, MP3 recording, and GPT-4o transcription.
 
+**Repo:** https://github.com/skorokithakis/middle
+
 ## Details
 
 - ESP32-S3 SuperMini
@@ -22,10 +24,11 @@
 - **2026-02-15:** Updated firmware so BLE advertising starts after recording and on boot with pending files. Fixed repeated file transfer behavior with delete-path normalization.
 - **2026-02-18:** Made a 3D printed case for the pendant - should be usable now.
 - **2026-02-22:** Installed a new digital microphone on the pendant.
+- **2026-09-19:** Created the Middle project in Linear, led by Stavros, and attached the GitHub repository as the project link.
 
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on February 23, 2026. For any questions/feedback,
+Last updated on September 20, 2026. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

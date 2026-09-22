@@ -25,10 +25,11 @@
 - **2026-02-18:** Made a 3D printed case for the pendant - should be usable now.
 - **2026-02-22:** Installed a new digital microphone on the pendant.
 - **2026-09-19:** Created the Middle project in Linear, led by Stavros, and attached the GitHub repository as the project link.
+- **2026-09-22:** STA-259 added an Android Telecom-based fake-call action and was fixed after the Actions screen initially crashed. Asked on the ticket what other fun or useful capabilities the new Telecom provider could enable; requested ideas only, not implementation.
 
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on September 20, 2026. For any questions/feedback,
+Last updated on September 22, 2026. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

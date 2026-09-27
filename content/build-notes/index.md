@@ -11,3 +11,4 @@ Click on a link in the list below to go to that page:
 1. [Sky Team PCB](../../build-notes/sky-team-pcb.html)
 1. [Sleight of hand](../../build-notes/sleight-of-hand.html)
 1. [Watch hacking](../../build-notes/watch-hacking.html)
+1. [Wherewhen](../../build-notes/wherewhen.html)

@@ -11,6 +11,7 @@
     - [Sky Team PCB](build-notes/sky-team-pcb.md)
     - [Sleight of hand](build-notes/sleight-of-hand.md)
     - [Watch hacking](build-notes/watch-hacking.md)
+    - [Wherewhen](build-notes/wherewhen.md)
 - [Drone stuff](drone-stuff/index.md)
     - [A simple guide to PID control](drone-stuff/a-simple-guide-to-pid-control.md)
     - [E6000 hinges](drone-stuff/e6000-hinges.md)

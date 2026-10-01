@@ -28,8 +28,14 @@ Feature ideas are tracked as tickets in the Wherewhen project on Linear. Status 
 - Mobile: tapping items zooms/pans the map.
 - Plans: Stavros intends to charge eventually because LLM usage will be costly. Not open source: he wants only his agents to open pull requests, no outside contributors.
 
-### In-app LLM chat (idea, 30 Sep 2026) - Linear STA-423 (Backlog, needs extensive design first)
-Stavros wants a chat in Wherewhen that helps plan trips, can search the web and makes other tool calls. He said it needs extensive design before building. Advice given (not decisions): no full agent harness needed. Use the plain Anthropic SDK (Python or TypeScript) with a simple tool loop: call the model, and on `stop_reason == tool_use` run the tool, append a tool_result and repeat until `end_turn`. Web search via Anthropic's server-side `web_search` tool (plus optional `web_fetch`), which runs inside the API request with citations, needs no search key and is billed per search; handle `pause_turn`. App tools mirror the agent API (search_places, add_stop, move_stop...). Stream to the frontend via SSE. Open design questions (in the ticket): scope tools to the current trip server-side (the model never passes trip ids); web content can carry prompt injection while the chat has write access, so make writes undoable or confirm them first; cost caps vs invite codes/paid tiers; chat placement in the UI; what trip context is sent; model choice.
+### In-app LLM chat (30 Sep 2026) - now Linear STA-427 (first spike, In Progress)
+The original design ticket STA-423 was later marked Done and then trashed with the other Done tickets on 30 Sep. Current work: STA-427 "Task: in-app LLM trip assistant chat, first spike", In Progress, assigned to Stavros.
+Stavros wants a chat in Wherewhen that helps plan trips, can search the web and makes other tool calls. He said it needs extensive design before building. Advice given (not decisions): no full agent harness needed. Use the plain Anthropic SDK (Python or TypeScript) with a simple tool loop: call the model, and on `stop_reason == tool_use` run the tool, append a tool_result and repeat until `end_turn`. Web search via Anthropic's server-side `web_search` tool (plus optional `web_fetch`), which runs inside the API request with citations, needs no search key and is billed per search; handle `pause_turn`. App tools mirror the agent API (search_places, add_stop, move_stop...). Stream to the frontend via SSE. Open design questions (from the original ticket): scope tools to the current trip server-side (the model never passes trip ids); web content can carry prompt injection while the chat has write access, so make writes undoable or confirm them first; cost caps vs invite codes/paid tiers; chat placement in the UI; what trip context is sent; model choice.
+
+### Feature request from Keigo Suzukawa (30 Sep 2026, from a Gemini summary of a work 1:1) - undecided
+- Pain point: organising family trips across several countries (Australia, France and Poland mentioned) is high-friction.
+- Suggested: shared to-dos, a status dashboard for trip tasks (e.g. "flights booked?"), and travel concierge integrations.
+- Stavros's reservations: travel styles differ widely (minute-by-minute planning vs all-inclusive vs sightseeing maps), and task tracking risks turning the app into a Jira-like tracker. He acknowledged shared to-dos/tracking as a possible idea; target niche and implementation not decided. Not filed in Linear.
 
 ## Log
 
@@ -49,6 +55,8 @@ Stavros wants a chat in Wherewhen that helps plan trips, can search the web and 
 - **2026-09-30 00:21 (Pebble):** Asked whether in-app LLM chat with web search and tool calls needs a full harness or just a library (Python?). Advised plain SDK + tool loop + Anthropic server-side web search (see "In-app LLM chat" above).
 - **2026-09-30 00:25:** At his request, filed STA-423 "In-app LLM chat for trip planning (needs design)" in Wherewhen, Backlog (verified with get_issue). He noted it needs extensive design first.
 - **2026-09-30 00:26:** Stavros said tickets never need the Agent label any more. Removed it from STA-423 (now no labels, still Backlog); rule updated in the Linear scratchpad.
+- **2026-09-30 (later that night):** STA-423 marked Done; STA-427 "Task: in-app LLM trip assistant chat, first spike" is In Progress, assigned to Stavros. 03:05-03:13: all Done/Canceled Linear tickets (including STA-423) moved to Linear's trash at his request; STA-427 is the only open ticket left.
+- **2026-09-30 13:29:** Keigo Suzukawa (Numan colleague) pitched a feature request during a work 1:1 (source: Gemini summary): shared to-dos, trip task status dashboard, concierge integrations. Undecided, see section above.
 
 * * *
 

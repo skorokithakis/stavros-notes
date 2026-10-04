@@ -12,6 +12,7 @@
     - [Sleight of hand](build-notes/sleight-of-hand.md)
     - [Watch hacking](build-notes/watch-hacking.md)
     - [Wherewhen](build-notes/wherewhen.md)
+    - [Wherewhen feedback - 3 Oct 2026](build-notes/wherewhen-feedback-3-oct-2026.md)
 - [Drone stuff](drone-stuff/index.md)
     - [A simple guide to PID control](drone-stuff/a-simple-guide-to-pid-control.md)
     - [E6000 hinges](drone-stuff/e6000-hinges.md)

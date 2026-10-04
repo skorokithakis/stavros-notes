@@ -12,3 +12,4 @@ Click on a link in the list below to go to that page:
 1. [Sleight of hand](../../build-notes/sleight-of-hand.html)
 1. [Watch hacking](../../build-notes/watch-hacking.html)
 1. [Wherewhen](../../build-notes/wherewhen.html)
+1. [Wherewhen feedback - 3 Oct 2026](../../build-notes/wherewhen-feedback-3-oct-2026.html)

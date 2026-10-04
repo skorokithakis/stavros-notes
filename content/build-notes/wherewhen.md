@@ -37,6 +37,9 @@ Stavros wants a chat in Wherewhen that helps plan trips, can search the web and 
 - Suggested: shared to-dos, a status dashboard for trip tasks (e.g. "flights booked?"), and travel concierge integrations.
 - Stavros's reservations: travel styles differ widely (minute-by-minute planning vs all-inclusive vs sightseeing maps), and task tracking risks turning the app into a Jira-like tracker. He acknowledged shared to-dos/tracking as a possible idea; target niche and implementation not decided. Not filed in Linear.
 
+### Stavros's feedback session (3-4 Oct 2026)
+Eight points, all filed at his request as Linear tickets in Wherewhen, Backlog, no labels: STA-494 to STA-501. Full wording, my (unconfirmed) readings and open questions are in [Wherewhen feedback - 3 Oct 2026](/build-notes/wherewhen-feedback-3-oct-2026.html).
+
 ## Log
 
 - **2026-09-26:** Stavros told me he made Wherewhen, a travel planner. Existing Linear tickets: STA-309 (send reminders for things, Backlog), STA-314 (add calendar functionality, Needs Input). New feature requests go into the Linear Backlog (superseded 27 Sep, see below).
@@ -57,10 +60,11 @@ Stavros wants a chat in Wherewhen that helps plan trips, can search the web and 
 - **2026-09-30 00:26:** Stavros said tickets never need the Agent label any more. Removed it from STA-423 (now no labels, still Backlog); rule updated in the Linear scratchpad.
 - **2026-09-30 (later that night):** STA-423 marked Done; STA-427 "Task: in-app LLM trip assistant chat, first spike" is In Progress, assigned to Stavros. 03:05-03:13: all Done/Canceled Linear tickets (including STA-423) moved to Linear's trash at his request; STA-427 is the only open ticket left.
 - **2026-09-30 13:29:** Keigo Suzukawa (Numan colleague) pitched a feature request during a work 1:1 (source: Gemini summary): shared to-dos, trip task status dashboard, concierge integrations. Undecided, see section above.
+- **2026-10-03 23:08 - 2026-10-04 01:11:** Feedback session from Stavros (Signal, then Pebble after midnight). At 23:12 he asked for every point to become a Backlog ticket (no labels): STA-494 show ratings on places in the chat; STA-495 ask for the number of days when creating a trip; STA-496 LLM proposes an itinerary the first time a trip switches to itinerary mode; STA-497 teach the LLM Wherewhen best practices (e.g. hotel as first/last stop each day); STA-498 Wikipedia/OpenStreetMap links for places; STA-499 "I'm leaving now" button in the Today view for when you're late; STA-500 rename Ideas mode to Research mode (API dayId "ideas" should stay or be aliased); STA-501 keep the LLM provider abstraction encapsulated (assumed to be Wherewhen, unconfirmed). Collected in [Wherewhen feedback - 3 Oct 2026](/build-notes/wherewhen-feedback-3-oct-2026.html).
 
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on September 30, 2026. For any questions/feedback,
+Last updated on October 04, 2026. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>

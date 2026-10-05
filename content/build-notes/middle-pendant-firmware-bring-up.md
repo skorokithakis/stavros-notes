@@ -26,10 +26,11 @@
 - **2026-02-22:** Installed a new digital microphone on the pendant.
 - **2026-09-19:** Created the Middle project in Linear, led by Stavros, and attached the GitHub repository as the project link.
 - **2026-09-22:** STA-259 added an Android Telecom-based fake-call action and was fixed after the Actions screen initially crashed. Asked on the ticket what other fun or useful capabilities the new Telecom provider could enable; requested ideas only, not implementation.
+- **2026-10-04:** Noticed that Middle shows only three lines of a long dictated (Pebble) transcription; the full 187-character message reached Stavrobot intact, so it's display-only. Filed STA-516 (Backlog, no labels).
 
 * * *
 
 <p style="font-size:80%; font-style: italic">
-Last updated on September 22, 2026. For any questions/feedback,
+Last updated on October 05, 2026. For any questions/feedback,
 email me at <a href="mailto:hi@stavros.io">hi@stavros.io</a>.
 </p>
